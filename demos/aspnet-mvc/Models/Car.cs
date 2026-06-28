@@ -12,7 +12,7 @@ namespace aspnet.Models
        // C'est de l'encapsulation : on accède à la donnée via la propriété, pas par un champ public.
        public string PlateNumber { get; set; }
 
-       // Propriété CALCULÉE en lecture seule (pas de "set") : sa valeur est dérivée d'autres objets.
+       // Propriété calculée en lecture seule (pas de "set") : sa valeur est dérivée d'autres objets.
        // Brand n'est pas stockée, elle est recalculée à partir du modèle et de sa marque.
        public string Brand
         {
@@ -35,7 +35,7 @@ namespace aspnet.Models
        // Clé étrangère : stocke seulement l'identifiant du modèle lié (relation en base).
        public int CarModelId { get; set; }  // Foreign key to CarModel
        // Propriété de navigation : référence l'objet CarModel complet associé.
-       // "= null!" signale au compilateur que la valeur sera fournie par EF Core (on assume non nul).
+       // "= Null!" signale au compilateur que la valeur sera fournie par EF Core (on assume non nul).
        public CarModel CarModel { get; set; } = null!; // Navigation property
     }
 }

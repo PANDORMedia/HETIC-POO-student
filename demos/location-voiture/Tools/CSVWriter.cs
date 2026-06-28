@@ -1,21 +1,21 @@
 using System.Globalization;
 using System.Threading.Tasks.Dataflow;
 
-// CSVWriter illustre la SÉPARATION DES RESPONSABILITÉS : la persistance sur disque (lire et écrire
+// Csvwriter illustre la séparation des responsabilités : la persistance sur disque (lire et écrire
 // le fichier) est regroupée ici, à l'écart des classes métier (Vehicule, Car...) et du menu (Program).
 // Chaque partie du code a ainsi un seul rôle. Si demain on change de format de stockage, on ne
-// modifie que cette classe. Toutes ses méthodes sont statiques car CSVWriter est un simple outil :
-// il n'a pas d'état propre à mémoriser, on l'utilise via CSVWriter.ReadFile() / CSVWriter.WriteToFile().
+// modifie que cette classe. Toutes ses méthodes sont statiques car csvwriter est un simple outil :
+// il n'a pas d'état propre à mémoriser, on l'utilise via csvwriter.ReadFile() / csvwriter.WriteToFile().
 public class CSVWriter
 {
     // Sauvegarde la liste des voitures dans le fichier. Retourne true si tout s'est bien passé.
     public static bool WriteToFile(List<Car> cars)
     {
-        // try/catch : écrire sur le disque peut échouer (fichier verrouillé, droits manquants...).
+        // Try/catch : écrire sur le disque peut échouer (fichier verrouillé, droits manquants...).
         // On entoure donc l'opération pour ne pas faire planter tout le programme en cas de problème.
         try
         {
-            // "using" garantit que le fichier sera correctement fermé et vidé (flush) à la fin
+            // "Using" garantit que le fichier sera correctement fermé et vidé (flush) à la fin
             // du bloc, même si une erreur survient. C'est essentiel pour ne pas laisser le fichier ouvert.
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(Environment.CurrentDirectory, "cars.csv")))
             {
@@ -56,7 +56,7 @@ public class CSVWriter
                 string line = file.ReadLine();
                 // Split(',') découpe la ligne CSV en un tableau de valeurs, une par colonne.
                 string[] values = line.Split(',');
-                // On reconstruit un objet Car à partir du texte : c'est la DÉSÉRIALISATION.
+                // On reconstruit un objet Car à partir du texte : c'est la désérialisation.
                 // Chaque colonne (texte) doit être reconvertie vers le bon type avec Parse :
                 Car temp = new Car(
                     values[0], //Brand

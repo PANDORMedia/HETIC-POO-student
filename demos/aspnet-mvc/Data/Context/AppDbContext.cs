@@ -18,7 +18,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Car> Cars { get; set; }
 
-    // Méthode REDÉFINIE (override) de DbContext : on personnalise le mapping objet-relationnel.
+    // Méthode redéfinie (override) de DbContext : on personnalise le mapping objet-relationnel.
     // Ici on impose le nom des tables ("CarBrand" et "CarModel" au singulier).
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,9 +1,9 @@
 using System.Globalization;
 
 // La classe Car illustre deux mécanismes à la fois :
-// 1) l'HÉRITAGE : "Car : Vehicule" signifie qu'une Car EST un Vehicule et récupère gratuitement
-//    Brand, Model, DailyPrice, GetPrice, etc. sans les réécrire.
-// 2) l'IMPLÉMENTATION D'INTERFACES : les noms qui suivent (IAssurable, IServiceable, IExportable)
+// 1) l'héritage : "Car : Vehicule" signifie qu'une Car est un Vehicule et récupère gratuitement
+//    Brand, Model, DailyPrice, GetPrice, etc. Sans les réécrire.
+// 2) L'implémentation d'interfaces : les noms qui suivent (IAssurable, IServiceable, IExportable)
 //    sont des contrats que Car s'engage à respecter. C# autorise une seule classe parente mais
 //    plusieurs interfaces, ce qui permet de cumuler des capacités.
 public class Car : Vehicule, IAssurable, IServiceable, IExportable
@@ -33,16 +33,16 @@ public class Car : Vehicule, IAssurable, IServiceable, IExportable
     // Cette propriété satisfait le contrat IServiceable (qui exige KmSinceLastService).
     public int KmSinceLastService { get; set; }
 
-    // Constructeur de Car. ": base(brand, model, price)" appelle d'abord le constructeur de la
-    // classe parente Vehicule pour initialiser la partie héritée, AVANT de régler les champs propres
+    // Constructeur de Car. ": Base(brand, model, price)" appelle d'abord le constructeur de la
+    // classe parente Vehicule pour initialiser la partie héritée, avant de régler les champs propres
     // à la voiture. C'est la façon d'éviter de redupliquer la logique d'initialisation du parent.
     public Car(string brand, string model, decimal price, int seats, Fuel fuel) : base(brand, model, price)
     {
         NbSeats = seats;
         Fuel = fuel;
     }
-    // "override" fournit l'implémentation obligatoire de la méthode abstraite ShowDetails du parent.
-    // Concept de POLYMORPHISME : quand on appelle car.ShowDetails() sur un Vehicule, c'est CETTE
+    // "Override" fournit l'implémentation obligatoire de la méthode abstraite ShowDetails du parent.
+    // Concept de polymorphisme : quand on appelle car.ShowDetails() sur un Vehicule, c'est cette
     // version (spécifique à la voiture, avec sièges, carburant et assurance) qui s'exécute.
     public override void ShowDetails()
     {
@@ -53,7 +53,7 @@ public class Car : Vehicule, IAssurable, IServiceable, IExportable
         Console.WriteLine($"Fuel :\t\t {Fuel}");
         Console.Write($"Price (/day):\t {DailyPrice} ");
 
-        // Opérateur ternaire : "condition ? valeurSiVrai : valeurSiFaux", une écriture compacte du if/else.
+        // Opérateur ternaire : "condition ? ValeurSiVrai : valeurSiFaux", une écriture compacte du if/else.
         string availableStr = IsAvailable ? "(This car is available)" : "(This car isn't available)";
         Console.WriteLine(availableStr);
 
@@ -62,7 +62,7 @@ public class Car : Vehicule, IAssurable, IServiceable, IExportable
         Console.WriteLine("--------------------------");
     }
 
-    // Implémentation imposée par le contrat IAssurable. Car décide ici de SA formule de prime.
+    // Implémentation imposée par le contrat IAssurable. Car décide ici de sa formule de prime.
     public decimal GetInsurancePrice()
     {
         return DailyPrice * 30;
@@ -89,8 +89,8 @@ public class Car : Vehicule, IAssurable, IServiceable, IExportable
         return $"{Brand},{Model},{DailyPrice.ToString(CultureInfo.InvariantCulture)},{NbSeats},{(int) Fuel}";
     }
 
-    // Méthode STATIQUE : elle appartient à la classe Car elle-même, pas à une voiture en particulier.
-    // On l'appelle donc via Car.GetCSVHeader() sans avoir d'instance. Logique car l'entête du fichier
+    // Méthode statique : elle appartient à la classe Car elle-même, pas à une voiture en particulier.
+    // On l'appelle donc via Car.Getcsvheader() sans avoir d'instance. Logique car l'entête du fichier
     // est la même pour toutes les voitures, ce n'est pas une donnée propre à un objet.
     public static string GetCSVHeader()
     {

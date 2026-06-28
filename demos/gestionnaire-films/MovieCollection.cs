@@ -8,12 +8,12 @@
 // Une méthode MostRecent() qui retourne le film le plus récent
 // Teste avec 5+ films.
 
-// MovieCollection est une version plus simple, SPÉCIALISÉE pour les films uniquement.
+// MovieCollection est une version plus simple, spécialisée pour les films uniquement.
 // Contrairement à Collection (qui accepte tout MediaItem), celle-ci ne contient que des Movie.
 // Bon exemple pour comparer une collection générique à une collection dédiée à un seul type.
 public class MovieCollection
 {
-    // Champ privé : la liste des films. Le type List<Movie> garantit qu'on ne peut y ranger QUE des films.
+    // Champ privé : la liste des films. Le type List<Movie> garantit qu'on ne peut y ranger que des films.
     private List<Movie> movies = new List<Movie>();
 
     // Ajoute simplement un film à la liste (ici sans contrôle de doublon).
@@ -22,7 +22,7 @@ public class MovieCollection
         movies.Add(m);
     }
 
-    // Affiche tous les films. "var" laisse le compilateur deviner le type de movie (ici Movie).
+    // Affiche tous les films. "Var" laisse le compilateur deviner le type de movie (ici Movie).
     // L'appel movie.Show() reste polymorphe : c'est la version Show() de Movie qui s'exécute.
     public void All()
     {
@@ -41,7 +41,7 @@ public class MovieCollection
         return movies.Where(m => m.ReleaseYear == year).ToList();
     }
 
-    // Le type de retour Movie? (avec le point d'interrogation) signifie "un Movie OU null"
+    // Le type de retour Movie? (Avec le point d'interrogation) signifie "un Movie ou null"
     // (au cas où la liste serait vide). OrderBy trie par année, FirstOrDefault prend le premier élément.
     public Movie? MostRecent()
     {

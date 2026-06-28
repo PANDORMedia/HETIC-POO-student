@@ -1,5 +1,5 @@
-// Une interface est un CONTRAT : elle liste ce qu'une classe doit savoir faire,
-// sans dire COMMENT le faire (aucun corps de méthode ici, juste les signatures).
+// Une interface est un contrat : elle liste ce qu'une classe doit savoir faire,
+// sans dire comment le faire (aucun corps de méthode ici, juste les signatures).
 // "Serviceable" = révisable. Toute classe qui déclare implémenter IServiceable
 // s'engage à fournir ces trois membres. Concept POO : séparer la capacité (être révisable)
 // du type concret. On pourra ainsi manipuler "quelque chose de révisable" sans savoir

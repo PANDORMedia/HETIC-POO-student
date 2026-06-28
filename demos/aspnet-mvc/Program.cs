@@ -16,7 +16,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("Default")));
 
-// COEUR DE L'INJECTION DE DÉPENDANCES.
+// Coeur de l'injection de dépendances.
 // On dit au conteneur : "chaque fois qu'une classe réclame l'interface ICarRepository,
 // fournis-lui une instance de CarSqlLiteRepository". Le code qui consomme l'abstraction
 // (l'interface) ignore totalement l'implémentation concrète : c'est l'inversion de dépendance.

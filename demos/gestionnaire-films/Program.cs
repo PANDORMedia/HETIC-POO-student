@@ -4,7 +4,7 @@ namespace MyApp
 {
     class Program
     {
-        // Main est le POINT D'ENTRÉE du programme : c'est la première méthode exécutée au lancement.
+        // Main est le point d'entrée du programme : c'est la première méthode exécutée au lancement.
         // On y assemble tous les objets pour montrer concrètement chaque concept POO.
         static void Main(string[] args)
         {
@@ -24,7 +24,7 @@ namespace MyApp
 
             movie2.Show();
 
-            // movie1 et movie2 sont deux objets DIFFÉRENTS en mémoire : la comparaison renvoie donc False.
+            // Movie1 et movie2 sont deux objets différents en mémoire : la comparaison renvoie donc False.
             // (Par défaut, == sur des objets compare les références, pas le contenu.)
             Console.WriteLine($"{movie1 == movie2}");
 
@@ -36,7 +36,7 @@ namespace MyApp
 
             movie4.Show();
 
-            // Création d'une série : même démarche, mais TVShow a son propre constructeur (avec le nombre de saisons).
+            // Création d'une série : même démarche, mais tvshow a son propre constructeur (avec le nombre de saisons).
             TVShow tvs1 = new TVShow("The Big Bang Theory", 2007, 12);
 
             tvs1.Show();
@@ -61,13 +61,13 @@ namespace MyApp
 
 
             Console.WriteLine("----------------");
-            // DÉMONSTRATION CLÉ du polymorphisme : une seule liste contient des objets de TROIS types différents.
-            // C'est possible car Movie, TVShow et Documentary héritent tous de MediaItem.
+            // Démonstration clé du polymorphisme : une seule liste contient des objets de trois types différents.
+            // C'est possible car Movie, tvshow et Documentary héritent tous de MediaItem.
             List<MediaItem> mediaItems = new List<MediaItem>() { movie1, movie2, movie3, tvs1, d1, d2};
 
             foreach(var media in mediaItems) {
 
-                // Le pattern "media is Movie movie" teste le type réel ET crée une variable typée (movie) si ça marche.
+                // Le pattern "media is Movie movie" teste le type réel et crée une variable typée (movie) si ça marche.
                 // On ajoute juste un préfixe d'affichage selon le type, sans avoir touché aux méthodes Show().
                 if(media is Movie movie)
                 {
@@ -82,7 +82,7 @@ namespace MyApp
                     Console.Write("Documentaire : ");
                     doc.Show();
                 }
-                // En utilisant le mot clef "is".. préposez le "Show()" d'un "Film :", "Documentaire :" ou "Serie :
+                // En utilisant le mot clef "is".. Préposez le "Show()" d'un "Film :", "Documentaire :" ou "Serie :
                 // "Film : Batman - Tim Burton - 1989 - Action"
 
                 // Sans modifier la méthode Show...
@@ -93,7 +93,7 @@ namespace MyApp
 
             // MediaItem mediaItem = new Movie("Batman", 1989, "Tim Burton", "Action");
 
-            // mediaItem.Show();
+            // MediaItem.Show();
             // Console.WriteLine(mediaItem.GetType());
 
             // On range tous les médias dans le catalogue polymorphe Collection.
@@ -108,8 +108,8 @@ namespace MyApp
             c.GetStats();
 
 
-            // Appel de la méthode GÉNÉRIQUE : FindByType<Movie>() ne renvoie que les films de la collection.
-            // En remplaçant <Movie> par <TVShow> ou <Documentary>, on filtrerait l'autre type sans changer le code de la méthode.
+            // Appel de la méthode générique : FindByType<Movie>() ne renvoie que les films de la collection.
+            // En remplaçant <Movie> par <tvshow> ou <Documentary>, on filtrerait l'autre type sans changer le code de la méthode.
             var foundItems = c.FindByType<Movie>();
 
             foreach(var item in foundItems)

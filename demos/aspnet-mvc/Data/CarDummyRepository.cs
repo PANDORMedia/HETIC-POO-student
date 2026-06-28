@@ -4,14 +4,14 @@ using aspnet.Models;
 namespace aspnet.Data
 {
 
-    // Implémentation FACTICE ("dummy") du dépôt des voitures : aucune base de données,
+    // Implémentation factice ("dummy") du dépôt des voitures : aucune base de données,
     // juste une liste en mémoire avec des données pré-remplies. Très pratique pour tester
     // ou démarrer rapidement. Comme elle respecte ICarRepository, on peut la substituer à
     // CarSqlLiteRepository dans Program.cs sans rien changer aux contrôleurs : c'est tout
     // l'intérêt de programmer contre une interface (substituabilité / polymorphisme).
     public class CarDummyRepository : ICarRepository
     {
-        // "static" : la liste est partagée par toutes les instances de la classe et survit
+        // "Static" : la liste est partagée par toutes les instances de la classe et survit
         // entre les requêtes (utile ici pour conserver les ajouts en mémoire pendant l'exécution).
         private static List<Car> _cars = new List<Car>()
         {

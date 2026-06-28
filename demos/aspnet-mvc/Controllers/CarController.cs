@@ -13,7 +13,7 @@ namespace aspnet.Controllers
     {
         private readonly ILogger<CarController> _logger;
 
-        // Ce contrôleur dépend de DEUX abstractions : le dépôt des voitures et celui des modèles.
+        // Ce contrôleur dépend de deux abstractions : le dépôt des voitures et celui des modèles.
         // On a besoin des modèles pour proposer une liste déroulante lors de la création.
         private readonly ICarRepository _repo;
         private readonly ICarModelRepository _modelRepo;

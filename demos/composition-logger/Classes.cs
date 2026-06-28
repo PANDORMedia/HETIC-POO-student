@@ -1,8 +1,8 @@
 // BaseService regroupe le point commun de tous les services : chacun a besoin
 // d'un logger pour tracer ce qu'il fait.
-// Point clé de la démo : le service NE CRÉE PAS son logger lui-même (aucun
-// "new ConsoleLogger()" ici). Il le REÇOIT de l'extérieur. C'est l'INVERSION DE
-// DÉPENDANCE : la classe dépend de l'abstraction ILogger, et c'est l'appelant
+// Point clé de la démo : le service ne crée pas son logger lui-même (aucun
+// "new ConsoleLogger()" ici). Il le reçoit de l'extérieur. C'est l'inversion de
+// dépendance : la classe dépend de l'abstraction ILogger, et c'est l'appelant
 // (ailleurs dans le programme) qui décide quelle implémentation concrète fournir.
 // Pourquoi recevoir au lieu de créer ? Parce que créer son propre logger
 // figerait le choix dans le béton (toujours la console, par exemple). En le
@@ -11,12 +11,12 @@ public class BaseService
 {
     // Champ privé : seul l'intérieur de la classe peut y accéder directement.
     // Son type est ILogger (l'interface), surtout pas ConsoleLogger ou FileLogger :
-    // le service ignore donc volontairement QUELLE sorte de logger il manipule.
+    // le service ignore donc volontairement quelle sorte de logger il manipule.
     private ILogger _logger;
 
-    // Propriété protected : accessible par cette classe ET ses sous-classes
+    // Propriété protected : accessible par cette classe et ses sous-classes
     // (UserService, OrderService, ReportService), mais pas par le reste du code.
-    // C'est de l'ENCAPSULATION : on expose un accès contrôlé au champ privé _logger.
+    // C'est de l'encapsulation : on expose un accès contrôlé au champ privé _logger.
     protected ILogger Logger
     {
         get
@@ -26,8 +26,8 @@ public class BaseService
         set { _logger = value;}
     }
 
-    // Constructeur : c'est ICI que la dépendance entre dans l'objet. On parle
-    // d'INJECTION PAR CONSTRUCTEUR (le logger est "injecté" à la création).
+    // Constructeur : c'est ici que la dépendance entre dans l'objet. On parle
+    // d'injection par constructeur (le logger est "injecté" à la création).
     // Avantage : on peut brancher n'importe quel ILogger (console, fichier, ou un
     // faux logger pour les tests) sans jamais modifier le code de BaseService.
     public BaseService(ILogger logger)
@@ -35,10 +35,10 @@ public class BaseService
         _logger = logger;
     }
 }
-// UserService HÉRITE de BaseService (le ": BaseService"). Il récupère donc le
+// UserService hérite de BaseService (le ": BaseService"). Il récupère donc le
 // champ et la propriété Logger sans avoir à les réécrire (réutilisation par
 // héritage). À noter la relation avec le logger : le service "a-un" logger
-// (COMPOSITION), il n'"est-pas" un logger. La composition relie deux objets qui
+// (composition), il n'"est-pas" un logger. La composition relie deux objets qui
 // collaborent, sans imposer la lourde relation "est-un" de l'héritage.
 public class UserService : BaseService
 {

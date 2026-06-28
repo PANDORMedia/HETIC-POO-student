@@ -8,6 +8,6 @@ public class CarBrand
 
 
     // Relation un-vers-plusieurs : une marque possède plusieurs modèles.
-    // "= new ()" initialise la liste vide pour éviter une référence nulle (NullReferenceException).
+    // "= New ()" initialise la liste vide pour éviter une référence nulle (NullReferenceException).
     public List<CarModel> CarModels { get; set; } = new ();
 }

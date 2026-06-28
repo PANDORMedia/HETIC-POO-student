@@ -9,10 +9,10 @@ namespace aspnet.Controllers
     // héritage, il récupère gratuitement des méthodes comme View() ou RedirectToAction().
     public class BrandController : Controller
             {
-        // "readonly" : ces références sont fixées une fois pour toutes dans le constructeur.
-        // _logger sert à tracer des messages ; _repo est l'accès aux données.
+        // "Readonly" : ces références sont fixées une fois pour toutes dans le constructeur.
+        // _Logger sert à tracer des messages ; _repo est l'accès aux données.
         private readonly ILogger<BrandController> _logger;
-        // On dépend de l'INTERFACE ICarBrandRepository, pas d'une classe concrète.
+        // On dépend de l'interface ICarBrandRepository, pas d'une classe concrète.
         // C'est l'abstraction : le contrôleur ne sait pas si les marques viennent de SQLite,
         // d'un CSV ou d'ailleurs. Cela rend le code testable et interchangeable.
         private readonly ICarBrandRepository _repo;
@@ -40,7 +40,7 @@ namespace aspnet.Controllers
             return View();
         }
 
-        // Deuxième méthode Create : c'est de la SURCHARGE (overload), même nom mais
+        // Deuxième méthode Create : c'est de la surcharge (overload), même nom mais
         // signature différente. L'attribut [HttpPost] indique qu'elle répond à l'envoi
         // du formulaire. Le paramètre est un ViewModel (données saisies par l'utilisateur).
         [HttpPost]

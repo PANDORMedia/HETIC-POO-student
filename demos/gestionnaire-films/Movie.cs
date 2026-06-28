@@ -1,9 +1,9 @@
-// La classe Movie ILLUSTRE plusieurs concepts d'un coup :
-// - HÉRITAGE : "Movie : MediaItem" signifie que Movie hérite de MediaItem.
+// La classe Movie illustre plusieurs concepts d'un coup :
+// - héritage : "Movie : MediaItem" signifie que Movie hérite de MediaItem.
 //   Movie récupère donc gratuitement Title, ReleaseYear et l'obligation de définir Show().
-// - INTERFACES : après MediaItem, les noms IStreamable, IRateable, IExportable sont des CONTRATS
-//   que Movie s'engage à respecter. Une classe n'hérite que d'UNE seule classe mère,
-//   mais peut signer AUTANT d'interfaces qu'elle veut (ici trois).
+// - Interfaces : après MediaItem, les noms IStreamable, IRateable, IExportable sont des contrats
+//   que Movie s'engage à respecter. Une classe n'hérite que d'une seule classe mère,
+//   mais peut signer autant d'interfaces qu'elle veut (ici trois).
 public class Movie : MediaItem, IStreamable, IRateable, IExportable
 {
     // Champs privés : l'encapsulation protège le réalisateur et le genre du film.
@@ -29,11 +29,11 @@ public class Movie : MediaItem, IStreamable, IRateable, IExportable
         }
     }
 
-    // Propriété AUTO-IMPLÉMENTÉE : écriture courte "{ get; set; }" quand aucune validation n'est nécessaire.
+    // Propriété auto-implémentée : écriture courte "{ get; set; }" quand aucune validation n'est nécessaire.
     // Le compilateur crée tout seul le champ privé caché derrière. Plateforme satisfait l'interface IStreamable.
     public string Plateforme { get; set; }
     // Propriété Rating exigée par l'interface IRateable. Ici le set ne lève pas d'exception :
-    // il CORRIGE la valeur pour la garder entre 0 et 5 (une autre façon d'encapsuler une règle métier).
+    // il corrige la valeur pour la garder entre 0 et 5 (une autre façon d'encapsuler une règle métier).
     private int _rating;
     public int Rating
     {
@@ -49,7 +49,7 @@ public class Movie : MediaItem, IStreamable, IRateable, IExportable
     public string Comment { get; set; }
 
     // Constructeur paramétré du film.
-    // ": base(title, releaseYear)" APPELLE d'abord le constructeur de la classe mère MediaItem,
+    // ": Base(title, releaseYear)" appelle d'abord le constructeur de la classe mère MediaItem,
     // qui se charge de valider et stocker le titre et l'année. Ensuite seulement on remplit
     // les propriétés propres au film (Director, Genre). C'est la chaîne de construction de l'héritage.
     public Movie(string title, int releaseYear, string director,  string genre) : base(title, releaseYear)
@@ -58,8 +58,8 @@ public class Movie : MediaItem, IStreamable, IRateable, IExportable
         Genre = genre;
     }
 
-    // "override" REDÉFINIT la méthode abstraite Show() héritée de MediaItem.
-    // C'est le POLYMORPHISME concret : un Movie sait s'afficher à sa manière (titre, réalisateur, année, genre).
+    // "Override" redéfinit la méthode abstraite Show() héritée de MediaItem.
+    // C'est le polymorphisme concret : un Movie sait s'afficher à sa manière (titre, réalisateur, année, genre).
     public override void Show()
     {
         Console.WriteLine($"{Title} - {Director} - {ReleaseYear} - {Genre}");
@@ -128,7 +128,7 @@ public class Movie : MediaItem, IStreamable, IRateable, IExportable
     }
 
 
-    // Méthode STATIQUE : elle appartient à la classe Movie, pas à un film précis.
+    // Méthode statique : elle appartient à la classe Movie, pas à un film précis.
     // On l'appelle donc avec Movie.GetHeaderCSV() et non avec un objet. Elle fournit la ligne d'en-tête du CSV.
     public static string GetHeaderCSV()
     {

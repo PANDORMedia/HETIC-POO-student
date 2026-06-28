@@ -1,5 +1,5 @@
 // Troisième classe fille de Vehicule. Elle ajoute la cylindrée et, surtout, montre comment
-// REDÉFINIR une méthode virtuelle du parent (voir GetShortDescription plus bas).
+// redéfinir une méthode virtuelle du parent (voir GetShortDescription plus bas).
 public class Motobike : Vehicule
 {
     // Donnée spécifique à la moto : la cylindrée du moteur, encapsulée comme d'habitude.
@@ -37,7 +37,7 @@ public class Motobike : Vehicule
         Console.WriteLine("--------------------------");
     }
 
-    // Ici on REDÉFINIT (override) la méthode virtuelle GetShortDescription du parent.
+    // Ici on redéfinit (override) la méthode virtuelle GetShortDescription du parent.
     // Astuce importante : "base.GetShortDescription()" rappelle la version d'origine ("Marque Modele")
     // pour la réutiliser, puis on l'enrichit avec la cylindrée. On étend le comportement parent
     // au lieu de tout réécrire. Car et Van, eux, gardent la version par défaut héritée.

@@ -6,19 +6,19 @@ namespace CarRental
     class Program
     {
         // Catalogue partagé de l'application : la liste de toutes les voitures en mémoire.
-        // "static" car il appartient à la classe Program et est utilisé par ses méthodes statiques
+        // "Static" car il appartient à la classe Program et est utilisé par ses méthodes statiques
         // (Main, AddCar, ListCars, RemoveCar) sans qu'on crée d'instance de Program.
         static List<Car> cars = new List<Car>();
 
-        // Main est le POINT D'ENTREE du programme : c'est la première méthode exécutée au lancement.
+        // Main est le point d'entree du programme : c'est la première méthode exécutée au lancement.
         static void Main(string[] args)
         {
             // Au démarrage, on recharge le catalogue depuis le fichier CSV (persistance entre deux exécutions).
-            // C'est l'outil CSVWriter qui gère la lecture : Program ne s'occupe pas du détail des fichiers.
+            // C'est l'outil csvwriter qui gère la lecture : Program ne s'occupe pas du détail des fichiers.
             cars = CSVWriter.ReadFile();
             // Vehicule v = new Vehicule("Tesla", "Model 3", 200);
 
-            // v.ShowDetails();
+            // V.ShowDetails();
 
             // Vehicule v2 = new Vehicule("Audi", "A4", 160);
             // v2.ShowDetails();
@@ -31,7 +31,7 @@ namespace CarRental
 
             // List<Vehicule> vehicules = new List<Vehicule>() { c1, b1, v1 };
 
-            // foreach(var v in vehicules)
+            // Foreach(var v in vehicules)
             // {
             //     v.ShowDetails();
             // }
@@ -46,7 +46,7 @@ namespace CarRental
             // Drapeau (booléen) qui maintient la boucle active tant qu'on ne veut pas quitter.
             bool run = true;
 
-            // BOUCLE DE MENU : coeur d'un programme console interactif. Tant que run vaut true,
+            // Boucle de menu : coeur d'un programme console interactif. Tant que run vaut true,
             // on réaffiche le menu, on lit le choix de l'utilisateur, puis on réagit en conséquence.
             while (run)
             {
@@ -59,9 +59,9 @@ namespace CarRental
                         // On construit une nouvelle voiture (saisie guidée), on l'ajoute au catalogue,
                         var car = AddCar();
                         cars.Add(car);
-                        // on affiche sa fiche pour confirmation,
+                        // On affiche sa fiche pour confirmation,
                         car.ShowDetails();
-                        // puis on resauvegarde immédiatement le fichier pour ne rien perdre.
+                        // Puis on resauvegarde immédiatement le fichier pour ne rien perdre.
                         CSVWriter.WriteToFile(cars);
                         break;
                     case MenuAction.RemoveCar:
@@ -94,7 +94,7 @@ namespace CarRental
 
             var response = 0;
 
-            // int.TryParse tente de convertir le texte saisi en entier SANS lever d'exception :
+            // Int.TryParse tente de convertir le texte saisi en entier sans lever d'exception :
             // si l'utilisateur tape autre chose qu'un nombre, response reste à 0 et le programme continue.
             int.TryParse(Console.ReadLine(), out response);
 
@@ -127,7 +127,7 @@ namespace CarRental
 
             Console.WriteLine("----- ADD CAR -----");
 
-            // PATRON DE SAISIE ROBUSTE, répété pour chaque champ ci-dessous :
+            // Patron de saisie robuste, répété pour chaque champ ci-dessous :
             // "while (true)" boucle indéfiniment, et on ne sort (break) qu'après une saisie valide.
             // Si le setter de la propriété lève une ArgumentException (valeur refusée), le catch
             // affiche le message et la boucle redemande la saisie sans planter le programme.
@@ -247,7 +247,7 @@ namespace CarRental
 
         }
 
-        // Affiche le catalogue. Les deux paramètres ont une VALEUR PAR DÉFAUT (= false) : on peut
+        // Affiche le catalogue. Les deux paramètres ont une valeur par défaut (= false) : on peut
         // appeler ListCars() sans argument, ou ListCars(true, true) pour une liste courte numérotée.
         // Cela évite d'écrire plusieurs méthodes différentes pour des affichages proches.
         public static void ListCars(bool shortList = false, bool numbered = false)
@@ -300,8 +300,8 @@ namespace CarRental
                     break;
 
                 }
-                // Plusieurs catch permettent de réagir différemment selon le TYPE d'erreur.
-                // Le plus précis (index hors limites) doit être placé AVANT le plus général (Exception),
+                // Plusieurs catch permettent de réagir différemment selon le type d'erreur.
+                // Le plus précis (index hors limites) doit être placé avant le plus général (Exception),
                 // car C# teste les catch dans l'ordre et s'arrête au premier qui correspond.
                 catch(ArgumentOutOfRangeException e)
                 {
@@ -309,7 +309,7 @@ namespace CarRental
                 }
                 catch (Exception e)
                 {
-                    // Filet de sécurité : attrape toute autre erreur imprévue (ex. saisie non numérique).
+                    // Filet de sécurité : attrape toute autre erreur imprévue (ex. Saisie non numérique).
                     Console.WriteLine(e);
                 }
             }

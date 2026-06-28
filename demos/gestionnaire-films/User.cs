@@ -12,16 +12,16 @@
 
 // Classe User : représente un utilisateur et ses films préférés.
 // Attention pédagogique : ici les champs sont publics (pas d'encapsulation), c'est volontairement
-// plus simple que MediaItem. On voit ainsi le CONTRASTE avec les propriétés validées vues ailleurs.
+// plus simple que MediaItem. On voit ainsi le contraste avec les propriétés validées vues ailleurs.
 public class User
 {
     public string name;
     public string email;
 
-    // Tableau de taille FIXE : exactement 10 cases réservées en mémoire dès le départ.
+    // Tableau de taille fixe : exactement 10 cases réservées en mémoire dès le départ.
     // À comparer avec List<Movie> (plus bas en commentaire) qui, elle, grandit toute seule.
     public Movie[] favoriteMovies = new Movie[10];
-    //public List<Movie> movies = new List<Movie>();
+    //Public List<Movie> movies = new List<Movie>();
 
     // Compteur du nombre de films réellement ajoutés (le tableau a 10 cases mais elles ne sont pas toutes remplies).
     public int numberOfMovies = 0;
@@ -40,7 +40,7 @@ public class User
 
     // Affiche la liste des films préférés. On boucle de 0 jusqu'au nombre réel de films
     // (et non jusqu'à 10) pour ne pas afficher les cases encore vides du tableau.
-    // favoriteMovies[i].Show() rappelle le polymorphisme : chaque film s'affiche via sa propre méthode Show().
+    // FavoriteMovies[i].Show() rappelle le polymorphisme : chaque film s'affiche via sa propre méthode Show().
     public void ShowList()
     {
         Console.WriteLine($"Films préférés de {name} :");

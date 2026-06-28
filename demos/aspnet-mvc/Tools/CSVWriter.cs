@@ -4,7 +4,7 @@ using aspnet.Exportables;
 using aspnet.Models;
 
 // Classe utilitaire (helper) qui regroupe la lecture et l'écriture de fichiers CSV.
-// Toutes ses méthodes sont STATIQUES : on appelle CSVWriter.WriteToFile(...) sans créer d'objet,
+// Toutes ses méthodes sont statiques : on appelle csvwriter.WriteToFile(...) sans créer d'objet,
 // car ce service ne porte aucun état propre. C'est une boîte à outils, pas une entité du domaine.
 public class CSVWriter
 {
@@ -14,7 +14,7 @@ public class CSVWriter
         Console.WriteLine("Writing to file...");
         try
         {
-            // "using" garantit que le fichier est correctement fermé et libéré à la fin du bloc,
+            // "Using" garantit que le fichier est correctement fermé et libéré à la fin du bloc,
             // même si une exception survient (gestion déterministe des ressources).
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(Environment.CurrentDirectory, "cars.csv")))
             {
@@ -53,7 +53,7 @@ public class CSVWriter
                 string line = file.ReadLine();
                 // Split découpe la ligne en colonnes à chaque virgule.
                 string[] values = line.Split(',');
-                // int.Parse convertit le texte lu en entier (conversion / parsing).
+                // Int.Parse convertit le texte lu en entier (conversion / parsing).
                 ExportableCar temp = new ExportableCar()
                 {
                     Id = int.Parse(values[0]),

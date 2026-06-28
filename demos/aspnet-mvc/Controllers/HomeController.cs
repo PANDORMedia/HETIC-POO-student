@@ -37,7 +37,7 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        // L'opérateur ?? fournit une valeur de repli si Activity.Current?.Id est null.
+        // L'opérateur ?? Fournit une valeur de repli si Activity.Current?.Id est null.
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

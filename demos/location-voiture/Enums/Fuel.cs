@@ -5,7 +5,7 @@
 // n'est qu'un simple entier.
 public enum Fuel {
     // Chaque membre reçoit une valeur entière explicite. C'est utile pour deux raisons :
-    // 1) la persistance : dans le fichier CSV on enregistre l'entier (ex. 2) et non le mot ELECTRIC ;
+    // 1) la persistance : dans le fichier CSV on enregistre l'entier (ex. 2) Et non le mot ELECTRIC ;
     // 2) la stabilité : fixer les nombres à la main évite qu'ils changent si on réordonne la liste.
     DIESEL = 0,
     PETROL = 1,

@@ -1,4 +1,4 @@
-// INTERFACE "diffusable en streaming" : contrat pour les médias disponibles sur une plateforme.
+// Interface "diffusable en streaming" : contrat pour les médias disponibles sur une plateforme.
 // Remarque : le nom de l'interface (IStreamable) peut différer du nom du fichier (IStreamble.cs),
 // le compilateur se base sur le nom du type, pas sur celui du fichier.
 public interface IStreamable

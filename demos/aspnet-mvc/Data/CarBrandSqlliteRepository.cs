@@ -23,7 +23,7 @@ namespace aspnet.Data
             return true;
         }
 
-        // SURCHARGE de Delete : cette version supprime par NOM (string). Même nom de méthode,
+        // Surcharge de Delete : cette version supprime par nom (string). Même nom de méthode,
         // paramètre différent. Elle n'est pas imposée par l'interface, c'est un service en plus.
         public bool Delete(string b)
         {

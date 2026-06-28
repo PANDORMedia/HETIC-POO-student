@@ -2,12 +2,12 @@
 {
     class Program
     {
-        // Main est le POINT D'ENTRÉE du programme : la première méthode exécutée.
+        // Main est le point d'entrée du programme : la première méthode exécutée.
         static void Main()
         {
 
-            // C'est ICI, et seulement ici, que l'on choisit l'implémentation concrète
-            // du logger. On crée un ConsoleLogger et on l'INJECTE dans UserService via
+            // C'est ici, et seulement ici, que l'on choisit l'implémentation concrète
+            // du logger. On crée un ConsoleLogger et on l'injecte dans UserService via
             // son constructeur. UserService, lui, ne connait que l'interface ILogger :
             // il ignore totalement qu'il s'agit d'un ConsoleLogger.
             // Pour logguer dans un fichier, il suffirait d'écrire new FileLogger() à la

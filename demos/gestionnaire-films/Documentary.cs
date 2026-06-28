@@ -18,7 +18,7 @@ public class Documentary : MediaItem
         set { _theme = value; }
     }
 
-    // Propriété CALCULÉE en lecture seule (pas de set) : sa valeur est déduite à la volée d'un autre champ.
+    // Propriété calculée en lecture seule (pas de set) : sa valeur est déduite à la volée d'un autre champ.
     // Elle renvoie vrai si le documentaire est une biographie, sans stocker de donnée supplémentaire.
     public bool IsBiography
     {
@@ -35,7 +35,7 @@ public class Documentary : MediaItem
         Theme = theme;
     }
 
-    // POLYMORPHISME : version de Show() propre au documentaire (ordre et champs différents des autres médias).
+    // Polymorphisme : version de Show() propre au documentaire (ordre et champs différents des autres médias).
     public override void Show()
     {
         Console.WriteLine($"{Title} - {Theme} - {ReleaseYear} - {Type}");

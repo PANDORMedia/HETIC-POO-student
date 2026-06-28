@@ -1,11 +1,11 @@
-// FileLogger est une AUTRE implémentation du même contrat ILogger.
+// FileLogger est une autre implémentation du même contrat ILogger.
 // Elle rend le même service (logger un message) mais d'une façon différente :
 // elle écrit dans un fichier au lieu d'afficher à l'écran. C'est tout l'intérêt
 // d'une interface : deux classes deviennent interchangeables car elles respectent
 // le même contrat. Le code qui les utilise n'a pas besoin de savoir laquelle il manipule.
 public class FileLogger : ILogger
 {
-    // Même signature que dans ILogger : on est OBLIGÉ de la respecter, sinon le code
+    // Même signature que dans ILogger : on est obligé de la respecter, sinon le code
     // ne compile pas. C'est la garantie apportée par l'interface.
     public void Log(string message)
     {

@@ -4,10 +4,10 @@
 // devient un choix de conception, pas une obligation imposée à tous les véhicules.
 public interface IAssurable
 {
-    // La classe devra exposer une catégorie d'assurance (ex. type de véhicule pour l'assureur).
+    // La classe devra exposer une catégorie d'assurance (ex. Type de véhicule pour l'assureur).
     string InsuranceCategory { get; set; }
 
-    // ... et savoir calculer le prix de la prime. Le "comment" est laissé à chaque classe.
+    // ... Et savoir calculer le prix de la prime. Le "comment" est laissé à chaque classe.
     decimal GetInsurancePrice();
 
 }

@@ -1,4 +1,4 @@
-// TVShow hérite aussi de MediaItem : une série est un média, avec en plus un nombre de saisons.
+// Tvshow hérite aussi de MediaItem : une série est un média, avec en plus un nombre de saisons.
 // Elle réutilise Title et ReleaseYear et ajoute sa propre donnée spécifique (NbSeasons).
 public class TVShow : MediaItem
 {
@@ -15,7 +15,7 @@ public class TVShow : MediaItem
         }
     }
 
-    // POLYMORPHISME : TVShow fournit sa propre version de Show(), différente de celle de Movie.
+    // Polymorphisme : tvshow fournit sa propre version de Show(), différente de celle de Movie.
     // Un même appel media.Show() affichera un format adapté au type réel de l'objet.
     public override void Show()
     {

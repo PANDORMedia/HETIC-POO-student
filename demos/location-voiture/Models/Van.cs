@@ -1,4 +1,4 @@
-// Van hérite de Vehicule mais, contrairement à Car, n'implémente AUCUNE interface.
+// Van hérite de Vehicule mais, contrairement à Car, n'implémente aucune interface.
 // C'est volontaire : dans cette démo un van n'est ni assurable ni révisable. Cela montre que
 // les capacités (interfaces) se choisissent classe par classe, alors que l'héritage transmet
 // systématiquement tout ce que possède le parent.

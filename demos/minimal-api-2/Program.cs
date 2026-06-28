@@ -8,11 +8,11 @@ using System.Text.Json.Serialization;
 // CreateSlimBuilder est une fabrique (méthode statique) : on l'appelle sans créer d'objet au préalable
 // et elle nous rend un objet builder déjà configuré. La version "Slim" est une variante allégée de CreateBuilder,
 // pensée pour des APIs minimales rapides, compatibles avec la compilation native AOT (voir PublishAot dans le .csproj).
-// "args" représente les arguments passés en ligne de commande au lancement.
+// "Args" représente les arguments passés en ligne de commande au lancement.
 var builder = WebApplication.CreateSlimBuilder(args);
 
 // On configure ici la façon dont l'API transforme les objets en JSON.
-// builder.Services est le conteneur d'injection de dépendances (l'annuaire des services de l'application).
+// Builder.Services est le conteneur d'injection de dépendances (l'annuaire des services de l'application).
 // On insère notre AppJsonSerializerContext (déclaré en bas du fichier) en tête de la chaine de résolveurs.
 // Pourquoi ? Ce contexte est généré à la compilation ("source-generated JSON") : le code de sérialisation
 // est écrit pour nous au moment du build au lieu d'être déduit par réflexion à l'exécution. C'est plus rapide
@@ -28,7 +28,7 @@ var app = builder.Build();
 // Jeu de données en mémoire qui sert de fausse base de données pour la démo.
 // Chaque élément est une instance du record Todo (déclaré plus bas) : on appelle son constructeur
 // en passant les valeurs dans l'ordre des paramètres (Id, Title, puis DueBy optionnel).
-// "new(...)" est la forme abrégée de "new Todo(...)" : le type est déduit de celui du tableau.
+// "New(...)" est la forme abrégée de "new Todo(...)" : le type est déduit de celui du tableau.
 // Construire des objets à partir d'un même modèle (le record) illustre la relation entre une classe et ses instances.
 var sampleTodos = new Todo[] {
     new(1, "Walk the dog"),
@@ -40,7 +40,7 @@ var sampleTodos = new Todo[] {
 
 // MapGroup crée un "groupe d'endpoints" : toutes les routes définies ensuite sur todosApi
 // partageront le préfixe d'URL "/todos". On factorise ainsi la partie commune de l'adresse
-// au lieu de la répéter sur chaque route. todosApi est un RouteGroupBuilder : un objet
+// au lieu de la répéter sur chaque route. TodosApi est un RouteGroupBuilder : un objet
 // auquel on rattache les routes du groupe. C'est de l'organisation du code par regroupement logique
 // (toutes les opérations sur les todos réunies au même endroit).
 var todosApi = app.MapGroup("/todos");
@@ -74,8 +74,8 @@ app.Run();
 //   - quatre propriétés en lecture seule : Id, Title, DueBy et IsComplete,
 //   - un constructeur qui reçoit ces valeurs et les affecte,
 //   - et gratuitement l'égalité par valeur, un ToString lisible, etc.
-// "string?" et "DateOnly?" signifient que ces valeurs peuvent être absentes (null), grâce au mode Nullable du .csproj.
-// "= null" et "= false" sont des valeurs par défaut : on peut omettre ces arguments à la construction (voir sampleTodos).
+// "String?" et "DateOnly?" signifient que ces valeurs peuvent être absentes (null), grâce au mode Nullable du .csproj.
+// "= Null" et "= false" sont des valeurs par défaut : on peut omettre ces arguments à la construction (voir sampleTodos).
 // C'est un exemple d'encapsulation : le record regroupe des données liées au sein d'un même objet cohérent.
 // Ici, Todo joue le rôle de "modèle" : il représente une chose du domaine métier, une tâche à faire.
 public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
@@ -83,8 +83,8 @@ public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplet
 // L'attribut [JsonSerializable] déclare quel type devra être sérialisé en JSON (ici un tableau de Todo).
 // Couplé à une classe partielle qui hérite de JsonSerializerContext, il déclenche la génération de code
 // à la compilation : le générateur écrit pour nous le code qui transforme Todo en JSON et inversement.
-// "partial" signifie que la classe est complétée par ce code généré automatiquement dans un autre fichier.
-// "internal" limite la visibilité de cette classe à l'intérieur du projet (elle n'a pas besoin d'être publique).
+// "Partial" signifie que la classe est complétée par ce code généré automatiquement dans un autre fichier.
+// "Internal" limite la visibilité de cette classe à l'intérieur du projet (elle n'a pas besoin d'être publique).
 [JsonSerializable(typeof(Todo[]))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext
 {

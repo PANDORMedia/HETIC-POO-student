@@ -15,7 +15,7 @@ Cette démo, écrite en direct pendant le module sur la composition et SOLID, mo
 cd demos/composition-logger
 dotnet run
 ```
-Le programme crée un `UserService` en lui injectant un `ConsoleLogger`, puis appelle `Inscrire`. L'étudiant doit observer dans le terminal une ligne horodatée du type `[HH:mm:ss] Inscription : sean@pandor.media`. En remplaçant `new ConsoleLogger()` par `new FileLogger()` dans `Program.cs`, la même exécution écrit désormais dans un fichier `log.txt` sans qu'aucun service n'ait changé : c'est tout l'intérêt de la démonstration.
+Le programme crée un `UserService` en lui injectant un `ConsoleLogger`, puis appelle `Inscrire`. L'étudiant doit observer dans le terminal une ligne horodatée du type `[HH:mm:ss] Inscription : sean@pandor.media`. En remplaçant `new ConsoleLogger()` par `new FileLogger()` dans `Program.cs`, la même exécution écrit désormais dans un fichier `log.txt` sans qu'aucun service n'ait changé. C'est ce que la démo cherche à montrer.
 
 ## Visite guidée du code
 - `ILogger.cs` : l'interface, c'est-à-dire le contrat. Elle déclare la méthode `Log` que tout logger devra fournir. C'est l'abstraction dont dépend le reste du code.
