@@ -1,0 +1,61 @@
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString() ?? "";
+
+    string NavLinkClass(string controller) =>
+        string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase)
+            ? "rounded-md bg-slate-950 px-3 py-2 text-sm font-semibold text-white shadow-sm"
+            : "rounded-md px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-950";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Rental Admin</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="min-h-screen bg-stone-50 text-slate-950 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+            <a class="flex w-fit items-center gap-3" asp-area="" asp-controller="Home" asp-action="Index" aria-label="Rental Admin home">
+                <span class="flex h-10 w-10 items-center justify-center rounded-md bg-emerald-600 text-sm font-bold text-white shadow-sm">RA</span>
+                <span class="leading-tight">
+                    <span class="block text-base font-bold text-slate-950">Rental Admin</span>
+                    <span class="block text-xs font-medium text-slate-500">Fleet management</span>
+                </span>
+            </a>
+            <ul class="flex flex-wrap items-center gap-2">
+                <li>
+                    <a class="@NavLinkClass("Home")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a class="@NavLinkClass("Brand")" asp-area="" asp-controller="Brand" asp-action="Index">Brands</a>
+                </li>
+                <li>
+                    <a class="@NavLinkClass("Model")" asp-area="" asp-controller="Model" asp-action="Index">Models</a>
+                </li>
+                <li>
+                    <a class="@NavLinkClass("Car")" asp-area="" asp-controller="Car" asp-action="Index">Cars</a>
+                </li>
+                <li>
+                    <a class="rounded-md px-3 py-2 text-sm font-medium text-slate-500 transition hover:bg-slate-100 hover:text-slate-950" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main" class="mx-auto min-h-[calc(100vh-9rem)] w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        @RenderBody()
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+            <span>&copy; 2026 Rental Admin</span>
+            <a class="font-medium text-slate-600 transition hover:text-emerald-700" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

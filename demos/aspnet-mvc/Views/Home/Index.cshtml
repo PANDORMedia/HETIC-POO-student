@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<section class="space-y-8">
+    <div class="max-w-3xl border-b border-slate-200 pb-8">
+        <p class="text-sm font-semibold text-emerald-700">Fleet overview</p>
+        <h1 class="mt-2 text-3xl font-bold text-slate-950 sm:text-4xl">Manage cars, brands, and models from one place.</h1>
+        <p class="mt-4 text-base text-slate-600">
+            Keep the catalog clean, add new vehicles quickly, and review the fleet data used by the rental app.
+        </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-3">
+        <a class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-300 hover:shadow-md" asp-controller="Car" asp-action="Index">
+            <span class="text-sm font-medium text-slate-500">Inventory</span>
+            <span class="mt-3 block text-2xl font-bold text-slate-950">Cars</span>
+            <span class="mt-2 block text-sm text-slate-600">Review plates and assigned models.</span>
+        </a>
+        <a class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-300 hover:shadow-md" asp-controller="Brand" asp-action="Index">
+            <span class="text-sm font-medium text-slate-500">Catalog</span>
+            <span class="mt-3 block text-2xl font-bold text-slate-950">Brands</span>
+            <span class="mt-2 block text-sm text-slate-600">Maintain manufacturer names.</span>
+        </a>
+        <a class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-300 hover:shadow-md" asp-controller="Model" asp-action="Index">
+            <span class="text-sm font-medium text-slate-500">Pricing</span>
+            <span class="mt-3 block text-2xl font-bold text-slate-950">Models</span>
+            <span class="mt-2 block text-sm text-slate-600">Manage fuel, seats, and daily prices.</span>
+        </a>
+    </div>
+</section>

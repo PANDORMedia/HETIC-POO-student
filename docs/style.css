@@ -1,0 +1,581 @@
+/* ==========================================================================
+   Programmation Orientee Objet - C#
+   Feuille de style du site de cours (HETIC, organisation PANDORMedia).
+
+   Ce fichier habille deux choses :
+   1. Le "chrome" de lecture : la barre laterale de navigation et la colonne
+      de contenu. Theme clair, lisible, pense pour lire de longues lecons.
+   2. Les "decks" de slides exportes dans les pages : chaque slide est une
+      carte sombre autonome (le fond sombre vient d'un style inline sur la
+      balise <article class="deck-slide">), on se contente donc de la mettre
+      en forme comme une carte arrondie.
+
+   Aucun tiret cadratin ni demi-cadratin n'est utilise dans ce projet.
+   ========================================================================== */
+
+/* Polices : on importe Inter (texte) et JetBrains Mono (code) si le reseau
+   le permet, sinon on retombe sur les polices systeme definies plus bas. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  /* Palette claire pour la lecture */
+  --bg: #f7f8f6;
+  --bg-panel: #ffffff;
+  --bg-sidebar: #0f1115;
+  --text: #1a1d21;
+  --text-soft: #5b6470;
+  --text-on-dark: #e7eaee;
+  --text-on-dark-soft: #9aa3ad;
+  --border: #e3e6e1;
+  --border-dark: #232733;
+
+  /* Accent lime/emeraude, repris de la charte des slides */
+  --accent: #4d9a1f;
+  --accent-soft: #eaf5e0;
+  --accent-ring: #84cc16;
+
+  /* Code */
+  --code-bg: #0d1117;
+  --code-text: #e6edf3;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --sidebar-w: 320px;
+  --content-max: 880px;
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* Remise a zero raisonnable */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   Mise en page generale : barre laterale fixe + contenu
+   ========================================================================== */
+.layout { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: var(--sidebar-w);
+  flex: 0 0 var(--sidebar-w);
+  background: var(--bg-sidebar);
+  color: var(--text-on-dark);
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-dark);
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 18px;
+  border-bottom: 1px solid var(--border-dark);
+  position: sticky;
+  top: 0;
+  background: var(--bg-sidebar);
+  z-index: 2;
+}
+.sidebar-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.sidebar-title {
+  color: var(--text-on-dark);
+  font-weight: 700;
+  font-size: 0.98rem;
+  line-height: 1.3;
+}
+.sidebar-title:hover { text-decoration: none; color: #fff; }
+
+.sidebar-content { padding: 8px 10px 40px; }
+
+.nav-course { border: none; }
+.nav-course-title {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-on-dark-soft);
+  padding: 10px 10px 6px;
+}
+.nav-course-title::-webkit-details-marker { display: none; }
+
+.nav-module-title {
+  margin: 18px 10px 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-ring);
+}
+
+.nav-lessons { list-style: none; margin: 0; padding: 0; }
+.nav-lesson a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-on-dark-soft);
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+.nav-lesson a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-on-dark);
+  text-decoration: none;
+}
+.nav-lesson.active a {
+  background: rgba(132, 204, 22, 0.16);
+  color: #fff;
+  box-shadow: inset 3px 0 0 var(--accent-ring);
+}
+
+/* ==========================================================================
+   Pastilles de type de lecon (badges)
+   ========================================================================== */
+.badge {
+  display: inline-block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.badge-slides  { background: rgba(59, 130, 246, 0.16);  color: #93c5fd; }
+.badge-reading { background: rgba(16, 185, 129, 0.16);  color: #6ee7b7; }
+.badge-coding  { background: rgba(245, 158, 11, 0.16);  color: #fcd34d; }
+.badge-quiz    { background: rgba(139, 92, 246, 0.18);  color: #c4b5fd; }
+.badge-project { background: rgba(244, 63, 94, 0.16);   color: #fda4af; }
+
+/* ==========================================================================
+   Colonne de contenu
+   ========================================================================== */
+.content {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 48px 40px 96px;
+}
+
+.content h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+.content h2 { font-size: 1.5rem; margin: 40px 0 12px; line-height: 1.25; }
+.content h3 { font-size: 1.2rem; margin: 28px 0 8px; }
+.content p { margin: 0 0 16px; }
+.content ul, .content ol { margin: 0 0 16px; padding-left: 22px; }
+.content li { margin: 4px 0; }
+.content strong { color: #111; }
+
+.course-meta, .lesson-duration { color: var(--text-soft); font-size: 0.9rem; }
+
+.module-heading {
+  font-size: 1.25rem;
+  margin: 32px 0 4px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent-soft);
+}
+
+/* Bandeau d'en-tete de lecon */
+.lesson-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.lesson-type {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  color: #fff;
+}
+.lesson-type-slides  { background: #3b82f6; }
+.lesson-type-reading { background: #10b981; }
+.lesson-type-coding  { background: #d97706; }
+.lesson-type-quiz    { background: #8b5cf6; }
+.lesson-type-project { background: #e11d48; }
+
+/* ==========================================================================
+   Blocs de contenu (lecons de type "reading" et exercices)
+   ========================================================================== */
+.block { margin: 0 0 8px; }
+.block-text { margin: 0 0 8px; }
+.block-diagram {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+}
+.block-diagram pre { background: transparent; color: var(--text); padding: 0; }
+.block-unsupported {
+  background: #fff7ed;
+  border: 1px dashed #fdba74;
+  color: #9a3412;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.9rem;
+}
+
+/* Tableaux (comparatifs type valeur / type reference, etc.) */
+.content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 0.92rem;
+}
+.content th, .content td {
+  border: 1px solid var(--border);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.content thead th { background: var(--accent-soft); }
+.content tbody tr:nth-child(even) { background: #fafbf9; }
+
+/* Code en ligne et blocs de code */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: #eef1ec;
+  color: #1f2937;
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+  line-height: 1.55;
+  font-size: 0.88rem;
+}
+pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ==========================================================================
+   Decks de slides exportes dans les pages
+   Chaque .deck-slide porte un fond sombre via un style inline.
+   ========================================================================== */
+.deck-export {
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.deck-export-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.deck-kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.deck-template-name {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+}
+
+.deck-slide {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(8, 8, 8, 0.18);
+  color: #fff;
+}
+.deck-slide-inner { padding: 0; }
+.deck-slide-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.deck-slide-logo { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; }
+.deck-slide-count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.deck-slide-content { padding: 30px 36px 34px; }
+.deck-slide-content h3 {
+  margin: 0 0 14px;
+  font-size: 1.55rem;
+  line-height: 1.2;
+  color: #fff;
+}
+.deck-slide-subtitle {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 18px;
+}
+.deck-slide-bullets { margin: 8px 0 0; padding-left: 22px; }
+.deck-slide-bullets li { margin: 8px 0; color: rgba(255, 255, 255, 0.9); }
+
+/* Le bloc accent (couleur passee via la variable inline --slide-accent) */
+.deck-slide-content h3,
+.deck-slide-subtitle { border: none; }
+
+/* Visuels : image, ou simple mot-cle de gabarit ("comparison", "timeline"...) */
+.deck-slide-visual {
+  margin: 16px 0 0;
+  border-radius: 10px;
+}
+figure.deck-slide-visual { margin: 18px 0 0; }
+.deck-slide-visual img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+.deck-slide-visual figcaption {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+/* Quand le visuel n'est qu'un mot-cle de gabarit, on l'affiche en discret */
+.deck-slide-content > .deck-slide-visual:not(:has(img)):not(.deck-slide-visual-source) {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.32);
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  padding: 18px;
+  text-align: center;
+}
+.deck-slide-visual-source {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px 16px;
+}
+.deck-slide-visual-source strong {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 8px;
+}
+.deck-slide-visual-source pre {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  color: #cdd6e0;
+  font-size: 0.82rem;
+}
+
+/* Bloc de code dans une slide */
+.deck-slide-code {
+  background: #0d1117;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 14px 0 0;
+  overflow-x: auto;
+  font-size: 0.84rem;
+  color: var(--code-text);
+}
+.deck-slide-code code { background: transparent; color: inherit; padding: 0; }
+
+/* Encart d'activite */
+.deck-slide-activity {
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--accent-ring);
+  background: rgba(132, 204, 22, 0.12);
+  border-radius: 0 8px 8px 0;
+}
+.deck-slide-activity strong {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent-ring);
+  margin-bottom: 4px;
+}
+.deck-slide-activity p { margin: 0; color: rgba(255, 255, 255, 0.9); }
+
+/* Narration : repliee par defaut, le formateur la deroule au besoin */
+.deck-slide-notes {
+  margin: 18px 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 12px;
+}
+.deck-slide-notes summary {
+  cursor: pointer;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+}
+.deck-slide-notes p { margin: 10px 0 0; color: rgba(255, 255, 255, 0.78); font-size: 0.95rem; }
+
+/* Quelques gabarits ont un fond centre */
+.deck-slide.layout-title .deck-slide-content,
+.deck-slide.layout-cta .deck-slide-content { text-align: center; }
+.deck-slide.layout-title .deck-slide-visual { margin-left: auto; margin-right: auto; max-width: 540px; }
+
+/* ==========================================================================
+   Quiz
+   ========================================================================== */
+.block-quiz {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-left: 4px solid #8b5cf6;
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin: 18px 0;
+}
+.quiz-meta { display: flex; gap: 8px; margin-bottom: 10px; }
+.quiz-type-badge, .quiz-time-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.quiz-type-badge { background: rgba(139, 92, 246, 0.15); color: #6d28d9; }
+.quiz-time-badge { background: #eef1ec; color: var(--text-soft); }
+.quiz-question { font-weight: 600; margin-bottom: 12px; }
+.quiz-question p { margin: 0; }
+.quiz-options { list-style: none; margin: 0 0 12px; padding: 0; counter-reset: choice; }
+.quiz-choice {
+  position: relative;
+  margin: 6px 0;
+  padding: 9px 12px 9px 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+.quiz-choice::before {
+  counter-increment: choice;
+  content: counter(choice, upper-alpha);
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #eef1ec;
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quiz-choice.correct {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.quiz-choice.correct::before { background: var(--accent); color: #fff; }
+.quiz-details {
+  border-top: 1px dashed var(--border);
+  padding-top: 10px;
+  font-size: 0.92rem;
+}
+.quiz-details summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+.quiz-answer { font-weight: 600; }
+
+/* ==========================================================================
+   Page d'accueil du site (catalogue)
+   ========================================================================== */
+.home-hero {
+  background: linear-gradient(135deg, #0f1115, #1c2616);
+  color: #fff;
+  border-radius: 18px;
+  padding: 40px 36px;
+  margin-bottom: 32px;
+}
+.home-hero h1 { margin: 0 0 10px; font-size: 2.1rem; }
+.home-hero p { margin: 0; color: rgba(255, 255, 255, 0.82); max-width: 640px; }
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+.home-card {
+  display: block;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  color: var(--text);
+}
+.home-card:hover { border-color: var(--accent-ring); text-decoration: none; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.home-card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.home-card p { margin: 0; color: var(--text-soft); font-size: 0.9rem; }
+
+/* ==========================================================================
+   Adaptation mobile : la barre laterale passe au-dessus du contenu
+   ========================================================================== */
+@media (max-width: 900px) {
+  .layout { flex-direction: column; }
+  .sidebar {
+    position: static;
+    width: 100%;
+    flex-basis: auto;
+    height: auto;
+    max-height: 60vh;
+    border-right: none;
+    border-bottom: 1px solid var(--border-dark);
+  }
+  .content { padding: 28px 20px 64px; }
+  .content h1 { font-size: 1.6rem; }
+}

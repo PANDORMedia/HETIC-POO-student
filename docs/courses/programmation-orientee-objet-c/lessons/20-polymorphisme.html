@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polymorphisme</title>
+<link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><div class="sidebar-header"><img class="sidebar-logo" src="https://nerdmessenger.s3.fr-par.scw.cloud/00000000-0000-0000-0000-000000000001/f256a8ef-3d7c-4a20-a8d9-5538e9c9f3a2/branding/2026/04/0ec3ac29-47cc-4e24-9e30-0b55eb7e8c43-a1b367b6-990d-4e59-a3ec-3a3fc007b161.webp" alt="Institute 73" /><a href="../../../index.html" class="sidebar-title">Programmation Orientée Objet - C#</a></div><div class="sidebar-content"><details class="nav-course" open><summary class="nav-course-title">Programmation Orientée Objet - C#</summary><div class="nav-module-title">Environnement .NET, Classes &amp; Encapsulation</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/01-setup-environnement-net.html">Setup environnement .NET <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/02-guide-d-installation-net.html">Guide d&#39;installation .NET <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/03-exercices-setup-premier-projet-console.html">Exercices : Setup &amp; premier projet console <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/04-classes-objets.html">Classes &amp; Objets <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/05-classes-objets.html">Classes &amp; Objets <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/06-exercices-classes-objets.html">Exercices : Classes &amp; Objets <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/07-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/08-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/09-exercices-constructeurs.html">Exercices : Constructeurs <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/10-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/11-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/12-exercices-encapsulation-proprietes.html">Exercices : Encapsulation &amp; Propriétés <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/13-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/14-quiz-fondamentaux-oop.html">Quiz : Fondamentaux OOP <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/15-synthese-fondamentaux-oop.html">Synthèse : Fondamentaux OOP <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Héritage, Polymorphisme &amp; Interfaces</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/16-heritage.html">Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/17-heritage.html">Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/18-exercices-heritage.html">Exercices : Héritage <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/19-polymorphisme-virtual-override.html">Polymorphisme (virtual / override) <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson active"><a href="../../../courses/programmation-orientee-objet-c/lessons/20-polymorphisme.html">Polymorphisme <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/21-exercices-polymorphisme.html">Exercices : Polymorphisme <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/22-classes-abstraites.html">Classes abstraites <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/23-classes-abstraites.html">Classes abstraites <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/24-exercices-classes-abstraites.html">Exercices : Classes abstraites <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/25-interfaces-contrats-decouplage.html">Interfaces : contrats &amp; découplage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/26-interfaces.html">Interfaces <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/27-exercices-interfaces.html">Exercices : Interfaces <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/28-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/29-quiz-heritage-interfaces.html">Quiz : Héritage &amp; Interfaces <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/30-synthese-heritage-interfaces.html">Synthèse : Héritage &amp; Interfaces <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Composition, SOLID &amp; Exceptions</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/31-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/32-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/33-exercices-composition.html">Exercices : Composition <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/34-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/35-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/36-exercices-srp-ocp.html">Exercices : SRP &amp; OCP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/37-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/38-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/39-exercices-lsp-isp-dip.html">Exercices : LSP, ISP &amp; DIP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/40-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/41-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/42-exercices-exceptions-oo.html">Exercices : Exceptions OO <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/43-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/44-quiz-solid-exceptions.html">Quiz : SOLID &amp; Exceptions <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/45-synthese-solid-exceptions.html">Synthèse : SOLID &amp; Exceptions <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">ASP.NET Core MVC : OOP appliqué</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/46-intro-asp-net-core-mvc.html">Intro ASP.NET Core MVC <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/47-asp-net-core-mvc.html">ASP.NET Core MVC <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/48-exercices-premier-projet-mvc.html">Exercices : Premier projet MVC <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/49-models-controllers-oop.html">Models &amp; Controllers OOP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/50-models-controllers.html">Models &amp; Controllers <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/51-exercices-models-controllers.html">Exercices : Models &amp; Controllers <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/52-injection-de-dependances.html">Injection de dépendances <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/53-injection-de-dependances.html">Injection de dépendances <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/54-exercices-injection-de-dependances.html">Exercices : Injection de dépendances <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/55-projet-fil-rouge-gestionnaire-de-films.html">Projet fil rouge : gestionnaire de films <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/56-projet-fil-rouge-guide-complet.html">Projet fil rouge : guide complet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/57-gestionnaire-de-films-asp-net-mvc.html">Gestionnaire de films (ASP.NET MVC) <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/58-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/59-quiz-evaluation-finale.html">Quiz : Évaluation finale <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/60-synthese-perspectives.html">Synthèse &amp; Perspectives <span class="badge badge-slides">slides</span></a></li></ul></details></div></nav>
+<main class="content">
+<h1>Polymorphisme</h1>
+<div class="lesson-meta"><span class="lesson-type lesson-type-reading">reading</span><span class="lesson-duration">Duration: 20 min</span></div>
+<div class="block block-text"><h2>Le polymorphisme</h2>
+<p>Le <strong>polymorphisme</strong> permet à un même appel de méthode de se comporter différemment selon le type <strong>réel</strong> de l'objet au runtime.</p>
+<p>Une variable de type <code>Media</code> peut pointer vers un <code>Film</code> ou une <code>Serie</code>. L'appel à <code>GetInfo()</code> exécute automatiquement la bonne version.</p></div>
+<div class="block block-code"><pre><code class="language-csharp">// virtual et override
+public class Media
+{
+    public string Titre { get; set; }
+    public int Annee { get; set; }
+
+    // virtual autorise la redéfinition
+    public virtual string GetInfo() =&gt; $&#34;{Titre} ({Annee})&#34;;
+}
+
+public class Film : Media
+{
+    public string Realisateur { get; set; }
+    public int DureeMinutes { get; set; }
+
+    // override remplace le comportement
+    public override string GetInfo()
+        =&gt; $&#34;{Titre} ({Annee}) - {Realisateur}, {DureeMinutes} min&#34;;
+}
+
+public class Serie : Media
+{
+    public int Saisons { get; set; }
+
+    public override string GetInfo()
+        =&gt; $&#34;{Titre} ({Annee}) - {Saisons} saison(s)&#34;;
+}</code></pre></div>
+<div class="block block-text"><h3>Late binding (liaison tardive)</h3>
+<p>Quand une méthode est <code>virtual</code>, la décision est prise <strong>au runtime</strong> en fonction du type réel de l'objet. C'est le mécanisme de <strong>liaison tardive</strong>.</p>
+<pre><code class="language-csharp">Media media = new Film { Titre = &#34;Dune&#34;, Annee = 2021, Realisateur = &#34;Villeneuve&#34;, DureeMinutes = 155 };
+Console.WriteLine(media.GetInfo());
+// Appelle Film.GetInfo() bien que la variable soit de type Media</code></pre></div>
+<div class="block block-code"><pre><code class="language-csharp">// Polymorphisme avec les collections
+List&lt;Media&gt; mediatheque = new()
+{
+    new Film { Titre = &#34;Inception&#34;, Annee = 2010, Realisateur = &#34;Nolan&#34;, DureeMinutes = 148 },
+    new Serie { Titre = &#34;Breaking Bad&#34;, Annee = 2008, Saisons = 5 },
+    new Film { Titre = &#34;Parasite&#34;, Annee = 2019, Realisateur = &#34;Bong Joon-ho&#34;, DureeMinutes = 132 },
+    new Serie { Titre = &#34;Dark&#34;, Annee = 2017, Saisons = 3 }
+};
+
+foreach (var media in mediatheque)
+{
+    Console.WriteLine(media.GetInfo());
+    // Inception (2010) - Nolan, 148 min
+    // Breaking Bad (2008) - 5 saison(s)
+    // ...
+}</code></pre></div>
+<div class="block block-diagram"><pre>flowchart TD
+    A[&#34;media.GetInfo() appelé&#34;] --&gt; B{&#34;Type runtime ?&#34;}
+    B --&gt;|&#34;Film&#34;| C[&#34;Film.GetInfo()&#34;]
+    B --&gt;|&#34;Serie&#34;| D[&#34;Serie.GetInfo()&#34;]
+    B --&gt;|&#34;Media&#34;| E[&#34;Media.GetInfo()&#34;]
+    C --&gt; F[&#34;Inception (2010) - Nolan, 148 min&#34;]
+    D --&gt; G[&#34;Breaking Bad (2008) - 5 saison(s)&#34;]
+    E --&gt; H[&#34;Titre (Annee)&#34;]</pre></div>
+<div class="block block-code"><pre><code class="language-csharp">// Redéfinir ToString()
+public class Film : Media
+{
+    public string Realisateur { get; set; }
+    public int DureeMinutes { get; set; }
+    public string Genre { get; set; }
+
+    public override string ToString()
+        =&gt; $&#34;{Titre} ({Annee}) | {Realisateur} | {DureeMinutes} min | {Genre}&#34;;
+}
+
+// Console.WriteLine appelle ToString() automatiquement
+var film = new Film { Titre = &#34;Blade Runner 2049&#34;, Annee = 2017, Realisateur = &#34;Villeneuve&#34;, DureeMinutes = 164, Genre = &#34;Sci-Fi&#34; };
+Console.WriteLine(film);
+// Blade Runner 2049 (2017) | Villeneuve | 164 min | Sci-Fi</code></pre></div>
+<div class="block block-text"><h3>Le mot-clé <code>base</code> dans un override</h3>
+<p>Dans une méthode <code>override</code>, appelez <code>base.</code> pour réutiliser la logique parente :</p>
+<pre><code class="language-csharp">public override string GetInfo()
+{
+    return base.GetInfo() + $&#34; - {Realisateur}&#34;;
+}</code></pre>
+<h3>Quand NE PAS utiliser override</h3>
+<ul>
+<li>La méthode de base n'est pas <code>virtual</code></li>
+<li>La classe est <code>sealed</code></li>
+<li>Vous voulez un comportement selon le type de la <strong>variable</strong> (compile-time), pas de l'<strong>objet</strong> (runtime)</li>
+</ul></div>
+<div class="block block-code"><pre><code class="language-csharp">// Polymorphisme appliqué au gestionnaire de films
+public class Media
+{
+    public string Titre { get; set; }
+    public int Annee { get; set; }
+    public virtual string GetInfo() =&gt; $&#34;{Titre} ({Annee})&#34;;
+    public virtual decimal CalculerPrix() =&gt; 9.99m;
+}
+
+public class Film : Media
+{
+    public string Realisateur { get; set; }
+    public int DureeMinutes { get; set; }
+
+    public override decimal CalculerPrix()
+        =&gt; DureeMinutes &gt; 120 ? 14.99m : 9.99m;
+
+    public override string GetInfo()
+        =&gt; $&#34;{Titre} ({Annee}) | {Realisateur} | {DureeMinutes} min&#34;;
+}
+
+public class Serie : Media
+{
+    public int Saisons { get; set; }
+
+    public override decimal CalculerPrix() =&gt; Saisons * 7.99m;
+    public override string GetInfo()
+        =&gt; $&#34;{Titre} ({Annee}) | {Saisons} saison(s)&#34;;
+}
+
+// Utilisation polymorphique
+List&lt;Media&gt; catalogue = new()
+{
+    new Film { Titre = &#34;Dune&#34;, Annee = 2021, Realisateur = &#34;Villeneuve&#34;, DureeMinutes = 155 },
+    new Serie { Titre = &#34;Severance&#34;, Annee = 2022, Saisons = 2 }
+};
+
+decimal total = 0;
+foreach (var m in catalogue)
+{
+    Console.WriteLine($&#34;{m.GetInfo()} - {m.CalculerPrix():C}&#34;);
+    total += m.CalculerPrix();
+}
+Console.WriteLine($&#34;Total : {total:C}&#34;);</code></pre></div>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">MCQ</span></div><div class="quiz-question"><p>Si une variable de type Media contient un Film et que Film redéfinit GetInfo() avec override, quelle version est appelée ?</p></div><ol class="quiz-options"><li class="quiz-choice">Media.GetInfo() (type de la variable)</li><li class="quiz-choice correct">Film.GetInfo() (type réel de l&#39;objet)</li><li class="quiz-choice">Les deux sont appelées</li><li class="quiz-choice">Erreur de compilation</li></ol><details class="quiz-details" open><summary>Explanation</summary><div class="block-text"><p>Le polymorphisme virtual/override résout l'appel au runtime selon le type réel (Film), pas le type de la variable (Media).</p></div></details></section>
+<div class="block block-text"><h3>Points clés</h3>
+<ul>
+<li><code>virtual</code> autorise la redéfinition, <code>override</code> l'effectue</li>
+<li>Le <strong>dispatch dynamique</strong> choisit la bonne méthode au runtime</li>
+<li>Fonctionne avec les collections de type de base (<code>List&lt;Media&gt;</code>)</li>
+<li><code>ToString()</code>, <code>Equals()</code>, <code>GetHashCode()</code> sont des overrides fréquents</li>
+<li><code>base.</code> réutilise la logique parente</li>
+<li>Le polymorphisme est ce qui rend l'héritage vraiment puissant</li>
+</ul>
+<p>Prochaine étape : les <strong>classes abstraites</strong> et les <strong>interfaces</strong>.</p></div>
+</main>
+</div>
+</body>
+</html>

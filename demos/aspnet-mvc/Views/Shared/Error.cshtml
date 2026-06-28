@@ -1,0 +1,22 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<section class="max-w-3xl space-y-4 rounded-lg border border-red-200 bg-red-50 p-6">
+    <p class="text-sm font-semibold text-red-700">Error</p>
+    <h1 class="text-3xl font-bold text-red-950">An error occurred while processing your request.</h1>
+
+    @if (Model.ShowRequestId)
+    {
+        <p class="text-sm text-red-800">
+            <strong>Request ID:</strong> <code class="rounded bg-white px-1.5 py-0.5">@Model.RequestId</code>
+        </p>
+    }
+
+    <div class="space-y-3 text-sm leading-6 text-red-900">
+        <h2 class="font-semibold">Development Mode</h2>
+        <p>Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.</p>
+        <p><strong>The Development environment should not be enabled for deployed applications.</strong></p>
+    </div>
+</section>

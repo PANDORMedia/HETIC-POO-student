@@ -1,0 +1,23 @@
+# Artefacts de compilation .NET
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+.vs/
+
+# Bases de donnees SQLite generees a l'execution (recreees par les migrations)
+*.db
+*.db-shm
+*.db-wal
+
+# Dependances front generees (Tailwind, etc.)
+node_modules/
+
+# Fichiers de log generes par les demos
+log.txt
+
+# Cruft systeme
+.DS_Store
+Thumbs.db

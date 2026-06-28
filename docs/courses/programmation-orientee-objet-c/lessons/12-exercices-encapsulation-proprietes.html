@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercices : Encapsulation &amp; Propriétés</title>
+<link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><div class="sidebar-header"><img class="sidebar-logo" src="https://nerdmessenger.s3.fr-par.scw.cloud/00000000-0000-0000-0000-000000000001/f256a8ef-3d7c-4a20-a8d9-5538e9c9f3a2/branding/2026/04/0ec3ac29-47cc-4e24-9e30-0b55eb7e8c43-a1b367b6-990d-4e59-a3ec-3a3fc007b161.webp" alt="Institute 73" /><a href="../../../index.html" class="sidebar-title">Programmation Orientée Objet - C#</a></div><div class="sidebar-content"><details class="nav-course" open><summary class="nav-course-title">Programmation Orientée Objet - C#</summary><div class="nav-module-title">Environnement .NET, Classes &amp; Encapsulation</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/01-setup-environnement-net.html">Setup environnement .NET <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/02-guide-d-installation-net.html">Guide d&#39;installation .NET <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/03-exercices-setup-premier-projet-console.html">Exercices : Setup &amp; premier projet console <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/04-classes-objets.html">Classes &amp; Objets <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/05-classes-objets.html">Classes &amp; Objets <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/06-exercices-classes-objets.html">Exercices : Classes &amp; Objets <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/07-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/08-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/09-exercices-constructeurs.html">Exercices : Constructeurs <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/10-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/11-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson active"><a href="../../../courses/programmation-orientee-objet-c/lessons/12-exercices-encapsulation-proprietes.html">Exercices : Encapsulation &amp; Propriétés <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/13-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/14-quiz-fondamentaux-oop.html">Quiz : Fondamentaux OOP <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/15-synthese-fondamentaux-oop.html">Synthèse : Fondamentaux OOP <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Héritage, Polymorphisme &amp; Interfaces</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/16-heritage.html">Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/17-heritage.html">Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/18-exercices-heritage.html">Exercices : Héritage <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/19-polymorphisme-virtual-override.html">Polymorphisme (virtual / override) <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/20-polymorphisme.html">Polymorphisme <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/21-exercices-polymorphisme.html">Exercices : Polymorphisme <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/22-classes-abstraites.html">Classes abstraites <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/23-classes-abstraites.html">Classes abstraites <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/24-exercices-classes-abstraites.html">Exercices : Classes abstraites <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/25-interfaces-contrats-decouplage.html">Interfaces : contrats &amp; découplage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/26-interfaces.html">Interfaces <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/27-exercices-interfaces.html">Exercices : Interfaces <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/28-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/29-quiz-heritage-interfaces.html">Quiz : Héritage &amp; Interfaces <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/30-synthese-heritage-interfaces.html">Synthèse : Héritage &amp; Interfaces <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Composition, SOLID &amp; Exceptions</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/31-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/32-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/33-exercices-composition.html">Exercices : Composition <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/34-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/35-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/36-exercices-srp-ocp.html">Exercices : SRP &amp; OCP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/37-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/38-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/39-exercices-lsp-isp-dip.html">Exercices : LSP, ISP &amp; DIP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/40-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/41-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/42-exercices-exceptions-oo.html">Exercices : Exceptions OO <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/43-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/44-quiz-solid-exceptions.html">Quiz : SOLID &amp; Exceptions <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/45-synthese-solid-exceptions.html">Synthèse : SOLID &amp; Exceptions <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">ASP.NET Core MVC : OOP appliqué</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/46-intro-asp-net-core-mvc.html">Intro ASP.NET Core MVC <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/47-asp-net-core-mvc.html">ASP.NET Core MVC <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/48-exercices-premier-projet-mvc.html">Exercices : Premier projet MVC <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/49-models-controllers-oop.html">Models &amp; Controllers OOP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/50-models-controllers.html">Models &amp; Controllers <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/51-exercices-models-controllers.html">Exercices : Models &amp; Controllers <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/52-injection-de-dependances.html">Injection de dépendances <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/53-injection-de-dependances.html">Injection de dépendances <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/54-exercices-injection-de-dependances.html">Exercices : Injection de dépendances <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/55-projet-fil-rouge-gestionnaire-de-films.html">Projet fil rouge : gestionnaire de films <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/56-projet-fil-rouge-guide-complet.html">Projet fil rouge : guide complet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/57-gestionnaire-de-films-asp-net-mvc.html">Gestionnaire de films (ASP.NET MVC) <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/58-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/59-quiz-evaluation-finale.html">Quiz : Évaluation finale <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/60-synthese-perspectives.html">Synthèse &amp; Perspectives <span class="badge badge-slides">slides</span></a></li></ul></details></div></nav>
+<main class="content">
+<h1>Exercices : Encapsulation &amp; Propriétés</h1>
+<div class="lesson-meta"><span class="lesson-type lesson-type-coding">coding</span><span class="lesson-duration">Duration: 1h</span></div>
+<div class="block block-text"><h1>Exercices : Encapsulation & Propriétés</h1>
+<p>Transforme ta classe <code>Film</code> en une classe correctement encapsulée. Chaque exercice te fait progresser vers un code professionnel.</p>
+<p><strong>Durée estimée</strong> : 60 minutes</p>
+<p><strong>Objectif</strong> : Savoir protéger l'état d'un objet avec des propriétés, valider les données et utiliser les propriétés avancées.</p></div>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h2>Exercice 1 : Rendre les champs privés</h2>
+<p>Reprends ta classe <code>Film</code>. Transforme tous les champs publics en champs <code>private</code> (convention : préfixe <code>_</code>). Ajoute des auto-propriétés <code>public</code> pour chaque champ.</p>
+<p>Avant :</p>
+<pre><code class="language-csharp">public string titre;</code></pre>
+<p>Après :</p>
+<pre><code class="language-csharp">private string _titre;
+public string Titre { get { return _titre; } set { _titre = value; } }</code></pre>
+<p>Ou plus simplement en auto-propriété :</p>
+<pre><code class="language-csharp">public string Titre { get; set; }</code></pre>
+<p>Mets à jour <code>Program.cs</code> pour utiliser les propriétés (PascalCase) au lieu des champs (camelCase).</p>
+<p><strong>Validation</strong> : <code>f.titre</code> ne compile plus. <code>f.Titre</code> fonctionne.</p></div><div class="block-code"><pre><code class="language-text">public class Film
+{
+    // Transformer en privé + propriétés
+    public string titre;
+    public string realisateur;
+    public int annee;
+    public string genre;
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>public class Film
+{
+    public string Titre { get; set; }
+    public string Realisateur { get; set; }
+    public int Annee { get; set; }
+    public string Genre { get; set; }
+
+    public Film(string titre, string realisateur, int annee, string genre = &#34;Non défini&#34;)
+    {
+        Titre = titre;
+        Realisateur = realisateur;
+        Annee = annee;
+        Genre = genre;
+    }
+
+    public void Afficher()
+    {
+        Console.WriteLine($&#34;{Titre} ({Annee}) - {Realisateur} [{Genre}]&#34;);
+    }
+}
+
+// Program.cs
+Film f = new Film(&#34;Inception&#34;, &#34;Nolan&#34;, 2010, &#34;Sci-Fi&#34;);
+f.Afficher();
+Console.WriteLine(f.Titre); // OK
+// Console.WriteLine(f.titre); // Erreur de compilation !</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h2>Exercice 2 : Validation dans le setter</h2>
+<p>Remplace l'auto-propriété <code>Annee</code> par une <strong>propriété complète</strong> avec validation. Règles :</p>
+<ul>
+<li>L'année doit être >= 1888 (premier film de l'histoire)</li>
+<li>L'année doit être <= année actuelle + 5</li>
+<li>Si invalide, lève <code>ArgumentOutOfRangeException</code> avec un message clair</li>
+</ul>
+<p>Teste avec des valeurs valides et invalides.</p>
+<p><strong>Validation</strong> : <code>f.Annee = 1800</code> lève une exception. <code>f.Annee = 2010</code> fonctionne.</p></div><div class="block-code"><pre><code class="language-text">private int _annee;
+public int Annee
+{
+    get { return _annee; }
+    set
+    {
+        // Ajouter la validation
+        _annee = value;
+    }
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>private int _annee;
+public int Annee
+{
+    get { return _annee; }
+    set
+    {
+        if (value &lt; 1888)
+            throw new ArgumentOutOfRangeException(nameof(Annee),
+                $&#34;L&#39;année {value} est avant 1888, la date du premier film.&#34;);
+        if (value &gt; DateTime.Now.Year + 5)
+            throw new ArgumentOutOfRangeException(nameof(Annee),
+                $&#34;L&#39;année {value} est trop dans le futur.&#34;);
+        _annee = value;
+    }
+}
+
+// Test
+Film f = new Film(&#34;Test&#34;, &#34;Director&#34;, 2010);
+f.Annee = 2010;   // OK
+f.Annee = 1800;   // Exception !
+f.Annee = 2050;   // Exception !</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h2>Exercice 3 : Propriété calculée</h2>
+<p>Ajoute une propriété en lecture seule <code>Age</code> qui retourne l'âge du film. Utilise la syntaxe expression-bodied (<code>=&gt;</code>).</p>
+<p>Ajoute aussi une propriété <code>EstRecent</code> qui retourne <code>true</code> si le film a moins de 3 ans.</p>
+<pre><code class="language-csharp">Film f = new Film(&#34;Dune 2&#34;, &#34;Villeneuve&#34;, 2024);
+Console.WriteLine(f.Age);       // 2
+Console.WriteLine(f.EstRecent);  // true</code></pre>
+<p><strong>Validation</strong> : Les propriétés calculées retournent les bonnes valeurs dynamiquement.</p></div><div class="block-code"><pre><code class="language-text">// Dans Film.cs
+public int Age =&gt; /* à compléter */;
+public bool EstRecent =&gt; /* à compléter */;</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>public int Age =&gt; DateTime.Now.Year - Annee;
+public bool EstRecent =&gt; Age &lt;= 3;
+
+// Test
+Film f = new Film(&#34;Dune 2&#34;, &#34;Villeneuve&#34;, 2024);
+Console.WriteLine($&#34;Age : {f.Age}&#34;);       // Age : 2
+Console.WriteLine($&#34;Récent : {f.EstRecent}&#34;);  // Récent : True
+
+Film vieux = new Film(&#34;Metropolis&#34;, &#34;Lang&#34;, 1927);
+Console.WriteLine($&#34;Age : {vieux.Age}&#34;);     // Age : 99
+Console.WriteLine($&#34;Récent : {vieux.EstRecent}&#34;); // Récent : False</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h2>Exercice 4 : Init-only et required</h2>
+<p>Crée une classe <code>Evaluation</code> pour noter un film :</p>
+<pre><code class="language-csharp">public class Evaluation
+{
+    public required string Utilisateur { get; init; }
+    public required Film FilmEvalue { get; init; }
+    public int Note { get; set; }  // 1 à 5, modifiable
+    public string Commentaire { get; set; } = &#34;&#34;;
+}</code></pre>
+<p>Teste :</p>
+<ol>
+<li>Crée une <code>Evaluation</code> valide avec la syntaxe d'initialisateur</li>
+<li>Essaie de modifier <code>Utilisateur</code> après création. Que se passe-t-il ?</li>
+<li>Essaie de créer une <code>Evaluation</code> sans <code>Utilisateur</code>. Que se passe-t-il ?</li>
+<li>Modifie la <code>Note</code> après création. Ça fonctionne car c'est <code>set</code>, pas <code>init</code>.</li>
+</ol>
+<p><strong>Validation</strong> : Tu comprends la différence entre <code>set</code>, <code>init</code> et <code>required</code>.</p></div><div class="block-code"><pre><code class="language-text">public class Evaluation
+{
+    // À compléter
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>public class Evaluation
+{
+    public required string Utilisateur { get; init; }
+    public required Film FilmEvalue { get; init; }
+    public int Note { get; set; }
+    public string Commentaire { get; set; } = &#34;&#34;;
+}
+
+// 1. Création valide
+Evaluation e = new Evaluation
+{
+    Utilisateur = &#34;Alice&#34;,
+    FilmEvalue = f1,
+    Note = 4,
+    Commentaire = &#34;Super film&#34;
+};
+
+// 2. e.Utilisateur = &#34;Bob&#34;;  // Erreur de compilation ! init-only
+// 3. Evaluation e2 = new Evaluation { Note = 5 };  // Erreur ! required manquant
+// 4. e.Note = 5;  // OK ! set est modifiable
+
+// set : modifiable à tout moment
+// init : modifiable uniquement à la création
+// required : obligatoire à la création</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h2>Exercice 5 : FilmCollection encapsulée</h2>
+<p>Reprends ta classe <code>FilmCollection</code> de l'exercice précédent et encapsule-la correctement :</p>
+<ol>
+<li>Le champ <code>films</code> doit être <code>private</code></li>
+<li>Ajoute une propriété en lecture seule <code>Count</code> qui retourne le nombre de films</li>
+<li>Ajoute une méthode <code>RechercherParGenre(string genre)</code> qui retourne une <code>List&lt;Film&gt;</code></li>
+<li>Ajoute une méthode <code>Supprimer(string titre)</code> qui retire le film par son titre</li>
+<li>La méthode <code>Tous()</code> retourne une copie de la liste (pas la liste interne directement)</li>
+</ol>
+<p>Pourquoi ne pas retourner la liste interne directement ?</p>
+<p><strong>Validation</strong> : La collection est correctement encapsulée. L'appelant ne peut pas modifier la liste interne.</p></div><div class="block-code"><pre><code class="language-text">using System.Collections.Generic;
+
+public class FilmCollection
+{
+    // Encapsuler correctement
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>using System.Collections.Generic;
+using System.Linq;
+
+public class FilmCollection
+{
+    private List&lt;Film&gt; films = new List&lt;Film&gt;();
+
+    public int Count =&gt; films.Count;
+
+    public void Ajouter(Film f)
+    {
+        films.Add(f);
+    }
+
+    public void Supprimer(string titre)
+    {
+        films.RemoveAll(f =&gt; f.Titre == titre);
+    }
+
+    public List&lt;Film&gt; RechercherParGenre(string genre)
+    {
+        List&lt;Film&gt; resultats = new List&lt;Film&gt;();
+        foreach (Film f in films)
+        {
+            if (f.Genre == genre)
+                resultats.Add(f);
+        }
+        return resultats;
+    }
+
+    // Retourne une copie pour protéger la liste interne
+    public List&lt;Film&gt; Tous()
+    {
+        return new List&lt;Film&gt;(films);
+    }
+}
+
+// Si on retournait films directement, l&#39;appelant pourrait faire :
+// collection.Tous().Clear(); // Et viderait la liste interne !
+// En retournant une copie, on protège l&#39;état interne.</code></pre></div></details></section>
+</main>
+</div>
+</body>
+</html>

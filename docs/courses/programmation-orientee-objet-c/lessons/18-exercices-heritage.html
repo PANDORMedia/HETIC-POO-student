@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercices : Héritage</title>
+<link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><div class="sidebar-header"><img class="sidebar-logo" src="https://nerdmessenger.s3.fr-par.scw.cloud/00000000-0000-0000-0000-000000000001/f256a8ef-3d7c-4a20-a8d9-5538e9c9f3a2/branding/2026/04/0ec3ac29-47cc-4e24-9e30-0b55eb7e8c43-a1b367b6-990d-4e59-a3ec-3a3fc007b161.webp" alt="Institute 73" /><a href="../../../index.html" class="sidebar-title">Programmation Orientée Objet - C#</a></div><div class="sidebar-content"><details class="nav-course" open><summary class="nav-course-title">Programmation Orientée Objet - C#</summary><div class="nav-module-title">Environnement .NET, Classes &amp; Encapsulation</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/01-setup-environnement-net.html">Setup environnement .NET <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/02-guide-d-installation-net.html">Guide d&#39;installation .NET <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/03-exercices-setup-premier-projet-console.html">Exercices : Setup &amp; premier projet console <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/04-classes-objets.html">Classes &amp; Objets <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/05-classes-objets.html">Classes &amp; Objets <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/06-exercices-classes-objets.html">Exercices : Classes &amp; Objets <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/07-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/08-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/09-exercices-constructeurs.html">Exercices : Constructeurs <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/10-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/11-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/12-exercices-encapsulation-proprietes.html">Exercices : Encapsulation &amp; Propriétés <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/13-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/14-quiz-fondamentaux-oop.html">Quiz : Fondamentaux OOP <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/15-synthese-fondamentaux-oop.html">Synthèse : Fondamentaux OOP <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Héritage, Polymorphisme &amp; Interfaces</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/16-heritage.html">Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/17-heritage.html">Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson active"><a href="../../../courses/programmation-orientee-objet-c/lessons/18-exercices-heritage.html">Exercices : Héritage <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/19-polymorphisme-virtual-override.html">Polymorphisme (virtual / override) <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/20-polymorphisme.html">Polymorphisme <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/21-exercices-polymorphisme.html">Exercices : Polymorphisme <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/22-classes-abstraites.html">Classes abstraites <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/23-classes-abstraites.html">Classes abstraites <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/24-exercices-classes-abstraites.html">Exercices : Classes abstraites <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/25-interfaces-contrats-decouplage.html">Interfaces : contrats &amp; découplage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/26-interfaces.html">Interfaces <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/27-exercices-interfaces.html">Exercices : Interfaces <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/28-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/29-quiz-heritage-interfaces.html">Quiz : Héritage &amp; Interfaces <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/30-synthese-heritage-interfaces.html">Synthèse : Héritage &amp; Interfaces <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Composition, SOLID &amp; Exceptions</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/31-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/32-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/33-exercices-composition.html">Exercices : Composition <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/34-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/35-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/36-exercices-srp-ocp.html">Exercices : SRP &amp; OCP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/37-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/38-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/39-exercices-lsp-isp-dip.html">Exercices : LSP, ISP &amp; DIP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/40-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/41-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/42-exercices-exceptions-oo.html">Exercices : Exceptions OO <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/43-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/44-quiz-solid-exceptions.html">Quiz : SOLID &amp; Exceptions <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/45-synthese-solid-exceptions.html">Synthèse : SOLID &amp; Exceptions <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">ASP.NET Core MVC : OOP appliqué</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/46-intro-asp-net-core-mvc.html">Intro ASP.NET Core MVC <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/47-asp-net-core-mvc.html">ASP.NET Core MVC <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/48-exercices-premier-projet-mvc.html">Exercices : Premier projet MVC <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/49-models-controllers-oop.html">Models &amp; Controllers OOP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/50-models-controllers.html">Models &amp; Controllers <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/51-exercices-models-controllers.html">Exercices : Models &amp; Controllers <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/52-injection-de-dependances.html">Injection de dépendances <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/53-injection-de-dependances.html">Injection de dépendances <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/54-exercices-injection-de-dependances.html">Exercices : Injection de dépendances <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/55-projet-fil-rouge-gestionnaire-de-films.html">Projet fil rouge : gestionnaire de films <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/56-projet-fil-rouge-guide-complet.html">Projet fil rouge : guide complet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/57-gestionnaire-de-films-asp-net-mvc.html">Gestionnaire de films (ASP.NET MVC) <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/58-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/59-quiz-evaluation-finale.html">Quiz : Évaluation finale <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/60-synthese-perspectives.html">Synthèse &amp; Perspectives <span class="badge badge-slides">slides</span></a></li></ul></details></div></nav>
+<main class="content">
+<h1>Exercices : Héritage</h1>
+<div class="lesson-meta"><span class="lesson-type lesson-type-coding">coding</span><span class="lesson-duration">Duration: 1h</span></div>
+<div class="block block-text"><h2>Exercices : Héritage</h2>
+<p>Mettez en pratique la relation « est un » avec le gestionnaire de films.</p>
+<p>Chaque exercice part du code de la leçon précédente. Créez un projet console <code>ExercicesHeritage</code> pour tout regrouper.</p></div>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h3>Exercice 1 : Hiérarchie Media</h3>
+<p>Créez la hiérarchie suivante :</p>
+<ol>
+<li>Une classe <code>Media</code> avec les propriétés <code>Titre</code> (string) et <code>Annee</code> (int)</li>
+<li>Un constructeur <code>Media(string titre, int annee)</code></li>
+<li>Une méthode <code>GetInfo()</code> retournant <code>&#34;{Titre} ({Annee})&#34;</code></li>
+<li>Une classe <code>Film</code> héritant de <code>Media</code> avec <code>Realisateur</code> (string) et <code>DureeMinutes</code> (int)</li>
+<li>Un constructeur <code>Film</code> qui appelle <code>base()</code> et initialise les propriétés propres</li>
+<li>Redéfinissez <code>ToString()</code> dans <code>Film</code> pour afficher toutes les infos</li>
+</ol>
+<pre><code class="language-csharp">var film = new Film(&#34;Inception&#34;, 2010, &#34;Christopher Nolan&#34;, 148);
+Console.WriteLine(film);
+// Attendu : [Inception (2010) - Christopher Nolan, 148 min]</code></pre></div><div class="block-code"><pre><code class="language-text">// Votre code ici
+public class Media
+{
+    // TODO
+}
+
+public class Film
+{
+    // TODO
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>public class Media
+{
+    public string Titre { get; set; }
+    public int Annee { get; set; }
+
+    public Media(string titre, int annee)
+    {
+        Titre = titre;
+        Annee = annee;
+    }
+
+    public virtual string GetInfo() =&gt; $&#34;{Titre} ({Annee})&#34;;
+    public override string ToString() =&gt; $&#34;[{GetInfo()}]&#34;;
+}
+
+public class Film : Media
+{
+    public string Realisateur { get; set; }
+    public int DureeMinutes { get; set; }
+
+    public Film(string titre, int annee, string realisateur, int duree)
+        : base(titre, annee)
+    {
+        Realisateur = realisateur;
+        DureeMinutes = duree;
+    }
+
+    public override string ToString()
+        =&gt; $&#34;[{Titre} ({Annee}) - {Realisateur}, {DureeMinutes} min]&#34;;
+}</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h3>Exercice 2 : Serie et Documentaire</h3>
+<p>Ajoutez deux classes dérivées :</p>
+<ol>
+<li><code>Serie : Media</code> avec <code>Saisons</code> (int) et <code>EpisodesParSaison</code> (int)</li>
+</ol>
+<ul>
+<li>Ajoutez une propriété calculée <code>NombreTotalEpisodes</code></li>
+<li><code>ToString()</code> affiche le nombre total d'épisodes</li>
+</ul>
+<ol>
+<li><code>Documentaire : Media</code> avec <code>Sujet</code> (string) et <code>EstBiographie</code> (bool)</li>
+</ol>
+<ul>
+<li><code>ToString()</code> affiche le sujet et "[Bio]" si c'est une biographie</li>
+</ul>
+<pre><code class="language-csharp">var serie = new Serie(&#34;Breaking Bad&#34;, 2008, 5, 13);
+Console.WriteLine(serie);
+// Attendu : [Breaking Bad (2008) - 65 épisodes]
+
+var doc = new Documentaire(&#34;Free Solo&#34;, 2018, &#34;Alpinisme&#34;, false);
+Console.WriteLine(doc);
+// Attendu : [Free Solo (2018) - Alpinisme]</code></pre></div><div class="block-code"><pre><code class="language-text">// Ajoutez Serie et Documentaire ici
+public class Serie
+{
+    // TODO
+}
+
+public class Documentaire
+{
+    // TODO
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>public class Serie : Media
+{
+    public int Saisons { get; set; }
+    public int EpisodesParSaison { get; set; }
+
+    public Serie(string titre, int annee, int saisons, int episodes)
+        : base(titre, annee)
+    {
+        Saisons = saisons;
+        EpisodesParSaison = episodes;
+    }
+
+    public int NombreTotalEpisodes =&gt; Saisons * EpisodesParSaison;
+    public override string ToString() =&gt; $&#34;[{Titre} ({Annee}) - {NombreTotalEpisodes} épisodes]&#34;;
+}
+
+public class Documentaire : Media
+{
+    public string Sujet { get; set; }
+    public bool EstBiographie { get; set; }
+
+    public Documentaire(string titre, int annee, string sujet, bool estBio)
+        : base(titre, annee)
+    {
+        Sujet = sujet;
+        EstBiographie = estBio;
+    }
+
+    public override string ToString()
+        =&gt; EstBiographie
+            ? $&#34;[{Titre} ({Annee}) - {Sujet} [Bio]]&#34;
+            : $&#34;[{Titre} ({Annee}) - {Sujet}]&#34;;
+}</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h3>Exercice 3 : Upcasting, downcasting et pattern matching</h3>
+<p>Créez une méthode <code>AfficherDetails</code> qui :</p>
+<ol>
+<li>Prend un <code>Media</code> en paramètre</li>
+<li>Utilise le pattern matching (<code>is</code>) pour détecter le type réel</li>
+<li>Affiche les détails spécifiques selon le type (Film, Serie, Documentaire)</li>
+<li>Testez avec une <code>List&lt;Media&gt;</code> contenant un de chaque type</li>
+</ol>
+<pre><code class="language-csharp">var catalogue = new List&lt;Media&gt;
+{
+    new Film(&#34;Dune&#34;, 2021, &#34;Villeneuve&#34;, 155),
+    new Serie(&#34;Dark&#34;, 2017, 3, 10),
+    new Documentaire(&#34;The Social Dilemma&#34;, 2020, &#34;Réseaux sociaux&#34;, false)
+};
+
+foreach (var media in catalogue)
+    AfficherDetails(media);</code></pre></div><div class="block-code"><pre><code class="language-text">static void AfficherDetails(Media media)
+{
+    // TODO : utilisez pattern matching avec &#39;is&#39;
+}
+
+// Test
+var catalogue = new List&lt;Media&gt;
+{
+    new Film(&#34;Dune&#34;, 2021, &#34;Villeneuve&#34;, 155),
+    new Serie(&#34;Dark&#34;, 2017, 3, 10),
+    new Documentaire(&#34;The Social Dilemma&#34;, 2020, &#34;Réseaux sociaux&#34;, false)
+};
+
+foreach (var media in catalogue)
+    AfficherDetails(media);</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>static void AfficherDetails(Media media)
+{
+    Console.WriteLine($&#34;Type : {media.GetType().Name}&#34;);
+    Console.WriteLine($&#34;Info : {media.GetInfo()}&#34;);
+
+    if (media is Film film)
+        Console.WriteLine($&#34;  Réalisateur : {film.Realisateur}, Durée : {film.DureeMinutes} min&#34;);
+    else if (media is Serie serie)
+        Console.WriteLine($&#34;  Saisons : {serie.Saisons}, Total épisodes : {serie.NombreTotalEpisodes}&#34;);
+    else if (media is Documentaire doc)
+        Console.WriteLine($&#34;  Sujet : {doc.Sujet}, Bio : {doc.EstBiographie}&#34;);
+
+    Console.WriteLine();
+}</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h3>Exercice 4 : Membre protected et sealed</h3>
+<ol>
+<li>Ajoutez un champ <code>protected int _noteInterne</code> dans <code>Media</code> avec un compteur d'ID</li>
+<li>Créez une classe <code>FilmStreaming : Film</code> avec <code>Plateforme</code> (string)</li>
+<li>Scellez <code>FilmStreaming</code> avec <code>sealed</code></li>
+<li>Vérifiez que <code>_noteInterne</code> est accessible dans <code>Film</code> et <code>FilmStreaming</code> mais pas depuis <code>Program</code></li>
+</ol>
+<pre><code class="language-csharp">var streaming = new FilmStreaming(&#34;Inception&#34;, 2010, &#34;Nolan&#34;, 148, &#34;Netflix&#34;);
+Console.WriteLine(streaming);
+// Compile error attendue si on essaie d&#39;accéder à streaming._noteInterne</code></pre></div><div class="block-code"><pre><code class="language-text">public class Media
+{
+    public string Titre { get; set; }
+    public int Annee { get; set; }
+    // TODO : ajoutez _noteInterne et un compteur
+}
+
+public class FilmStreaming
+{
+    // TODO : héritez de Film, ajoutez Plateforme, scellez
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>public class Media
+{
+    private static int _compteur = 0;
+    protected int _id;
+    protected int _noteInterne;
+
+    public string Titre { get; set; }
+    public int Annee { get; set; }
+
+    public Media(string titre, int annee)
+    {
+        _id = ++_compteur;
+        Titre = titre;
+        Annee = annee;
+        _noteInterne = -1;
+    }
+}
+
+public class Film : Media
+{
+    public string Realisateur { get; set; }
+    public int DureeMinutes { get; set; }
+
+    public Film(string titre, int annee, string realisateur, int duree)
+        : base(titre, annee)
+    {
+        Realisateur = realisateur;
+        DureeMinutes = duree;
+    }
+
+    public void SetNote(int note)
+    {
+        _noteInterne = note; // Accessible car protected
+    }
+}
+
+public sealed class FilmStreaming : Film
+{
+    public string Plateforme { get; set; }
+
+    public FilmStreaming(string titre, int annee, string realisateur, int duree, string plateforme)
+        : base(titre, annee, realisateur, duree)
+    {
+        Plateforme = plateforme;
+    }
+
+    public override string ToString()
+        =&gt; $&#34;[{Titre} ({Annee}) - {Realisateur} via {Plateforme}]&#34;;
+}</code></pre></div></details></section>
+<section class="block block-quiz"><div class="quiz-meta"><span class="quiz-type-badge">Exercise</span></div><h3 class="quiz-question">Exercise</h3><div class="block-text"><h3>Exercice 5 (Challenge) : Catalogue polymorphe</h3>
+<p>Créez une classe <code>Catalogue</code> qui :</p>
+<ol>
+<li>Contient une <code>List&lt;Media&gt;</code></li>
+<li>A une méthode <code>Ajouter(Media media)</code> qui empêche les doublons de titre</li>
+<li>A une méthode <code>RechercherParType&lt;T&gt;()</code> qui retourne tous les médias d'un type donné</li>
+<li>A une méthode <code>GetStatistiques()</code> retournant le nombre de films, séries et documentaires</li>
+</ol>
+<pre><code class="language-csharp">var cat = new Catalogue();
+cat.Ajouter(new Film(&#34;Dune&#34;, 2021, &#34;Villeneuve&#34;, 155));
+cat.Ajouter(new Serie(&#34;Severance&#34;, 2022, 2, 10));
+cat.Ajouter(new Film(&#34;Parasite&#34;, 2019, &#34;Bong&#34;, 132));
+
+Console.WriteLine(cat.GetStatistiques());
+// Films : 2, Séries : 1, Documentaires : 0
+
+foreach (var film in cat.RechercherParType&lt;Film&gt;())
+    Console.WriteLine(film);</code></pre></div><div class="block-code"><pre><code class="language-text">public class Catalogue
+{
+    // TODO
+}</code></pre></div><details class="quiz-details"><summary>Solution</summary><div class="block-code"><pre><code>public class Catalogue
+{
+    private List&lt;Media&gt; _medias = new();
+
+    public void Ajouter(Media media)
+    {
+        if (_medias.Any(m =&gt; m.Titre == media.Titre))
+            throw new InvalidOperationException($&#34;Un média nommé &#39;{media.Titre}&#39; existe déjà.&#34;);
+        _medias.Add(media);
+    }
+
+    public IEnumerable&lt;T&gt; RechercherParType&lt;T&gt;() where T : Media
+        =&gt; _medias.OfType&lt;T&gt;();
+
+    public string GetStatistiques()
+    {
+        int films = _medias.Count(m =&gt; m is Film);
+        int series = _medias.Count(m =&gt; m is Serie);
+        int docs = _medias.Count(m =&gt; m is Documentaire);
+        return $&#34;Films : {films}, Séries : {series}, Documentaires : {docs}&#34;;
+    }
+}</code></pre></div></details></section>
+<div class="block block-text"><h3>Récapitulatif</h3>
+<ul>
+<li><strong>Ex 1</strong> : Hiérarchie de base avec constructeurs chaînés (<code>base()</code>)</li>
+<li><strong>Ex 2</strong> : Classes dérivées multiples avec propriétés calculées</li>
+<li><strong>Ex 3</strong> : Upcasting, downcasting et pattern matching (<code>is</code>)</li>
+<li><strong>Ex 4</strong> : Membres <code>protected</code> et classes <code>sealed</code></li>
+<li><strong>Ex 5</strong> : Catalogue polymorphe avec génériques et <code>OfType&lt;T&gt;()</code></li>
+</ul></div>
+</main>
+</div>
+</body>
+</html>

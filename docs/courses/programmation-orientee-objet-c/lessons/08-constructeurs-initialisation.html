@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Constructeurs &amp; initialisation</title>
+<link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><div class="sidebar-header"><img class="sidebar-logo" src="https://nerdmessenger.s3.fr-par.scw.cloud/00000000-0000-0000-0000-000000000001/f256a8ef-3d7c-4a20-a8d9-5538e9c9f3a2/branding/2026/04/0ec3ac29-47cc-4e24-9e30-0b55eb7e8c43-a1b367b6-990d-4e59-a3ec-3a3fc007b161.webp" alt="Institute 73" /><a href="../../../index.html" class="sidebar-title">Programmation Orientée Objet - C#</a></div><div class="sidebar-content"><details class="nav-course" open><summary class="nav-course-title">Programmation Orientée Objet - C#</summary><div class="nav-module-title">Environnement .NET, Classes &amp; Encapsulation</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/01-setup-environnement-net.html">Setup environnement .NET <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/02-guide-d-installation-net.html">Guide d&#39;installation .NET <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/03-exercices-setup-premier-projet-console.html">Exercices : Setup &amp; premier projet console <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/04-classes-objets.html">Classes &amp; Objets <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/05-classes-objets.html">Classes &amp; Objets <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/06-exercices-classes-objets.html">Exercices : Classes &amp; Objets <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/07-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson active"><a href="../../../courses/programmation-orientee-objet-c/lessons/08-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/09-exercices-constructeurs.html">Exercices : Constructeurs <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/10-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/11-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/12-exercices-encapsulation-proprietes.html">Exercices : Encapsulation &amp; Propriétés <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/13-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/14-quiz-fondamentaux-oop.html">Quiz : Fondamentaux OOP <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/15-synthese-fondamentaux-oop.html">Synthèse : Fondamentaux OOP <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Héritage, Polymorphisme &amp; Interfaces</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/16-heritage.html">Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/17-heritage.html">Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/18-exercices-heritage.html">Exercices : Héritage <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/19-polymorphisme-virtual-override.html">Polymorphisme (virtual / override) <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/20-polymorphisme.html">Polymorphisme <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/21-exercices-polymorphisme.html">Exercices : Polymorphisme <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/22-classes-abstraites.html">Classes abstraites <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/23-classes-abstraites.html">Classes abstraites <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/24-exercices-classes-abstraites.html">Exercices : Classes abstraites <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/25-interfaces-contrats-decouplage.html">Interfaces : contrats &amp; découplage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/26-interfaces.html">Interfaces <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/27-exercices-interfaces.html">Exercices : Interfaces <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/28-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/29-quiz-heritage-interfaces.html">Quiz : Héritage &amp; Interfaces <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/30-synthese-heritage-interfaces.html">Synthèse : Héritage &amp; Interfaces <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Composition, SOLID &amp; Exceptions</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/31-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/32-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/33-exercices-composition.html">Exercices : Composition <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/34-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/35-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/36-exercices-srp-ocp.html">Exercices : SRP &amp; OCP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/37-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/38-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/39-exercices-lsp-isp-dip.html">Exercices : LSP, ISP &amp; DIP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/40-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/41-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/42-exercices-exceptions-oo.html">Exercices : Exceptions OO <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/43-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/44-quiz-solid-exceptions.html">Quiz : SOLID &amp; Exceptions <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/45-synthese-solid-exceptions.html">Synthèse : SOLID &amp; Exceptions <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">ASP.NET Core MVC : OOP appliqué</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/46-intro-asp-net-core-mvc.html">Intro ASP.NET Core MVC <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/47-asp-net-core-mvc.html">ASP.NET Core MVC <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/48-exercices-premier-projet-mvc.html">Exercices : Premier projet MVC <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/49-models-controllers-oop.html">Models &amp; Controllers OOP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/50-models-controllers.html">Models &amp; Controllers <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/51-exercices-models-controllers.html">Exercices : Models &amp; Controllers <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/52-injection-de-dependances.html">Injection de dépendances <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/53-injection-de-dependances.html">Injection de dépendances <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/54-exercices-injection-de-dependances.html">Exercices : Injection de dépendances <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/55-projet-fil-rouge-gestionnaire-de-films.html">Projet fil rouge : gestionnaire de films <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/56-projet-fil-rouge-guide-complet.html">Projet fil rouge : guide complet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/57-gestionnaire-de-films-asp-net-mvc.html">Gestionnaire de films (ASP.NET MVC) <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/58-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/59-quiz-evaluation-finale.html">Quiz : Évaluation finale <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/60-synthese-perspectives.html">Synthèse &amp; Perspectives <span class="badge badge-slides">slides</span></a></li></ul></details></div></nav>
+<main class="content">
+<h1>Constructeurs &amp; initialisation</h1>
+<div class="lesson-meta"><span class="lesson-type lesson-type-reading">reading</span><span class="lesson-duration">Duration: 20 min</span></div>
+<div class="block block-text"><h1>Constructeurs & initialisation</h1>
+<p>Ce document approfondit les concepts présentés dans le deck. Tu y trouveras les syntaxes avancées et les nuances de chaque approche d'initialisation.</p></div>
+<div class="block block-text"><h2>Le problème du constructeur par défaut</h2>
+<p>Sans constructeur explicite, C# fournit un <strong>constructeur par défaut</strong> sans paramètres. Les champs restent à leur valeur par défaut (<code>null</code> pour les références, <code>0</code> pour les entiers) :</p></div>
+<div class="block block-code"><pre><code class="language-csharp">public class Film
+{
+    public string titre;
+    public string realisateur;
+    public int annee;
+}
+
+// Utilisation
+Film f = new Film();
+f.titre = &#34;Inception&#34;;     // Obligé d&#39;assigner champ par champ
+f.realisateur = &#34;Nolan&#34;;
+f.annee = 2010;
+// Risque : un Film sans titre est possible !
+Console.WriteLine(f.titre); // OK
+Console.WriteLine(f.realisateur); // OK</code></pre></div>
+<div class="block block-text"><h2>Constructeur paramétré</h2>
+<p>Un constructeur permet de <strong>forcer l'initialisation</strong> des champs au moment de la création :</p></div>
+<div class="block block-code"><pre><code class="language-csharp">public class Film
+{
+    public string titre;
+    public string realisateur;
+    public int annee;
+
+    // Constructeur paramétré
+    public Film(string titre, string realisateur, int annee)
+    {
+        this.titre = titre;
+        this.realisateur = realisateur;
+        this.annee = annee;
+    }
+
+    public void Afficher()
+    {
+        Console.WriteLine($&#34;{titre} ({annee}) - {realisateur}&#34;);
+    }
+}
+
+// Utilisation
+Film f = new Film(&#34;Inception&#34;, &#34;Christopher Nolan&#34;, 2010);
+f.Afficher(); // Inception (2010) - Christopher Nolan</code></pre></div>
+<div class="block block-text"><h2>Le mot-clé <code>this</code></h2>
+<p>Dans un constructeur (ou une méthode), <code>this</code> fait référence à l'objet en cours de construction. Quand le paramètre a le même nom qu'un champ, <code>this</code> lève l'ambiguité :</p>
+<ul>
+<li><code>this.titre</code> : le champ de l'objet</li>
+<li><code>titre</code> : le paramètre du constructeur</li>
+</ul>
+<p>Si les noms sont différents, <code>this</code> est optionnel mais reste explicite.</p></div>
+<div class="block block-text"><h2>Surcharge de constructeurs</h2>
+<p>Une classe peut avoir <strong>plusieurs constructeurs</strong> avec des signatures différentes. C'est la <strong>surcharge</strong> (overloading) :</p></div>
+<div class="block block-code"><pre><code class="language-csharp">public class Film
+{
+    public string titre;
+    public string realisateur;
+    public int annee;
+    public string genre;
+
+    // Constructeur complet
+    public Film(string titre, string realisateur, int annee, string genre)
+    {
+        this.titre = titre;
+        this.realisateur = realisateur;
+        this.annee = annee;
+        this.genre = genre;
+    }
+
+    // Constructeur simplifié (sans genre)
+    public Film(string titre, string realisateur, int annee)
+        : this(titre, realisateur, annee, &#34;Non défini&#34;)
+    {
+        }
+
+    public void Afficher()
+    {
+        Console.WriteLine($&#34;{titre} ({annee}) - {realisateur} [{genre}]&#34;);
+    }
+}
+
+Film f1 = new Film(&#34;Inception&#34;, &#34;Nolan&#34;, 2010, &#34;Sci-Fi&#34;);
+Film f2 = new Film(&#34;Parasite&#34;, &#34;Bong&#34;, 2019);
+f1.Afficher(); // Inception (2010) - Nolan [Sci-Fi]
+f2.Afficher(); // Parasite (2019) - Bong [Non défini]</code></pre></div>
+<div class="block block-text"><h2>Syntaxe d'initialisation d'objet</h2>
+<p>C# propose une syntaxe concise pour initialiser les propriétés publiques à la création :</p></div>
+<div class="block block-code"><pre><code class="language-csharp">// Avec constructeur paramétré classique
+Film f1 = new Film(&#34;Dune&#34;, &#34;Villeneuve&#34;, 2021);
+
+// Avec initialisateur d&#39;objet (si constructeur sans paramètres disponible)
+// Pas possible ici car on a défini un constructeur paramétré sans paramètres
+
+// La syntaxe fonctionne avec un constructeur par défaut :
+public class Categorie
+{
+    public string nom;
+    public string description;
+}
+
+Categorie cat = new Categorie
+{
+    nom = &#34;Science-Fiction&#34;,
+    description = &#34;Films de science-fiction et fantastique&#34;
+};</code></pre></div>
+<div class="block block-text"><h2>Constructeurs primaires (C# 12 / .NET 8)</h2>
+<p>Nouveauté de C# 12 : les <strong>primary constructors</strong> permettent de déclarer les paramètres directement dans l'en-tête de la classe. Plus besoin de corps de constructeur explicite pour les cas simples :</p></div>
+<div class="block block-code"><pre><code class="language-csharp">// Constructeur primaire : paramètres dans la déclaration de classe
+public class Film(string titre, string realisateur, int annee)
+{
+    public string Titre =&gt; titre;
+    public string Realisateur =&gt; realisateur;
+    public int Annee =&gt; annee;
+
+    public void Afficher()
+    {
+        Console.WriteLine($&#34;{Titre} ({Annee}) - {Realisateur}&#34;);
+    }
+}
+
+// Utilisation
+Film f = new Film(&#34;Oppenheimer&#34;, &#34;Nolan&#34;, 2023);
+f.Afficher();</code></pre></div>
+<div class="block block-text"><h3>Quand utiliser quoi ?</h3>
+<table><thead><tr><th>Approche</th><th>Quand l'utiliser</th></tr></thead><tbody><tr><td>Constructeur par défaut</td><td>Objets simples, initialisation externe acceptable</td></tr><tr><td>Constructeur paramétré</td><td>Quand des champs sont obligatoires à la création</td></tr><tr><td>Surcharge</td><td>Quand plusieurs façons de créer l'objet sont utiles</td></tr><tr><td>Initialisateur d'objet</td><td>Quand beaucoup de champs optionnels</td></tr><tr><td>Constructeur primaire</td><td>C# 12+ pour les classes simples, DTOs, records</td></tr></tbody></table>
+<h2>Points clés</h2>
+<ul>
+<li>Le constructeur par défaut existe tant que tu n'en définis aucun.</li>
+<li>Un constructeur paramétré garantit l'intégrité de l'objet dès sa création.</li>
+<li><code>:this()</code> permet de chaîner les constructeurs et éviter la duplication.</li>
+<li>Les constructeurs primaires (C# 12) sont parfaits pour les cas simples.</li>
+<li>Dans le gestionnaire de films, le constructeur de <code>Film</code> garantira que titre et realisateur sont toujours fournis.</li>
+</ul></div>
+</main>
+</div>
+</body>
+</html>

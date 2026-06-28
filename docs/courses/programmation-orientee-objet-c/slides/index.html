@@ -1,0 +1,3641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POO C# - Bootcamp 4 jours</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root { --bg-dark: #0a0e1a; --bg-card: #111827; --bg-code: #0d1117; --accent-blue: #3b82f6; --accent-cyan: #06b6d4; --accent-emerald: #10b981; --accent-amber: #f59e0b; --accent-rose: #f43f5e; --accent-violet: #8b5cf6; --text-primary: #e2e8f0; --text-secondary: #94a3b8; --text-dim: #475569; --border-color: #1e293b; --grid-color: #131c2e; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body { font-family: 'Inter', sans-serif; background: var(--bg-dark); color: var(--text-primary); line-height: 1.6; }
+.grid-bg { position: fixed; inset: 0; background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.5; pointer-events: none; z-index: 0; }
+.grid-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 900px 500px at 10% 10%, rgba(139, 92, 246, 0.06), transparent), radial-gradient(ellipse 800px 400px at 90% 90%, rgba(16, 185, 129, 0.06), transparent); }
+.header { position: fixed; top: 0; left: 0; right: 0; height: 56px; background: rgba(10, 14, 26, 0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; z-index: 100; }
+.header-left { display: flex; align-items: center; gap: 20px; }
+.header-right { display: flex; align-items: center; gap: 8px; }
+.logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2em; background: linear-gradient(135deg, var(--accent-violet), var(--accent-emerald)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+.day-btn { padding: 6px 16px; border: 1px solid var(--border-color); border-radius: 8px; background: transparent; color: var(--text-secondary); font-size: 0.85em; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+.day-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+.day-btn.active { background: rgba(6, 182, 212, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
+.ctrl-btn { width: 36px; height: 36px; border: 1px solid var(--border-color); border-radius: 8px; background: transparent; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85em; transition: all 0.2s; }
+.ctrl-btn:hover { border-color: var(--accent-blue); color: var(--text-primary); }
+.ctrl-btn.active { background: rgba(59, 130, 246, 0.15); border-color: var(--accent-blue); color: var(--accent-blue); }
+.ctrl-btn:disabled { opacity: 0.3; cursor: default; }
+.slide-counter { font-family: 'JetBrains Mono', monospace; font-size: 0.8em; color: var(--text-dim); min-width: 60px; text-align: center; }
+.progress-track { position: fixed; top: 56px; left: 0; right: 0; height: 2px; background: var(--border-color); z-index: 99; }
+.progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent-violet), var(--accent-emerald)); transition: width 0.3s ease; width: 0; }
+.slides-wrapper { position: fixed; top: 58px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+.slide { position: absolute; inset: 0; padding: 48px 64px; display: flex; flex-direction: column; justify-content: center; opacity: 0; pointer-events: none; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s; overflow-y: auto; }
+.slide.active { opacity: 1; pointer-events: auto; transform: translateX(0); }
+.slide.prev { transform: translateX(-100%); opacity: 0; }
+.slide-number { font-family: 'JetBrains Mono', monospace; font-size: 0.75em; color: var(--accent-cyan); opacity: 0.6; margin-bottom: 8px; }
+.slide-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.8em, 3.5vw, 2.8em); font-weight: 700; line-height: 1.2; margin-bottom: 24px; background: linear-gradient(135deg, var(--text-primary), var(--text-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.slide-title.accent { background: linear-gradient(135deg, var(--accent-violet), var(--accent-emerald)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.slide-subtitle { font-size: 1.15em; color: var(--text-secondary); margin-bottom: 32px; max-width: 780px; }
+.slide.hero { align-items: center; text-align: center; }
+.slide.hero .slide-title { font-size: clamp(2.2em, 4.5vw, 3.5em); }
+.slide.hero .slide-subtitle { max-width: 680px; }
+h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3em; font-weight: 600; color: var(--accent-cyan); margin: 24px 0 12px; }
+p, li { font-size: 1.05em; line-height: 1.7; color: var(--text-secondary); }
+ul, ol { padding-left: 24px; margin: 12px 0; }
+li { margin: 6px 0; }
+li::marker { color: var(--accent-cyan); }
+strong { color: var(--text-primary); font-weight: 600; }
+em { color: var(--accent-amber); font-style: normal; }
+code { font-family: 'JetBrains Mono', monospace; font-size: 0.88em; background: var(--bg-code); padding: 2px 8px; border-radius: 4px; color: var(--accent-emerald); }
+pre { background: var(--bg-code); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px 20px; overflow-x: auto; margin: 12px 0; }
+pre code { background: transparent; padding: 0; color: var(--text-primary); font-size: 0.85em; line-height: 1.55; display: block; }
+.two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.three-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.four-cols { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+.card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; }
+.card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05em; color: var(--text-primary); margin-bottom: 8px; }
+.card p { font-size: 0.92em; }
+.card.blue { border-left: 3px solid var(--accent-blue); }
+.card.cyan { border-left: 3px solid var(--accent-cyan); }
+.card.emerald { border-left: 3px solid var(--accent-emerald); }
+.card.amber { border-left: 3px solid var(--accent-amber); }
+.card.rose { border-left: 3px solid var(--accent-rose); }
+.card.violet { border-left: 3px solid var(--accent-violet); }
+.info-box { padding: 16px 20px; border-radius: 12px; margin: 16px 0; border: 1px solid; }
+.info-box.tip { background: rgba(6, 182, 212, 0.08); border-color: rgba(6, 182, 212, 0.2); }
+.info-box.warning { background: rgba(245, 158, 11, 0.08); border-color: rgba(245, 158, 11, 0.2); }
+.info-box.danger { background: rgba(244, 63, 94, 0.08); border-color: rgba(244, 63, 94, 0.2); }
+.info-box.success { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.2); }
+.tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.78em; font-weight: 600; margin: 2px 4px; }
+.tag.blue { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+.tag.cyan { background: rgba(6, 182, 212, 0.15); color: var(--accent-cyan); }
+.tag.emerald { background: rgba(16, 185, 129, 0.15); color: var(--accent-emerald); }
+.tag.amber { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+.tag.rose { background: rgba(244, 63, 94, 0.15); color: var(--accent-rose); }
+.tag.violet { background: rgba(139, 92, 246, 0.15); color: var(--accent-violet); }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9em; }
+th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border-color); }
+th { background: var(--bg-card); color: var(--accent-cyan); font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
+td { color: var(--text-secondary); }
+tr:hover td { color: var(--text-primary); }
+.quote-big { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.3em, 2.4vw, 1.9em); font-weight: 600; color: var(--text-primary); line-height: 1.35; max-width: 900px; margin: 32px auto; text-align: center; padding: 20px 32px; border-left: 3px solid var(--accent-violet); border-right: 3px solid var(--accent-violet); }
+.stat-big { font-family: 'Space Grotesk', sans-serif; font-size: clamp(4em, 9vw, 7em); font-weight: 700; background: linear-gradient(135deg, var(--accent-violet), var(--accent-emerald)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin: 12px 0; }
+.stat-label { font-size: 1.1em; color: var(--text-secondary); max-width: 640px; margin: 0 auto; }
+.timeline { display: flex; gap: 12px; margin: 24px 0; flex-wrap: wrap; }
+.timeline-item { flex: 1; min-width: 140px; padding: 14px 16px; background: var(--bg-card); border: 1px solid var(--border-color); border-top: 3px solid var(--accent-cyan); border-radius: 10px; }
+.timeline-item.dim { opacity: 0.5; border-top-color: var(--text-dim); }
+.timeline-item.highlight { border-top-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.08); }
+.timeline-item strong { display: block; font-family: 'Space Grotesk', sans-serif; color: var(--text-primary); font-size: 0.95em; margin-bottom: 4px; }
+.timeline-item span { font-size: 0.82em; color: var(--text-secondary); }
+.speaker-notes { position: fixed; bottom: 0; left: 0; right: 0; height: 200px; background: rgba(10, 14, 26, 0.95); backdrop-filter: blur(12px); border-top: 1px solid var(--border-color); padding: 16px 24px; transform: translateY(100%); transition: transform 0.3s ease; z-index: 90; overflow-y: auto; }
+.speaker-notes.visible { transform: translateY(0); }
+.speaker-notes h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.75em; color: var(--accent-amber); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.speaker-notes p { font-size: 0.9em; color: var(--text-secondary); white-space: pre-wrap; }
+.tp-panel { position: fixed; top: 58px; right: 0; bottom: 0; width: 50%; max-width: 680px; background: rgba(10, 14, 26, 0.97); backdrop-filter: blur(16px); border-left: 1px solid var(--border-color); transform: translateX(100%); transition: transform 0.35s ease; z-index: 80; display: flex; flex-direction: column; }
+.tp-panel.visible { transform: translateX(0); }
+.tp-panel-header { padding: 16px 20px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; }
+.tp-panel-header h3 { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; color: var(--accent-emerald); text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+.tp-panel-header a { font-size: 0.8em; color: var(--accent-blue); text-decoration: none; }
+.tp-panel-body { flex: 1; overflow-y: auto; padding: 20px; font-size: 0.92em; line-height: 1.7; }
+.tp-panel-body h3 { color: var(--accent-cyan); margin-top: 20px; }
+.tp-panel-body h4 { color: var(--text-primary); margin: 16px 0 8px; font-size: 1em; }
+.tp-panel-body p, .tp-panel-body li { color: var(--text-secondary); }
+.tp-panel-empty { color: var(--text-dim); text-align: center; padding: 40px 0; }
+.slide-menu { position: fixed; top: 56px; right: 16px; width: 360px; max-height: 70vh; background: rgba(17, 24, 39, 0.98); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 12px; overflow-y: auto; z-index: 110; display: none; padding: 8px; }
+.slide-menu.visible { display: block; }
+.slide-menu-item { padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 0.82em; color: var(--text-secondary); transition: all 0.15s; display: flex; align-items: center; gap: 8px; }
+.slide-menu-item:hover { background: rgba(6, 182, 212, 0.08); color: var(--text-primary); }
+.slide-menu-item.active { background: rgba(6, 182, 212, 0.12); color: var(--accent-cyan); }
+.slide-menu-number { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; color: var(--accent-cyan); min-width: 50px; opacity: 0.7; }
+.keyboard-hints { position: fixed; bottom: 16px; right: 16px; display: flex; gap: 12px; font-size: 0.72em; color: var(--text-dim); z-index: 50; }
+.key { display: inline-block; padding: 2px 8px; border: 1px solid var(--border-color); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.9em; margin-right: 4px; }
+.roles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+.role-tile { padding: 14px 16px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border-color); }
+.role-tile strong { display: block; margin-bottom: 6px; font-family: 'Space Grotesk', sans-serif; color: var(--text-primary); }
+.role-tile span { font-size: 0.88em; color: var(--text-secondary); line-height: 1.5; }
+.role-tile.cyan { border-left: 3px solid var(--accent-cyan); }
+.role-tile.blue { border-left: 3px solid var(--accent-blue); }
+.role-tile.emerald { border-left: 3px solid var(--accent-emerald); }
+.role-tile.amber { border-left: 3px solid var(--accent-amber); }
+.role-tile.rose { border-left: 3px solid var(--accent-rose); }
+.role-tile.violet { border-left: 3px solid var(--accent-violet); }
+.diagram-tree { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 20px 0; }
+.dt-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; align-items: stretch; }
+.dt-node { padding: 14px 22px; background: var(--bg-card); border: 2px solid var(--accent-cyan); border-radius: 12px; font-family: 'JetBrains Mono', monospace; color: var(--text-primary); text-align: center; min-width: 150px; font-size: 0.95em; }
+.dt-node.dt-parent { border-color: var(--accent-violet); background: rgba(139, 92, 246, 0.1); }
+.dt-node.dt-interface { border-color: var(--accent-amber); background: rgba(245, 158, 11, 0.08); }
+.dt-node small { display: block; font-family: 'Inter', sans-serif; font-size: 0.78em; color: var(--text-dim); margin-top: 4px; font-weight: 400; }
+.dt-down { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; color: var(--accent-emerald); text-align: center; padding: 6px 0; }
+.flow-diagram { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 20px auto; max-width: 760px; }
+.flow-step { padding: 11px 18px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.83em; color: var(--text-primary); text-align: center; width: 100%; }
+.flow-step.highlight { border-color: var(--accent-emerald); background: rgba(16, 185, 129, 0.08); color: var(--accent-emerald); }
+.flow-step.muted { opacity: 0.7; border-style: dashed; }
+.flow-arrow { color: var(--accent-cyan); font-size: 1.1em; font-family: 'JetBrains Mono', monospace; }
+.flow-label { font-family: 'Inter', sans-serif; font-size: 0.78em; color: var(--text-dim); font-style: italic; text-align: center; padding: 2px 0; }
+.inheritance-diagram { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 20px 0; }
+.id-class { padding: 14px 18px; background: var(--bg-card); border: 2px solid var(--accent-cyan); border-radius: 12px; min-width: 320px; max-width: 520px; }
+.id-class.id-parent { border-color: var(--accent-violet); background: rgba(139, 92, 246, 0.08); }
+.id-class h5 { font-family: 'Space Grotesk', sans-serif; font-size: 1em; color: var(--text-primary); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border-color); }
+.id-member { padding: 4px 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.85em; color: var(--text-secondary); border-left: 3px solid; margin: 4px 0; }
+.id-member.pub { border-color: var(--accent-emerald); }
+.id-member.prot { border-color: var(--accent-amber); }
+.id-member.priv { border-color: var(--accent-rose); }
+.id-member.dim { opacity: 0.35; text-decoration: line-through; }
+.id-member small { font-family: 'Inter', sans-serif; color: var(--text-dim); font-size: 0.78em; margin-left: 6px; }
+@media (max-width: 900px) { .slide { padding: 32px 24px; } .two-cols, .three-cols, .four-cols, .roles-grid { grid-template-columns: 1fr; } .tp-panel { width: 100%; } }
+  </style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<header class="header">
+  <div class="header-left">
+    <span class="logo">POO C#</span>
+    <button class="day-btn active" data-day="1">J1 - .NET, C# &amp; POO</button>
+    <button class="day-btn" data-day="2">J2 - Héritage &amp; Interfaces</button>
+    <button class="day-btn" data-day="3">J3 - SOLID &amp; Exceptions</button>
+    <button class="day-btn" data-day="4">J4 - ASP.NET MVC</button>
+  </div>
+  <div class="header-right">
+    <button class="ctrl-btn" id="tpBtn" title="Panneau TP (T)" disabled>TP</button>
+    <button class="ctrl-btn" id="assistBtn" title="Mode aide (A)" disabled>?</button>
+    <button class="ctrl-btn" id="prevBtn" title="Slide precedente">&#9664;</button>
+    <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">1</span></span>
+    <button class="ctrl-btn" id="nextBtn" title="Slide suivante">&#9654;</button>
+    <button class="ctrl-btn" id="notesBtn" title="Notes orateur (N)">N</button>
+    <button class="ctrl-btn" id="fullscreenBtn" title="Plein ecran (F)">F</button>
+    <button class="ctrl-btn" id="menuBtn" title="Menu slides">&#9776;</button>
+  </div>
+</header>
+
+<div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+<div class="slide-menu" id="slideMenu"></div>
+
+<div class="slides-wrapper" id="slidesWrapper">
+
+  <div class="slide hero" data-day="1" data-note="Accueil. Slide affichee plein ecran avant l'arrivee. Presentez-vous en 30 secondes. Tour de table rapide : prenom + langage deja pratique. Aucune pression : on commence de zero.">
+    <div class="slide-number">J1.00</div>
+    <div class="slide-title accent">Programmation orientée objet en C#</div>
+    <p class="slide-subtitle">4 jours pour passer de zéro à un gestionnaire de films complet en ASP.NET Core MVC. On démarre par l'histoire, le pourquoi, puis le premier projet.</p>
+    <div style="margin-top: 24px;">
+      <span class="tag violet">Histoire .NET</span>
+      <span class="tag emerald">Pourquoi C#</span>
+      <span class="tag cyan">Pourquoi la POO</span>
+      <span class="tag amber">Premier projet</span>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Posez le cadre. 4 jours, fil rouge unique : un gestionnaire de films qui finit en MVC. Le projet evolue tous les jours. Insistez sur le fait qu'on ecrit du C# moderne (.NET 8), pas du legacy.">
+    <div class="slide-number">J1.01</div>
+    <div class="slide-title">Au programme des 4 jours</div>
+    <p class="slide-subtitle">Un fil rouge unique : un gestionnaire de films qui grandit à chaque journée.</p>
+    <div class="four-cols" style="margin-top: 20px;">
+      <div class="card violet">
+        <h4>J1 : Fondations</h4>
+        <ul>
+          <li>Histoire .NET et C#</li>
+          <li>Classes et objets</li>
+          <li>Constructeurs</li>
+          <li>Encapsulation</li>
+        </ul>
+      </div>
+      <div class="card cyan">
+        <h4>J2 : Hiérarchies</h4>
+        <ul>
+          <li>Héritage</li>
+          <li>Polymorphisme</li>
+          <li>Classes abstraites</li>
+          <li>Interfaces</li>
+        </ul>
+      </div>
+      <div class="card emerald">
+        <h4>J3 : Solidité</h4>
+        <ul>
+          <li>Composition</li>
+          <li>SOLID</li>
+          <li>Exceptions OO</li>
+        </ul>
+      </div>
+      <div class="card amber">
+        <h4>J4 : Application</h4>
+        <ul>
+          <li>ASP.NET Core MVC</li>
+          <li>Models / Controllers</li>
+          <li>Injection de dépendances</li>
+          <li>Projet final</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Cadrage de la journee. 3 questions, dans l'ordre. Histoire d'abord parce qu'elle explique les choix techniques. Pourquoi ensuite pour convaincre. Getting started enfin pour que tout le monde code avant la pause.">
+    <div class="slide-number">J1.02</div>
+    <div class="slide-title">Trois questions pour démarrer</div>
+    <div class="three-cols" style="margin-top: 24px;">
+      <div class="card violet">
+        <h4>1. Histoire</h4>
+        <p>D'où vient .NET, pourquoi Microsoft l'a créé, pourquoi il a tout réécrit en 2016.</p>
+      </div>
+      <div class="card emerald">
+        <h4>2. Pourquoi</h4>
+        <p>Pourquoi C# et la POO en 2026, face à Java, Go, Python, Node.</p>
+      </div>
+      <div class="card amber">
+        <h4>3. Getting started</h4>
+        <p>Installer le SDK, créer le projet, faire tourner du C# avant la pause.</p>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 24px;">
+      À la fin de la session, ton terminal exécute du C#, tu sais où on va, et tu sais pourquoi on y va.
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="1" data-note="Slide d'accroche pour l'histoire. La date 2002 est le repere mental pour le reste de la journee. Microsoft annonce des 2000 mais la 1.0 sort en fevrier 2002.">
+    <div class="slide-number">J1.03</div>
+    <div class="slide-title accent">L'histoire commence en 2000</div>
+    <div class="stat-big">2002</div>
+    <p class="stat-label">Sortie publique de .NET Framework 1.0 et de C# 1.0, après deux ans d'annonces.</p>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Le contexte est defensif. Microsoft sort d'un proces perdu contre Sun pour avoir forke Java en J++. La parade : creer leur propre plateforme. C'est ce qui explique pourquoi C# ressemble autant a Java a l'origine.">
+    <div class="slide-number">J1.04</div>
+    <div class="slide-title">Pourquoi Microsoft a créé .NET</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Le contexte vers 1999</h3>
+        <ul>
+          <li>Java cartonne côté entreprise</li>
+          <li>Microsoft a Visual Basic 6 et J++</li>
+          <li>Sun attaque Microsoft pour avoir forké Java</li>
+          <li>Win32 vieillit, le web monte</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Le pari .NET</h3>
+        <ul>
+          <li>Une CLR (machine virtuelle) maison</li>
+          <li>Plusieurs langages sur la même runtime</li>
+          <li>C# pensé clean dès le départ</li>
+          <li>Une bibliothèque standard énorme</li>
+        </ul>
+        <div class="info-box tip" style="margin-top: 12px;">
+          C#, VB.NET, F# compilent tous vers le même <code>IL</code> exécuté par la CLR.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="L'ere Windows-only. Pendant 17 ans .NET Framework evolue mais reste enchaine a Windows. Chaque version ajoute une feature majeure : generics, LINQ, async. La 4.8 (2019) est la derniere de la lignee.">
+    <div class="slide-number">J1.05</div>
+    <div class="slide-title">Timeline .NET Framework, 2002 à 2019</div>
+    <p class="slide-subtitle">17 ans, Windows uniquement, distribué avec l'OS.</p>
+    <div class="timeline">
+      <div class="timeline-item dim"><strong>1.0 / 1.1</strong><span>2002-2003<br/>CLR, ASP.NET, WinForms</span></div>
+      <div class="timeline-item dim"><strong>2.0</strong><span>2005<br/>Génériques, nullables</span></div>
+      <div class="timeline-item dim"><strong>3.0 / 3.5</strong><span>2006-2008<br/>WPF, WCF, LINQ</span></div>
+      <div class="timeline-item dim"><strong>4.0 / 4.5</strong><span>2010-2012<br/>async / await, TPL</span></div>
+      <div class="timeline-item"><strong>4.8</strong><span>2019<br/>Dernière version Framework</span></div>
+    </div>
+    <div class="info-box warning" style="margin-top: 16px;">
+      Microsoft a annoncé qu'il n'y aurait jamais de <strong>.NET Framework 5</strong>. La lignée est gelée. Tu en croiseras en stage, surtout en banque et assurance.
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="1" data-note="Le seisme de 2016. Reecriture complete, open source, cross-platform. Le meme Microsoft qui faisait du Windows-only sort une plateforme qui tourne sur Linux et Docker. Pause de 3 secondes apres la lecture.">
+    <div class="slide-number">J1.06</div>
+    <div class="slide-title accent">Le grand pivot</div>
+    <div class="stat-big">2016</div>
+    <p class="stat-label">Microsoft réécrit .NET en open source, cross-platform, sous le nom .NET Core 1.0.</p>
+    <div class="quote-big" style="margin-top: 24px;">
+      "We're going to open source .NET, and it will run on Linux and Mac." (Scott Guthrie, 2014)
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Le comparatif qui clarifie tout. .NET Framework = legacy, Windows, ferme. .NET (Core/5+) = moderne, cross-platform, open source. Pour tout nouveau projet en 2026, c'est .NET 8 ou plus.">
+    <div class="slide-number">J1.07</div>
+    <div class="slide-title">.NET Framework vs .NET moderne</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>.NET Framework (legacy)</h4>
+        <ul>
+          <li>Windows uniquement</li>
+          <li>Fermé, distribué avec Windows</li>
+          <li>WinForms, WPF, ASP.NET Web Forms</li>
+          <li>Encore très présent en entreprise</li>
+          <li>Plus de nouvelle version après 4.8</li>
+        </ul>
+      </div>
+      <div class="card emerald">
+        <h4>.NET Core puis .NET 5+</h4>
+        <ul>
+          <li>Windows, macOS, Linux, ARM</li>
+          <li>Open source MIT sur GitHub</li>
+          <li>SDK installé indépendamment</li>
+          <li>ASP.NET Core, gRPC, Blazor, MAUI</li>
+          <li>Cible de tous les nouveaux projets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="L'unification. Depuis .NET 5 (2020), il n'y a plus 'Core'. Une seule lignee, une release par an chaque novembre. Paires LTS (3 ans), impaires STS (18 mois). On code sur .NET 8 LTS supportee jusqu'en novembre 2026.">
+    <div class="slide-number">J1.08</div>
+    <div class="slide-title">L'unification : .NET 5, 6, 7, 8 et au-delà</div>
+    <p class="slide-subtitle">Une release annuelle, tous les novembres. Notre cible : .NET 8 LTS.</p>
+    <div class="timeline">
+      <div class="timeline-item dim"><strong>.NET 5 STS</strong><span>Nov 2020<br/>Plus de "Core"</span></div>
+      <div class="timeline-item dim"><strong>.NET 6 LTS</strong><span>Nov 2021<br/>Minimal APIs</span></div>
+      <div class="timeline-item dim"><strong>.NET 7 STS</strong><span>Nov 2022</span></div>
+      <div class="timeline-item highlight"><strong>.NET 8 LTS</strong><span>Nov 2023<br/>Notre version</span></div>
+      <div class="timeline-item dim"><strong>.NET 9 STS</strong><span>Nov 2024</span></div>
+      <div class="timeline-item dim"><strong>.NET 10 LTS</strong><span>Nov 2025</span></div>
+    </div>
+    <div class="info-box success" style="margin-top: 16px;">
+      <strong>LTS</strong> (Long Term Support) = 3 ans de support. <strong>STS</strong> (Standard Term Support) = 18 mois. En entreprise, on cible toujours une LTS.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Anders Hejlsberg. Un seul designer principal pour C#, pas un comite. Auteur de Turbo Pascal, Delphi, C#, et plus tard TypeScript. Une signature : pragmatisme. Apprendre C# c'est apprendre le langage d'un des designers les plus respectes de l'industrie.">
+    <div class="slide-number">J1.09</div>
+    <div class="slide-title">Anders Hejlsberg, l'architecte de C#</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Le designer</h3>
+        <p>Danois, recruté par Microsoft en 1996. Il a créé trois langages majeurs de l'industrie.</p>
+        <div class="roles-grid" style="grid-template-columns: 1fr; margin-top: 16px;">
+          <div class="role-tile cyan"><strong>Turbo Pascal (1983)</strong><span>Le compilateur qui a démocratisé la programmation sur PC.</span></div>
+          <div class="role-tile blue"><strong>Delphi (1995)</strong><span>L'IDE qui a inspiré Visual Basic et Visual Studio.</span></div>
+          <div class="role-tile emerald"><strong>C# (2000) et TypeScript (2012)</strong><span>Deux langages qui dominent aujourd'hui leurs écosystèmes.</span></div>
+        </div>
+      </div>
+      <div>
+        <h3>Pourquoi c'est important pour toi</h3>
+        <p>C# n'a pas été designé par un comité. Une vision unique, une cohérence d'ensemble, des choix pragmatiques.</p>
+        <div class="info-box tip" style="margin-top: 12px;">
+          Si tu connais TypeScript, tu vas retrouver des réflexes : typage strict, inference, async / await. Même cerveau aux manettes.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="C# evolue. Chaque version apporte une feature qui change l'ecriture. LINQ a influence Java et JS. async/await a ete copie partout. On code en C# 12, livre avec .NET 8.">
+    <div class="slide-number">J1.10</div>
+    <div class="slide-title">C# au fil des versions</div>
+    <table>
+      <thead><tr><th>Version</th><th>Année</th><th>Idée forte</th></tr></thead>
+      <tbody>
+        <tr><td><code>C# 1.0</code></td><td>2002</td><td>Classes, héritage, types valeur</td></tr>
+        <tr><td><code>C# 2.0</code></td><td>2005</td><td>Génériques, nullables, méthodes anonymes</td></tr>
+        <tr><td><code>C# 3.0</code></td><td>2007</td><td>LINQ, lambdas, <code>var</code>, types anonymes</td></tr>
+        <tr><td><code>C# 5.0</code></td><td>2012</td><td><code>async</code> / <code>await</code></td></tr>
+        <tr><td><code>C# 6 / 7</code></td><td>2015-2017</td><td>String interpolation, tuples, pattern matching</td></tr>
+        <tr><td><code>C# 8 / 9</code></td><td>2019-2020</td><td>Nullable references, records, top-level statements</td></tr>
+        <tr><td><strong>C# 12</strong></td><td><strong>2023</strong></td><td><strong>Primary constructors, collection expressions (notre version)</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Pourquoi C# en 2026. Six raisons concretes. Insistez sur la polyvalence : back, mobile, web, jeu, IoT. Marche francais : banque, assurance, industrie carburent a .NET.">
+    <div class="slide-number">J1.11</div>
+    <div class="slide-title">Pourquoi C# en 2026</div>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card cyan">
+        <h4>Typé et sûr</h4>
+        <p>Compilateur strict, nullable references, le bug est attrapé avant l'exécution.</p>
+      </div>
+      <div class="card emerald">
+        <h4>Performant</h4>
+        <p>JIT moderne, AOT pour les binaires natifs, perfs proches du C++.</p>
+      </div>
+      <div class="card blue">
+        <h4>Cross-platform</h4>
+        <p>Windows, macOS, Linux, ARM, mobile (MAUI), web (Blazor).</p>
+      </div>
+      <div class="card violet">
+        <h4>Écosystème massif</h4>
+        <p>NuGet, ASP.NET, Entity Framework Core, Azure, Unity, MAUI.</p>
+      </div>
+      <div class="card amber">
+        <h4>POO de bout en bout</h4>
+        <p>Idéal pour apprendre proprement : tout est objet, tout est typé.</p>
+      </div>
+      <div class="card rose">
+        <h4>Marché emploi</h4>
+        <p>Très recherché en France : banque, assurance, industrie, gaming (Unity).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="La POO comme outil de gestion de complexite. Quand le code depasse quelques centaines de lignes, le procedural plie. La POO donne un vocabulaire et des barrieres. Pas un dogme, un outil.">
+    <div class="slide-number">J1.12</div>
+    <div class="slide-title">Pourquoi la POO</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Code procédural</h4>
+        <ul>
+          <li>Données et fonctions séparées</li>
+          <li>Tableaux parallèles qu'on espère synchronisés</li>
+          <li>Toute la logique est globale</li>
+          <li>Difficile à tester et à faire évoluer</li>
+        </ul>
+      </div>
+      <div class="card emerald">
+        <h4>Code orienté objet</h4>
+        <ul>
+          <li>Données et comportement regroupés</li>
+          <li>Un objet = une entité du domaine</li>
+          <li>Encapsulation, contrats, réutilisation</li>
+          <li>Tests, évolution et travail d'équipe possibles</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      La POO n'est pas un dogme. C'est un <strong>outil pour gérer la complexité</strong> quand le code grandit.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Les 4 piliers. Encapsulation aujourd'hui. Heritage et polymorphisme demain. Abstraction le 3e jour avec interfaces et classes abstraites. Garde le tableau en tete : c'est la grille de lecture des 4 jours.">
+    <div class="slide-number">J1.13</div>
+    <div class="slide-title">Les 4 piliers de la POO</div>
+    <div class="four-cols" style="margin-top: 24px;">
+      <div class="card cyan">
+        <h4>Encapsulation</h4>
+        <p>Cacher l'état interne, exposer un contrat.</p>
+        <span class="tag cyan">J1</span>
+      </div>
+      <div class="card blue">
+        <h4>Héritage</h4>
+        <p>Réutiliser et spécialiser un comportement.</p>
+        <span class="tag blue">J2</span>
+      </div>
+      <div class="card emerald">
+        <h4>Polymorphisme</h4>
+        <p>Une interface, plusieurs formes.</p>
+        <span class="tag emerald">J2</span>
+      </div>
+      <div class="card violet">
+        <h4>Abstraction</h4>
+        <p>Décrire le quoi sans coder le comment.</p>
+        <span class="tag violet">J2-J3</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Les idees recues a degager. Tu vas en croiser en stage, en entretien, autour de la machine a cafe. Cinq mythes, cinq realites. La derniere (POO = empiler des classes) est la plus piegeuse.">
+    <div class="slide-number">J1.14</div>
+    <div class="slide-title">Idées reçues à oublier dès maintenant</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Mythe</h3>
+        <ul>
+          <li>« .NET c'est Windows uniquement »</li>
+          <li>« .NET Framework et .NET 8 c'est pareil »</li>
+          <li>« Microsoft, c'est fermé, propriétaire »</li>
+          <li>« C# c'est lent comme Java »</li>
+          <li>« C# c'est juste pour le desktop »</li>
+          <li>« POO = mettre tout dans des classes »</li>
+          <li>« Java et C# c'est le même langage »</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Réalité</h3>
+        <ul>
+          <li>Cross-platform depuis .NET Core (2016)</li>
+          <li>Deux lignées distinctes, .NET 8 est la moderne</li>
+          <li><strong>Open source MIT</strong> sur GitHub depuis 2014</li>
+          <li>JIT et AOT donnent des perfs proches du C++</li>
+          <li>Web (ASP.NET), mobile (MAUI), jeu (Unity), cloud, IoT</li>
+          <li>POO = <em>isoler des responsabilités</em>, pas empiler des classes</li>
+          <li>Syntaxe proche, écosystèmes et runtimes différents</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box warning" style="margin-top: 16px;">
+      Ces phrases reviennent souvent en entretien. Avoir la version courte en tête évite de paraître dépassé.
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="1" data-note="Transition vers la pratique. Maintenant on installe et on code.">
+    <div class="slide-number">J1.15</div>
+    <div class="slide-title accent">Maintenant on installe et on code</div>
+    <p class="slide-subtitle">Objectif : ton terminal exécute du C# avant la fin de la session.</p>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Premiere erreur classique : installer le Runtime au lieu du SDK. Le Runtime execute, le SDK developpe. Tu veux le SDK. Toujours.">
+    <div class="slide-number">J1.16</div>
+    <div class="slide-title">SDK vs Runtime, ne pas se tromper</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>.NET Runtime</h4>
+        <ul>
+          <li>Exécute une appli déjà compilée</li>
+          <li>Léger, distribué avec l'app</li>
+          <li>Pas de compilateur, pas de templates</li>
+          <li>Bon pour un serveur de production</li>
+        </ul>
+      </div>
+      <div class="card emerald">
+        <h4>.NET SDK</h4>
+        <ul>
+          <li>Contient le compilateur, le CLI <code>dotnet</code>, les templates</li>
+          <li>Inclut le runtime</li>
+          <li>Indispensable pour développer</li>
+          <li><strong>C'est ce que tu installes aujourd'hui.</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box danger" style="margin-top: 16px;">
+      Si <code>dotnet new console</code> répond "command not found" alors que <code>dotnet --version</code> marche, tu as installé le Runtime au lieu du SDK.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Le CLI dotnet. Memorise 6 commandes et tu peux creer, builder, tester, deployer du .NET partout. Le CLI est identique sur Mac, Windows, Linux. C'est la grosse difference avec l'ancien monde Framework qui passait par Visual Studio.">
+    <div class="slide-number">J1.17</div>
+    <div class="slide-title">Le CLI dotnet, ton compagnon quotidien</div>
+    <table>
+      <thead><tr><th>Commande</th><th>Ce que ça fait</th></tr></thead>
+      <tbody>
+        <tr><td><code>dotnet new console</code></td><td>Crée un projet console</td></tr>
+        <tr><td><code>dotnet run</code></td><td>Compile et exécute</td></tr>
+        <tr><td><code>dotnet build</code></td><td>Compile sans exécuter</td></tr>
+        <tr><td><code>dotnet add package Nom</code></td><td>Ajoute un package NuGet</td></tr>
+        <tr><td><code>dotnet test</code></td><td>Lance les tests unitaires</td></tr>
+        <tr><td><code>dotnet --version</code></td><td>Vérifie la version du SDK</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box success" style="margin-top: 12px;">
+      Le CLI est identique sur les trois OS. Tes commandes apprises sur Mac fonctionneront pareil chez un client sous Windows.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Installation par OS. Une commande par plateforme. Le guide d'installation detaille est dans la lecture suivante. Plusieurs SDK peuvent cohabiter, le projet choisit sa cible via le csproj.">
+    <div class="slide-number">J1.18</div>
+    <div class="slide-title">Installer .NET 8 SDK</div>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>macOS</h4>
+<pre><code>brew install dotnet@8</code></pre>
+        <p>Ou <code>.pkg</code> depuis dotnet.microsoft.com</p>
+      </div>
+      <div class="card blue">
+        <h4>Windows</h4>
+<pre><code>winget install Microsoft.DotNet.SDK.8</code></pre>
+        <p>Ou installeur <code>.exe</code> officiel</p>
+      </div>
+      <div class="card amber">
+        <h4>Linux (Ubuntu)</h4>
+<pre><code>sudo apt-get install dotnet-sdk-8.0</code></pre>
+        <p>Après ajout du dépôt Microsoft</p>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Vérification universelle : <code>dotnet --version</code> doit afficher <strong>8.x.x</strong>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Le choix d'IDE n'est pas critique. Le CLI est identique partout. Recommandation : VS Code + C# Dev Kit pour le bootcamp. Si quelqu'un a deja Rider ou VS 2022, qu'il garde.">
+    <div class="slide-number">J1.19</div>
+    <div class="slide-title">Choisir un IDE</div>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>VS Code + C# Dev Kit</h4>
+        <ul>
+          <li>Gratuit, léger</li>
+          <li>Mac, Windows, Linux</li>
+          <li><strong>Recommandé pour le bootcamp</strong></li>
+        </ul>
+      </div>
+      <div class="card blue">
+        <h4>Visual Studio 2022</h4>
+        <ul>
+          <li>Gratuit (Community)</li>
+          <li>Windows uniquement</li>
+          <li>Le plus complet historiquement</li>
+        </ul>
+      </div>
+      <div class="card violet">
+        <h4>JetBrains Rider</h4>
+        <ul>
+          <li>Licence étudiant gratuite</li>
+          <li>Mac, Windows, Linux</li>
+          <li>Refactoring excellent</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Peu importe ton choix, le CLI <code>dotnet</code> reste le même partout. L'IDE est juste un éditeur autour.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Demonstration live. Faites les 4 commandes dans un terminal projete. Ouvrez le projet dans VS Code. Modifiez Program.cs. Relancez. Si quelque chose plante, debug en direct.">
+    <div class="slide-number">J1.20</div>
+    <div class="slide-title">Premier projet console, en live</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Les 4 commandes</h3>
+<pre><code>mkdir GestionnaireFilms
+cd GestionnaireFilms
+dotnet new console
+dotnet run</code></pre>
+        <div class="info-box success" style="margin-top: 12px;">
+          Sortie attendue : <code>Hello, World!</code>
+        </div>
+      </div>
+      <div>
+        <h3>Personnaliser Program.cs</h3>
+<pre><code>Console.WriteLine("Bienvenue dans");
+Console.WriteLine("le gestionnaire de films !");
+Console.WriteLine($"Framework : {Environment.Version}");</code></pre>
+        <p>Relance avec <code>dotnet run</code>. C'est tout.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Anatomie d'un projet .NET 8. Deux fichiers : .csproj decrit le projet, Program.cs contient le code. Plus de classe Program ni de Main grace aux top-level statements introduits en .NET 6. dotnet run compile en IL puis execute sur la CLR.">
+    <div class="slide-number">J1.21</div>
+    <div class="slide-title">Anatomie d'un projet .NET 8</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>GestionnaireFilms.csproj</h3>
+<pre><code>&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;OutputType&gt;Exe&lt;/OutputType&gt;
+    &lt;TargetFramework&gt;net8.0&lt;/TargetFramework&gt;
+    &lt;ImplicitUsings&gt;enable&lt;/ImplicitUsings&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</code></pre>
+        <p>XML court : framework cible et options du compilateur.</p>
+      </div>
+      <div>
+        <h3>Program.cs</h3>
+<pre><code>// Top-level statements (.NET 6+)
+// Pas de classe Program
+// Pas de méthode Main
+
+Console.WriteLine("Hello, World!");</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          <strong>ImplicitUsings</strong> importe automatiquement <code>System</code>, <code>System.Collections.Generic</code> et compagnie. Tu n'écris plus les <code>using</code> de base.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Exercice 15 minutes. 4 etapes. Si quelqu'un bloque sur l'install, redirige vers la lecture Guide d'installation. Si quelqu'un finit vite, demande-lui d'ajouter un Console.ReadLine pour interagir.">
+    <div class="slide-number">J1.22</div>
+    <div class="slide-title">À toi de jouer</div>
+    <p class="slide-subtitle">15 minutes, 4 étapes. Si tu bloques, lève la main, on debug ensemble.</p>
+    <ol style="margin-top: 20px; max-width: 820px;">
+      <li>Installer .NET 8 SDK et vérifier avec <code>dotnet --version</code></li>
+      <li>Créer le projet <strong>GestionnaireFilms</strong> avec <code>dotnet new console</code></li>
+      <li>Modifier <code>Program.cs</code> pour afficher ton prénom et la version du framework</li>
+      <li>Ouvrir le projet dans VS Code et explorer le <code>.csproj</code></li>
+    </ol>
+    <div class="info-box success" style="margin-top: 16px;">
+      Bonus si tu finis vite : ajoute un <code>Console.ReadLine()</code> pour demander un titre de film et le réafficher.
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="1" data-note="Transition vers le premier vrai pilier POO. Ton code tourne, maintenant on apprend a structurer. L'encapsulation est la premiere brique : protege l'etat, expose un contrat.">
+    <div class="slide-number">J1.23</div>
+    <div class="slide-title accent">Encapsulation</div>
+    <p class="slide-subtitle">Le premier pilier de la POO. Cacher ce qui doit l'être, exposer un contrat clair, garantir un état toujours valide.</p>
+    <div style="margin-top: 24px;">
+      <span class="tag rose">private</span>
+      <span class="tag emerald">propriétés</span>
+      <span class="tag violet">validation</span>
+      <span class="tag amber">contrat</span>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Metaphore centrale. Le DAB est l'exemple parfait d'encapsulation. Etat critique cache, interface stricte exposee. Tout le monde a deja utilise un DAB, donc la metaphore parle a tous. Demandez : 'qui a deja ouvert un DAB pour prendre du cash directement ?' Personne. C'est ca, l'encapsulation.">
+    <div class="slide-number">J1.24</div>
+    <div class="slide-title">La métaphore : le distributeur de billets</div>
+    <p class="slide-subtitle">Tu n'as jamais ouvert un DAB pour prendre du cash. Tu utilises son interface.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>Ce que tu vois (public)</h4>
+        <ul>
+          <li>Le clavier numérique</li>
+          <li>L'écran et le menu</li>
+          <li>La fente carte</li>
+          <li>La fente billets</li>
+        </ul>
+        <p style="margin-top: 12px;">C'est <strong>l'interface</strong>. Quelques opérations, claires, contrôlées.</p>
+      </div>
+      <div class="card rose">
+        <h4>Ce qui est caché (private)</h4>
+        <ul>
+          <li>Le coffre et la réserve de cash</li>
+          <li>Le solde de ton compte en base</li>
+          <li>L'algo de validation du PIN</li>
+          <li>Le système de surveillance</li>
+        </ul>
+        <p style="margin-top: 12px;">C'est <strong>l'état interne</strong>. Critique, protégé, hors de portée.</p>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Un DAB sans encapsulation, c'est un coffre ouvert avec un panneau "servez-vous". Personne ne ferait ça. Tes objets non plus.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="L'anti-pattern : public fields = chaos. Montrez le code. Demandez a la salle : qu'est-ce qui empeche film.Annee = -3000 ou film.Titre = '' ? Reponse : rien. C'est tout le probleme.">
+    <div class="slide-number">J1.25</div>
+    <div class="slide-title">Sans encapsulation : champ libre</div>
+    <p class="slide-subtitle">Tout est <code>public</code>. N'importe quel code peut écrire n'importe quelle valeur, à n'importe quel moment.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>La classe</h3>
+<pre><code>class Film
+{
+    public string Titre;
+    public int Annee;
+    public string Genre;
+}</code></pre>
+      </div>
+      <div>
+        <h3>Le code qui l'utilise</h3>
+<pre><code>var film = new Film();
+film.Titre = "Inception";
+film.Annee = -3000;        // Aucun problème
+film.Genre = null;          // Aucun problème
+film.Annee = 99999;         // Aucun problème
+film.Titre = "";            // Aucun problème</code></pre>
+      </div>
+    </div>
+    <div class="info-box danger" style="margin-top: 16px;">
+      Aucune règle métier protégée. Le bug arrivera dans 6 mois, dans une autre partie du code, et tu ne sauras pas qui a corrompu l'objet.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Le bon pattern : champs prives + proprietes publiques. Le champ est cache, l'acces passe par get/set. Insistez : du cote utilisateur, ca ressemble exactement a un champ public. La syntaxe est identique. Mais tu as repris le controle.">
+    <div class="slide-number">J1.26</div>
+    <div class="slide-title">Avec encapsulation : champs privés + propriétés</div>
+    <p class="slide-subtitle">Les champs deviennent <code>private</code>. L'accès passe par des propriétés <code>public</code> que <strong>tu</strong> contrôles.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>La classe encapsulée</h3>
+<pre><code>class Film
+{
+    private string _titre;
+    private int _annee;
+
+    public string Titre
+    {
+        get { return _titre; }
+        set { _titre = value; }
+    }
+
+    public int Annee
+    {
+        get { return _annee; }
+        set { _annee = value; }
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Côté utilisateur</h3>
+<pre><code>var film = new Film();
+film.Titre = "Inception";  // Passe par le set
+var t = film.Titre;         // Passe par le get</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          L'utilisateur ne voit <strong>aucune différence d'API</strong>. Mais tu peux désormais valider, logger, transformer dans le get / set sans changer une ligne chez lui.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Les 3 formes de proprietes en C#. Auto-property pour le defaut moderne. Full property avec backing field pour la validation. Propriete calculee pour les valeurs derivees. Choix selon le besoin.">
+    <div class="slide-number">J1.27</div>
+    <div class="slide-title">Anatomie d'une propriété C#</div>
+    <p class="slide-subtitle">Trois formes selon le besoin, du plus court au plus contrôlé.</p>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>1. Auto-property</h4>
+<pre><code>public string Titre
+    { get; set; }</code></pre>
+        <p>Le compilateur génère le champ caché. <strong>Défaut moderne</strong> tant qu'il n'y a pas de validation.</p>
+      </div>
+      <div class="card cyan">
+        <h4>2. Avec backing field</h4>
+<pre><code>private int _annee;
+public int Annee
+{
+    get =&gt; _annee;
+    set =&gt; _annee = value;
+}</code></pre>
+        <p>Champ explicite. Indispensable dès qu'on veut valider ou transformer.</p>
+      </div>
+      <div class="card violet">
+        <h4>3. Propriété calculée</h4>
+<pre><code>public int Age =&gt;
+    DateTime.Now.Year
+    - Annee;</code></pre>
+        <p>Pas de stockage. Recalculée à chaque lecture, toujours à jour.</p>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Tu commences en auto-property. Tu passes en full property dès qu'une règle métier doit vivre dans le setter.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Le setter comme garde du corps. Exemple Film.Annee avec validation. Le throw rend l'erreur impossible a ignorer. C'est ici que la valeur de l'encapsulation devient evidente : impossible de mettre un etat invalide. 1888 = annee du premier film (Roundhay Garden Scene), une vraie regle metier transformee en code.">
+    <div class="slide-number">J1.28</div>
+    <div class="slide-title">Le setter, ton garde du corps</div>
+    <p class="slide-subtitle">La vraie valeur de l'encapsulation : <strong>impossible</strong> de poser un état invalide sur l'objet.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Validation dans le setter</h3>
+<pre><code>private int _annee;
+
+public int Annee
+{
+    get =&gt; _annee;
+    set
+    {
+        if (value &lt; 1888 ||
+            value &gt; DateTime.Now.Year + 5)
+            throw new ArgumentException(
+                $"Année invalide : {value}");
+        _annee = value;
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Côté utilisateur</h3>
+<pre><code>film.Annee = 2010;     // OK
+film.Annee = -3000;    // ArgumentException
+film.Annee = 99999;    // ArgumentException</code></pre>
+        <div class="info-box success" style="margin-top: 12px;">
+          <strong>1888</strong> = année du premier film de l'histoire (<em>Roundhay Garden Scene</em>). Une règle métier transformée en code, à un seul endroit.
+        </div>
+        <div class="info-box danger" style="margin-top: 12px;">
+          Sans le setter, cette règle serait éparpillée dans 20 endroits qui touchent <code>film.Annee</code>. Ou oubliée.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Les niveaux d'acces en C#. Quatre principaux, deux combines. Regle d'or : commence par private. Tu ouvres seulement quand tu as une raison. En pratique tu utilises surtout public et private au debut. Protected arrive avec l'heritage en J2.">
+    <div class="slide-number">J1.29</div>
+    <div class="slide-title">Les niveaux d'accès en C#</div>
+    <p class="slide-subtitle">Du plus ouvert au plus fermé. Règle d'or : commence par <code>private</code>, ouvre uniquement quand nécessaire.</p>
+    <div class="roles-grid" style="margin-top: 20px;">
+      <div class="role-tile emerald"><strong>public</strong><span>Visible partout. C'est ton API publique, ton contrat avec l'extérieur.</span></div>
+      <div class="role-tile rose"><strong>private</strong><span>Visible uniquement dans la classe. Défaut pour tout champ ou méthode interne.</span></div>
+      <div class="role-tile cyan"><strong>protected</strong><span>Visible dans la classe et ses classes filles. Utile pour l'héritage (J2).</span></div>
+      <div class="role-tile amber"><strong>internal</strong><span>Visible dans l'assembly (le projet). Pratique pour les classes utilitaires.</span></div>
+      <div class="role-tile violet"><strong>protected internal</strong><span>Union des deux : assembly courant <em>ou</em> classes filles.</span></div>
+      <div class="role-tile blue"><strong>private protected</strong><span>Intersection : classes filles uniquement dans le même assembly.</span></div>
+    </div>
+    <div class="info-box warning" style="margin-top: 16px;">
+      En pratique, 90 % du temps tu utilises <code>public</code> et <code>private</code>. <code>protected</code> arrive avec l'héritage. Les deux derniers sont rares.
+    </div>
+  </div>
+
+  <div class="slide" data-day="1" data-note="Recap des 4 regles. Transition vers les constructeurs : on a protege les modifications, mais comment garantir un etat initial valide ? C'est le role des constructeurs, premiere session de la 2eme demi-journee.">
+    <div class="slide-number">J1.30</div>
+    <div class="slide-title">Encapsulation : les 4 règles à retenir</div>
+    <div class="four-cols" style="margin-top: 24px;">
+      <div class="card rose">
+        <h4>1. Champs privés</h4>
+        <p>Tout champ est <code>private</code> par défaut. Pas de <code>public string Titre;</code> à la sauvage.</p>
+      </div>
+      <div class="card emerald">
+        <h4>2. Propriétés publiques</h4>
+        <p>L'accès passe par <code>get</code> / <code>set</code>. Le getter lit, le setter contrôle.</p>
+      </div>
+      <div class="card violet">
+        <h4>3. Validation centralisée</h4>
+        <p>Les règles métier vivent dans le setter, pas dans 20 endroits qui assignent la valeur.</p>
+      </div>
+      <div class="card amber">
+        <h4>4. API minimale</h4>
+        <p>Plus l'API publique est petite, plus le code évolue sans tout casser.</p>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      <strong>Question pour la suite :</strong> on a protégé les modifications. Mais comment garantir un <em>état initial valide</em> dès la création de l'objet ? C'est le rôle des <strong>constructeurs</strong>.
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="1" data-note="Recap et transition de fin de J1. Histoire posee, environnement pret, premier pilier POO acquis. Prochaine session demarre J2 avec heritage : reutiliser sans copier-coller.">
+    <div class="slide-number">J1.31</div>
+    <div class="slide-title accent">Day 1 bouclée</div>
+    <div class="two-cols" style="margin-top: 24px; max-width: 980px;">
+      <div>
+        <h3>Acquis du jour</h3>
+        <ul>
+          <li>L'histoire de .NET, de 2002 à .NET 8 LTS</li>
+          <li>Pourquoi C# et la POO ont leur place en 2026</li>
+          <li>SDK installé, premier projet console qui tourne</li>
+          <li>Encapsulation : champs privés, propriétés, validation</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Prochaine étape</h3>
+        <div class="info-box tip">
+          <strong>J2 : Héritage et interfaces.</strong><br/>Réutiliser sans copier-coller, exposer des contrats, faire du polymorphisme. La classe <code>Film</code> devient une famille.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="2" data-note="Accueil J2. Reprise apres J1. Demandez : qui a fait tourner du C# hier ? Qui n'a pas reussi a installer ? On regle les pbs en 5 min puis on demarre.">
+    <div class="slide-number">J2.00</div>
+    <div class="slide-title accent">Hiérarchies, polymorphisme &amp; contrats</div>
+    <p class="slide-subtitle">Un Film, une Série, un Documentaire. Comment factoriser sans copier-coller, comment exposer un comportement commun, comment dépendre d'un contrat plutôt que d'une classe concrète.</p>
+    <div style="margin-top: 24px;">
+      <span class="tag violet">Héritage</span>
+      <span class="tag emerald">Polymorphisme</span>
+      <span class="tag cyan">Classes abstraites</span>
+      <span class="tag amber">Interfaces</span>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Plan J2. Quatre blocs. Chaque bloc demarre par un mini-exo de calibrage et finit par un exo principal sur la classe Film. On enchaine sans pause longue, on respire entre les blocs.">
+    <div class="slide-number">J2.01</div>
+    <div class="slide-title">Au programme : 4 blocs, 4 mini-exos, 4 principaux</div>
+    <p class="slide-subtitle">Chaque bloc démarre par un mini-exercice de calibrage et se conclut par un exercice principal sur ta classe <code>Film</code>.</p>
+    <div class="four-cols" style="margin-top: 20px;">
+      <div class="card violet">
+        <h4>1. Héritage</h4>
+        <ul>
+          <li>Hiérarchie de classes</li>
+          <li>Membres hérités</li>
+          <li>Constructeurs et <code>base()</code></li>
+        </ul>
+        <span class="tag violet">1 mini + 1 principal</span>
+      </div>
+      <div class="card emerald">
+        <h4>2. Polymorphisme</h4>
+        <ul>
+          <li><code>virtual</code> / <code>override</code></li>
+          <li>Dispatch dynamique</li>
+          <li><code>base.Method()</code></li>
+        </ul>
+        <span class="tag emerald">1 mini + 1 principal</span>
+      </div>
+      <div class="card cyan">
+        <h4>3. Classes abstraites</h4>
+        <ul>
+          <li><code>abstract class</code></li>
+          <li><code>abstract method</code></li>
+          <li>abstract vs virtual</li>
+        </ul>
+        <span class="tag cyan">1 mini + 1 principal</span>
+      </div>
+      <div class="card amber">
+        <h4>4. Interfaces</h4>
+        <ul>
+          <li>Contrat sans implémentation</li>
+          <li>Multi-implémentation</li>
+          <li>Découplage</li>
+        </ul>
+        <span class="tag amber">1 mini + 1 principal</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Le declencheur. 3 classes avec les memes champs et la meme validation. Demandez : que se passe-t-il si on change la regle d'annee ? Reponse : tu la changes 3 fois ou tu en oublies une. Bingo. C'est le moment WTF qui rend l'heritage evident.">
+    <div class="slide-number">J2.02</div>
+    <div class="slide-title">Le problème : copier-coller entre classes</div>
+    <p class="slide-subtitle">Trois classes, les mêmes champs, la même validation. À chaque modification, tu changes 3 fois ou tu oublies.</p>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Film.cs</h4>
+<pre><code>class Film
+{
+  private string _titre;
+  private int _annee;
+
+  public string Titre { ... }
+  public int Annee { ... }
+
+  public void Afficher() {
+    Console.WriteLine(
+      $"{_titre} ({_annee})");
+  }
+}</code></pre>
+      </div>
+      <div class="card rose">
+        <h4>Serie.cs</h4>
+<pre><code>class Serie
+{
+  private string _titre;
+  private int _annee;
+
+  public string Titre { ... }
+  public int Annee { ... }
+
+  public void Afficher() {
+    Console.WriteLine(
+      $"{_titre} ({_annee})");
+  }
+}</code></pre>
+      </div>
+      <div class="card rose">
+        <h4>Documentaire.cs</h4>
+<pre><code>class Documentaire
+{
+  private string _titre;
+  private int _annee;
+
+  public string Titre { ... }
+  public int Annee { ... }
+
+  public void Afficher() {
+    Console.WriteLine(
+      $"{_titre} ({_annee})");
+  }
+}</code></pre>
+      </div>
+    </div>
+    <div class="info-box danger" style="margin-top: 16px;">
+      Change la règle de validation de l'année : tu dois la changer dans 3 fichiers. Tu en oublieras un. C'est statistique.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="La metaphore. 'Un Film, c'est un MediaItem.' 'Une Serie, c'est un MediaItem.' Insistez : la relation 'est un' (is-a) est le signal de l'heritage. Si tu dis 'Film HAS A title', c'est composition. 'Film IS A MediaItem', c'est heritage. Le test mental est cle.">
+    <div class="slide-number">J2.03</div>
+    <div class="slide-title">Métaphore : la famille MediaItem</div>
+    <p class="slide-subtitle">Un Film <em>est un</em> MediaItem. Une Série <em>est un</em> MediaItem. La relation "<strong>is-a</strong>" est le signal de l'héritage.</p>
+    <div class="diagram-tree">
+      <div class="dt-node dt-parent">MediaItem<small>parent : Titre, Annee, Afficher()</small></div>
+      <div class="dt-down">↓ hérite ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">Film<small>+ Realisateur</small></div>
+        <div class="dt-node">Série<small>+ NbSaisons</small></div>
+        <div class="dt-node">Documentaire<small>+ Sujet</small></div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Test mental : si tu peux dire <strong>"X est un Y"</strong>, c'est de l'héritage. Si tu dis <strong>"X a un Y"</strong>, c'est de la composition (qu'on verra J3).
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-mini-1-is-a-vs-has-a.md" data-note="Mini exo 1. Calibrage avant la syntaxe. 8 paires de concepts. 5 min en autonomie puis debrief en plenum. Si beaucoup se trompent sur voiture/moteur, c'est le signal qu'il faut insister sur la regle.">
+    <div class="slide-number">J2.04</div>
+    <div class="slide-title">Mini exo 1 : <em>is-a</em> ou <em>has-a</em> ?</div>
+    <p class="slide-subtitle">Avant la syntaxe, on calibre l'intuition. 8 paires de concepts à classer : héritage (is-a) ou composition (has-a).</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code> (panneau TP en haut à droite).
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Méthode mnémo : lis à voix haute "Un X est un Y". Si ça sonne juste, c'est is-a.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Syntaxe de l'heritage en C#. Deux points entre la classe enfant et la classe parente. Insistez : C# ne permet QU'UN SEUL parent direct (heritage simple). Pas de diamant comme en C++. Les interfaces seront la sortie quand on veut combiner plusieurs contrats.">
+    <div class="slide-number">J2.05</div>
+    <div class="slide-title">Syntaxe C# de l'héritage</div>
+    <p class="slide-subtitle">Un seul opérateur : deux points (<code>:</code>) entre la classe et son parent.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>La classe parente</h3>
+<pre><code>class MediaItem
+{
+    public string Titre { get; set; }
+    public int Annee { get; set; }
+
+    public void Afficher()
+    {
+        Console.WriteLine($"{Titre} ({Annee})");
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>La classe enfant</h3>
+<pre><code>class Film : MediaItem
+{
+    public string Realisateur { get; set; }
+}
+
+// Côté utilisateur
+var f = new Film();
+f.Titre = "Inception";    // hérité
+f.Realisateur = "Nolan";  // propre à Film
+f.Afficher();             // hérité aussi</code></pre>
+        <div class="info-box warning" style="margin-top: 12px;">
+          En C#, héritage <strong>simple</strong> uniquement : une classe ne peut avoir qu'un seul parent direct.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Schema visibilite. public et protected descendent. private NE descend PAS. Le child ne voit meme pas le _id du parent. Donc si tu veux que le child puisse acceder, c'est protected, pas private. C'est LA decision de design quand tu fais un parent.">
+    <div class="slide-number">J2.06</div>
+    <div class="slide-title">Membres hérités : qui descend, qui reste caché</div>
+    <p class="slide-subtitle">L'enfant voit <code>public</code> et <code>protected</code>. Il ne voit <strong>jamais</strong> le <code>private</code> du parent.</p>
+    <div class="inheritance-diagram">
+      <div class="id-class id-parent">
+        <h5>MediaItem (parent)</h5>
+        <div class="id-member pub">public string Titre <small>visible partout</small></div>
+        <div class="id-member prot">protected int _annee <small>visible dans Film, Série, etc.</small></div>
+        <div class="id-member priv">private Guid _id <small>visible UNIQUEMENT dans MediaItem</small></div>
+      </div>
+      <div class="flow-arrow">↓ héritage ↓</div>
+      <div class="id-class">
+        <h5>Film (enfant)</h5>
+        <div class="id-member pub">Titre <small>accessible ✓</small></div>
+        <div class="id-member prot">_annee <small>accessible grâce à protected ✓</small></div>
+        <div class="id-member priv dim">_id <small>invisible ✗</small></div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 12px;">
+      Règle : si tu veux qu'un champ soit utilisable par les classes filles mais pas par l'extérieur, utilise <code>protected</code>. Sinon, garde <code>private</code>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Constructor chain. Quand tu crees new Film(), le ctor du parent est appele en PREMIER, puis celui du child. base(titre) permet de passer des params au parent. Sans base(), C# essaie d'appeler le ctor par defaut du parent : crash si pas dispo.">
+    <div class="slide-number">J2.07</div>
+    <div class="slide-title">Constructeurs et <code>base()</code></div>
+    <p class="slide-subtitle">Le constructeur du parent s'exécute toujours <strong>avant</strong> celui de l'enfant. <code>base(...)</code> lui passe les paramètres.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Le code</h3>
+<pre><code>class MediaItem
+{
+    public string Titre { get; }
+
+    public MediaItem(string titre)
+    {
+        Titre = titre;
+    }
+}
+
+class Film : MediaItem
+{
+    public int Annee { get; }
+
+    public Film(string titre, int annee)
+        : base(titre)        // ← appel parent
+    {
+        Annee = annee;
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Ordre d'exécution</h3>
+        <div class="flow-diagram">
+          <div class="flow-step">new Film("Inception", 2010)</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step">Film(...) : base("Inception")</div>
+          <div class="flow-arrow">↓ base() ↓</div>
+          <div class="flow-step highlight">MediaItem("Inception")<br/>Titre = "Inception"</div>
+          <div class="flow-arrow">↓ retour ↓</div>
+          <div class="flow-step">Film(...) continue<br/>Annee = 2010</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-box warning" style="margin-top: 12px;">
+      Sans <code>base(...)</code>, C# appelle automatiquement le constructeur <strong>sans paramètre</strong> du parent. Si le parent n'en a pas, ça ne compile pas.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="L'anti-pattern : heritage profond. Apres 3-4 niveaux ca devient ingerable. Une regression dans le parent peut casser silencieusement les 12 enfants. Le remede c'est la composition. Teaser : on en parle en J3.">
+    <div class="slide-number">J2.08</div>
+    <div class="slide-title">Piège : l'héritage profond</div>
+    <p class="slide-subtitle">2 ou 3 niveaux : sain. 5 niveaux et plus : chaque modification du parent fait peur.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>Hiérarchie saine (2-3 niveaux)</h4>
+        <div class="diagram-tree">
+          <div class="dt-node dt-parent">MediaItem</div>
+          <div class="dt-down">↓</div>
+          <div class="dt-row">
+            <div class="dt-node">Film</div>
+            <div class="dt-node">Série</div>
+          </div>
+        </div>
+      </div>
+      <div class="card rose">
+        <h4>Hiérarchie pathologique</h4>
+        <div class="diagram-tree">
+          <div class="dt-node">Object</div>
+          <div class="dt-down">↓</div>
+          <div class="dt-node">BaseEntity</div>
+          <div class="dt-down">↓</div>
+          <div class="dt-node">VersionedEntity</div>
+          <div class="dt-down">↓</div>
+          <div class="dt-node">MediaItem</div>
+          <div class="dt-down">↓</div>
+          <div class="dt-node">VideoMediaItem</div>
+          <div class="dt-down">↓</div>
+          <div class="dt-node">Film</div>
+        </div>
+      </div>
+    </div>
+    <div class="info-box warning" style="margin-top: 12px;">
+      Remède : <strong>composition</strong> ("a un") plutôt qu'héritage ("est un"). Bouclage en J3 avec le principe "Favor composition over inheritance".
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-main-1-heritage-refactor.md" data-note="Exo principal 1. 15 min. Si quelqu'un finit en 10 min, demander d'ajouter Podcast (bonus). Si quelqu'un bloque, intervenir : commencer par MediaItem parente avec ses deux proprietes et le ctor public.">
+    <div class="slide-number">J2.09</div>
+    <div class="slide-title">Exercice principal 1 : Refactor en héritage</div>
+    <p class="slide-subtitle">Éliminer la duplication de Film, Série, Documentaire dans une classe parente <code>MediaItem</code>.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li>Créer <code>MediaItem</code> avec Titre, Annee, Afficher()</li>
+          <li>Constructeur public <code>MediaItem(titre, annee)</code></li>
+          <li>Faire hériter <code>Film</code>, <code>Série</code>, <code>Documentaire</code></li>
+          <li>Appeler <code>: base(titre, annee)</code> dans chaque ctor</li>
+          <li>Tester dans Program.cs</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour démarrer</h3>
+        <div class="info-box tip">
+          Ouvre l'énoncé complet avec la touche <code>T</code> (panneau TP en haut à droite).
+        </div>
+        <div class="info-box success" style="margin-top: 12px;">
+          <strong>Bonus :</strong> ajoute la classe <code>Podcast</code>. Compte les lignes : c'est la mesure du gain.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="2" data-note="Transition. Heritage = structure. Polymorphisme = comportement. Le mot pourrait faire peur, la realite est simple : une variable peut se comporter differemment selon ce qu'elle pointe.">
+    <div class="slide-number">J2.10</div>
+    <div class="slide-title accent">Polymorphisme</div>
+    <p class="slide-subtitle">Une seule variable, plusieurs comportements selon l'objet réel derrière. Le mot fait peur, le concept est simple.</p>
+    <div class="quote-big" style="margin-top: 24px;">
+      "Poly-morphos" = plusieurs formes.<br/>Une référence, plusieurs implémentations.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Metaphore USB. Le port reste le meme. Le comportement change selon ce que tu branches. La cle USB stocke. Le clavier tape. La souris bouge. L'OS appelle les memes operations (read/write/init), chaque device repond a sa maniere. C'est exactement le polymorphisme.">
+    <div class="slide-number">J2.11</div>
+    <div class="slide-title">Métaphore : le port USB</div>
+    <p class="slide-subtitle">Un port USB. Plein de périphériques différents. L'OS appelle les <strong>mêmes opérations</strong>. Chaque device répond à sa manière.</p>
+    <div class="diagram-tree">
+      <div class="dt-node dt-parent">Port USB<small>contrat : init(), read(), write()</small></div>
+      <div class="dt-down">↓ branche ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">Clavier<small>write() = saisir</small></div>
+        <div class="dt-node">Souris<small>write() = pointer</small></div>
+        <div class="dt-node">Clé USB<small>write() = stocker</small></div>
+        <div class="dt-node">Webcam<small>write() = streamer</small></div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Le code qui appelle ne sait pas (et n'a pas besoin de savoir) si c'est un clavier ou une souris. Il appelle <code>device.write()</code>. Le device sait quoi faire.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="virtual dans le parent autorise l'override. override dans l'enfant remplace la version du parent. Sans virtual, tu ne peux pas override : ca ne compile pas. C'est explicite des deux cotes. Volontaire.">
+    <div class="slide-number">J2.12</div>
+    <div class="slide-title"><code>virtual</code> et <code>override</code> en C#</div>
+    <p class="slide-subtitle">Le parent autorise l'override avec <code>virtual</code>. L'enfant remplace avec <code>override</code>. Explicite des deux côtés.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Parent : autorise</h3>
+<pre><code>class MediaItem
+{
+    public string Titre { get; set; }
+
+    public virtual void Afficher()
+    {
+        Console.WriteLine(
+            $"{Titre} (média)");
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Enfant : remplace</h3>
+<pre><code>class Film : MediaItem
+{
+    public string Realisateur { get; set; }
+
+    public override void Afficher()
+    {
+        Console.WriteLine(
+          $"🎬 {Titre} de {Realisateur}");
+    }
+}</code></pre>
+      </div>
+    </div>
+    <div class="info-box warning" style="margin-top: 12px;">
+      Sans <code>virtual</code> dans le parent, le compilateur refuse <code>override</code>. C'est volontaire : tu décides ce qui peut être personnalisé.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Schema dispatch dynamique. Le compilateur ne sait pas quelle methode appeler : il voit MediaItem. Le runtime regarde le type reel et appelle Film.Afficher(). C'est ca le polymorphisme : decision differee au runtime. Cle pour comprendre les listes List&lt;MediaItem&gt; qui contiennent des Film et des Serie melanges.">
+    <div class="slide-number">J2.13</div>
+    <div class="slide-title">Dispatch dynamique : qui décide ?</div>
+    <p class="slide-subtitle">Le compilateur voit le <em>type déclaré</em>. Le runtime regarde le <em>type réel</em> et appelle la bonne version.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Le code</h3>
+<pre><code>MediaItem item = new Film
+{
+    Titre = "Inception",
+    Realisateur = "Nolan"
+};
+
+item.Afficher();
+// 🎬 Inception de Nolan</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          Type déclaré : <code>MediaItem</code>. Type réel : <code>Film</code>. C'est le <strong>type réel</strong> qui gagne.
+        </div>
+      </div>
+      <div>
+        <h3>Ce qui se passe</h3>
+        <div class="flow-diagram">
+          <div class="flow-step">item.Afficher()</div>
+          <div class="flow-label">référence de type MediaItem</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step muted">Compilateur : "je sais pas, c'est virtual"</div>
+          <div class="flow-arrow">↓ runtime ↓</div>
+          <div class="flow-step">Inspection du type réel : Film</div>
+          <div class="flow-arrow">↓</div>
+          <div class="flow-step highlight">Film.Afficher() exécutée</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="base.Method() pour reutiliser le parent. Pattern classique : reutiliser la logique parente puis ajouter ta touche. Exemple : afficher le titre standard via base, puis ajouter le realisateur sur la ligne suivante. Zero duplication.">
+    <div class="slide-number">J2.14</div>
+    <div class="slide-title"><code>base.Method()</code> : étendre, pas remplacer</div>
+    <p class="slide-subtitle">Tu peux appeler la version parente depuis l'override, puis ajouter ta couche.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Override qui étend</h3>
+<pre><code>class Film : MediaItem
+{
+    public string Realisateur { get; set; }
+
+    public override void Afficher()
+    {
+        base.Afficher();  // ← logique parente
+        Console.WriteLine(
+            $"  Réalisé par {Realisateur}");
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Sortie</h3>
+<pre><code>Inception (média)
+  Réalisé par Nolan</code></pre>
+        <div class="info-box success" style="margin-top: 12px;">
+          Tu réutilises ce que le parent sait déjà faire. Tu ajoutes juste ta spécialisation. Zéro duplication.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Le piege classique : utiliser 'new' au lieu d'override. Cache la methode au lieu de la remplacer. Le compilateur warn mais ne bloque pas. Resultat : comportement different selon le type declare. Bombe a retardement. A connaitre pour pouvoir l'eviter en lisant du code.">
+    <div class="slide-number">J2.15</div>
+    <div class="slide-title">Piège : <code>new</code> au lieu d'<code>override</code></div>
+    <p class="slide-subtitle">Le mot-clé <code>new</code> <em>cache</em> la méthode parent au lieu de la remplacer. Comportement schizophrène garanti.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Avec <code>new</code> (BAD)</h4>
+<pre><code>class Film : MediaItem
+{
+    public new void Afficher()
+    {
+        Console.WriteLine("Film");
+    }
+}
+
+MediaItem item = new Film();
+item.Afficher();         // → "Média"
+((Film)item).Afficher(); // → "Film"</code></pre>
+        <div class="info-box danger" style="margin-top: 8px;">
+          Deux comportements pour le même objet selon le type déclaré. Cauchemar à debugger.
+        </div>
+      </div>
+      <div class="card emerald">
+        <h4>Avec <code>override</code> (GOOD)</h4>
+<pre><code>class Film : MediaItem
+{
+    public override void Afficher()
+    {
+        Console.WriteLine("Film");
+    }
+}
+
+MediaItem item = new Film();
+item.Afficher();         // → "Film"
+((Film)item).Afficher(); // → "Film"</code></pre>
+        <div class="info-box success" style="margin-top: 8px;">
+          Un seul comportement, quel que soit l'angle d'attaque. Cohérent.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-mini-2-new-vs-override.md" data-note="Mini exo 2. 5 min. Apres avoir vu le piege en theorie, on le ressent en pratique. Demandez aux etudiants de PREDIRE avant de tester. Le contraste type declare vs type reel est l'objectif pedagogique.">
+    <div class="slide-number">J2.16</div>
+    <div class="slide-title">Mini exo 2 : prédire la sortie - <code>new</code> vs <code>override</code></div>
+    <p class="slide-subtitle">Avant de tester, prédis ce que chaque appel affiche. Le contraste type déclaré vs type réel doit te sauter aux yeux.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code> (4 cas à prédire).
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Écris ta prédiction d'abord, teste ensuite. Sinon tu rates l'apprentissage.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-main-2-polymorphisme.md" data-note="Exo principal 2. 15 min. Reprend l'exo 1 et ajoute le polymorphisme. Le moment magique est le foreach sur List&lt;MediaItem&gt; qui appelle Afficher() polymorphique. Si quelqu'un finit vite, demander le bonus base.Afficher().">
+    <div class="slide-number">J2.17</div>
+    <div class="slide-title">Exercice principal 2 : Polymorphisme</div>
+    <p class="slide-subtitle">Rendre <code>Afficher()</code> polymorphique sur <code>MediaItem</code> et observer le dispatch dynamique en parcourant une <code>List&lt;MediaItem&gt;</code>.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li><code>virtual</code> sur <code>MediaItem.Afficher()</code></li>
+          <li><code>override</code> dans Film, Série, Documentaire</li>
+          <li>Chaque enfant affiche son propre format (emoji + champs)</li>
+          <li><code>foreach</code> sur <code>List&lt;MediaItem&gt;</code></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour démarrer</h3>
+        <div class="info-box tip">
+          Ouvre l'énoncé complet avec la touche <code>T</code> (panneau TP).
+        </div>
+        <div class="info-box success" style="margin-top: 12px;">
+          <strong>Bonus :</strong> appelle <code>base.Afficher()</code> en premier dans l'override pour réutiliser la logique parent.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="2" data-note="Classes abstraites. La promesse : un parent qui sert de modele mais qu'on ne peut pas instancier directement. 'Un MediaItem tout court' n'a pas de sens : c'est forcement un Film, une Serie, un Documentaire.">
+    <div class="slide-number">J2.18</div>
+    <div class="slide-title accent">Classes abstraites</div>
+    <p class="slide-subtitle">Quand le parent ne doit <strong>jamais</strong> être instancié directement. "Un MediaItem tout court" n'a pas de sens.</p>
+  </div>
+
+  <div class="slide" data-day="2" data-note="abstract class = je suis un modele, pas une vraie classe. abstract method = signature sans corps, les enfants DOIVENT implementer. Si une classe contient au moins une methode abstract, elle DOIT etre abstract.">
+    <div class="slide-number">J2.19</div>
+    <div class="slide-title"><code>abstract class</code> et <code>abstract method</code></div>
+    <p class="slide-subtitle">Le parent devient un <strong>modèle</strong> : impossible à instancier. Une méthode abstract n'a pas de corps : les enfants doivent l'implémenter.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Le parent abstract</h3>
+<pre><code>abstract class MediaItem
+{
+    public string Titre { get; set; }
+    public int Annee { get; set; }
+
+    // Pas de corps : les enfants
+    // DOIVENT implémenter
+    public abstract void Afficher();
+}</code></pre>
+      </div>
+      <div>
+        <h3>Côté utilisateur</h3>
+<pre><code>var m = new MediaItem();
+// ❌ Erreur de compilation
+// "Cannot create instance of
+//  abstract class MediaItem"
+
+var f = new Film(...);
+// ✓ OK : Film est concret
+f.Afficher();</code></pre>
+        <div class="info-box success" style="margin-top: 12px;">
+          Tu garantis que personne ne va créer un objet "à moitié défini". Sécurité by design.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Decision : abstract vs virtual. virtual = j'ai un comportement par defaut, tu peux le remplacer si tu veux. abstract = je n'ai pas de comportement par defaut, tu DOIS en fournir un. Regle pratique : si tu peux ecrire un corps raisonnable par defaut, virtual. Sinon abstract.">
+    <div class="slide-number">J2.20</div>
+    <div class="slide-title"><code>abstract</code> vs <code>virtual</code> : quand quoi ?</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card cyan">
+        <h4><code>virtual</code> : optionnel</h4>
+        <ul>
+          <li>Le parent a un comportement <strong>par défaut</strong></li>
+          <li>L'enfant peut le remplacer (override) ou non</li>
+          <li>Si l'enfant ne fait rien, il hérite du comportement du parent</li>
+        </ul>
+<pre style="margin-top: 8px;"><code>public virtual void Afficher()
+{
+    Console.WriteLine(Titre);
+}</code></pre>
+      </div>
+      <div class="card violet">
+        <h4><code>abstract</code> : obligatoire</h4>
+        <ul>
+          <li>Le parent <strong>n'a pas</strong> de comportement par défaut</li>
+          <li>L'enfant <strong>doit</strong> implémenter, sinon erreur de compilation</li>
+          <li>Force la classe parente à être <code>abstract</code></li>
+        </ul>
+<pre style="margin-top: 8px;"><code>public abstract void Afficher();</code></pre>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Règle pratique : si tu peux écrire une implémentation par défaut sensée, <code>virtual</code>. Sinon <code>abstract</code>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-mini-3-abstract-vs-virtual.md" data-note="Mini exo 3. 5 min. Apres avoir vu la theorie, on applique la regle de decision sur 5 cas concrets. Debrief en plenum. La regle : si tu peux ecrire un corps par defaut sense, virtual. Sinon abstract.">
+    <div class="slide-number">J2.21</div>
+    <div class="slide-title">Mini exo 3 : <code>abstract</code> ou <code>virtual</code> ?</div>
+    <p class="slide-subtitle">5 méthodes de classe parente. Pour chacune, choisir le bon modificateur et justifier en une phrase.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code> (panneau TP).
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Test mental : si tu peux écrire un corps par défaut sensé, c'est <code>virtual</code>. Sinon <code>abstract</code>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-main-3-abstract-mediaitem.md" data-note="Exo principal 3. 15 min. Transformer MediaItem en abstract, Afficher en abstract method, creer Podcast sans override puis avec. Le bonus introduit que abstract class peut avoir des methodes concretes.">
+    <div class="slide-number">J2.22</div>
+    <div class="slide-title">Exercice principal 3 : MediaItem en <code>abstract</code></div>
+    <p class="slide-subtitle">Empêcher l'instanciation directe de <code>MediaItem</code> et forcer chaque type à fournir son propre <code>Afficher()</code>.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li>Ajouter <code>abstract</code> sur <code>class MediaItem</code></li>
+          <li>Transformer <code>Afficher()</code> en méthode abstraite (sans corps)</li>
+          <li>Lire les messages d'erreur du compilateur</li>
+          <li>Créer <code>Podcast : MediaItem</code> avec son propre <code>Afficher()</code></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour démarrer</h3>
+        <div class="info-box tip">
+          Ouvre l'énoncé complet avec la touche <code>T</code> (panneau TP).
+        </div>
+        <div class="info-box success" style="margin-top: 12px;">
+          <strong>Bonus :</strong> ajoute <code>GetResumeCourt()</code> en méthode concrète sur MediaItem. Vérifie qu'elle est dispo sur tous les enfants.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="2" data-note="Interfaces. Le contrat sans implementation. Apres heritage et abstract, l'interface est l'evolution logique : le maximum de decouplage. Une interface ne contient AUCUN code. Juste des signatures.">
+    <div class="slide-number">J2.23</div>
+    <div class="slide-title accent">Interfaces</div>
+    <p class="slide-subtitle">Le contrat <strong>sans</strong> implémentation. Aucun code, juste les signatures. La forme la plus pure du découplage en POO.</p>
+  </div>
+
+  <div class="slide" data-day="2" data-note="La metaphore de la prise electrique. La norme europeenne = l'interface. Chaque marque fabrique sa propre prise. Tu changes de marque sans changer ton chargeur, parce que la norme est respectee. L'interface definit le 'quoi', pas le 'comment'.">
+    <div class="slide-number">J2.24</div>
+    <div class="slide-title">Métaphore : la norme électrique</div>
+    <p class="slide-subtitle">La prise européenne, c'est une norme. Chaque marque fait sa propre implémentation. Tu changes de marque sans changer ton chargeur.</p>
+    <div class="diagram-tree">
+      <div class="dt-node dt-interface">IPriseElectrique<small>contrat : Brancher(), Tension(), Ampere()</small></div>
+      <div class="dt-down">↓ implémente ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">PriseLegrand</div>
+        <div class="dt-node">PriseSchneider</div>
+        <div class="dt-node">PriseBticino</div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      L'interface définit <strong>ce qui doit exister</strong> (Brancher, Tension, Ampere). Pas <strong>comment c'est fait</strong>. Chaque marque a sa propre tuyauterie interne.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Syntaxe. interface IExportable contient juste les signatures. Class : MediaItem, IExportable utilise une virgule pour separer la classe parente des interfaces. Convention : prefixer le nom par I (IComparable, IDisposable, IEnumerable, etc.). C'est universel chez Microsoft.">
+    <div class="slide-number">J2.25</div>
+    <div class="slide-title">Syntaxe et convention de nommage</div>
+    <p class="slide-subtitle">Une interface contient des signatures. Les classes l'<strong>implémentent</strong>. Convention de nommage : préfixer par <code>I</code>.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Déclarer l'interface</h3>
+<pre><code>interface IExportable
+{
+    string Exporter();
+    string Format { get; }
+}</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          Pas de <code>public</code>, pas de corps, pas de champs. Que des signatures de méthodes et des propriétés.
+        </div>
+      </div>
+      <div>
+        <h3>Implémenter dans une classe</h3>
+<pre><code>class Film : MediaItem, IExportable
+{
+    public string Format =&gt; "json";
+
+    public string Exporter()
+    {
+        return JsonSerializer
+            .Serialize(this);
+    }
+}</code></pre>
+        <div class="info-box warning" style="margin-top: 12px;">
+          Si tu oublies une méthode du contrat, le compilateur refuse de compiler.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="L'asymetrie cle : une classe ne peut heriter QUE d'un parent (heritage simple) mais peut implementer PLUSIEURS interfaces. C'est exactement comme ca qu'on contourne l'absence d'heritage multiple. Pratique pour combiner des comportements transverses.">
+    <div class="slide-number">J2.26</div>
+    <div class="slide-title">Une classe, plusieurs interfaces</div>
+    <p class="slide-subtitle">Héritage = <strong>un</strong> parent maximum. Interfaces = <strong>autant que tu veux</strong>.</p>
+    <div class="diagram-tree">
+      <div class="dt-row">
+        <div class="dt-node dt-parent">MediaItem<small>héritage : 1 max</small></div>
+        <div class="dt-node dt-interface">IExportable<small>interface</small></div>
+        <div class="dt-node dt-interface">IComparable&lt;Film&gt;<small>interface</small></div>
+        <div class="dt-node dt-interface">IDisposable<small>interface</small></div>
+      </div>
+      <div class="dt-down">↓ Film hérite + implémente ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">class Film : MediaItem, IExportable, IComparable&lt;Film&gt;, IDisposable</div>
+      </div>
+    </div>
+    <div class="info-box success" style="margin-top: 16px;">
+      Tu combines un comportement de famille (héritage) avec des contrats transverses (interfaces). C'est la sortie élégante de l'absence d'héritage multiple en C#.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="La grande question. Quand interface, quand abstract class. Reponse : abstract class quand les classes filles partagent un comportement ET une identite (Film/Serie/Doc SONT des MediaItem). Interface quand le comportement est transverse, independant de la famille (un Film peut etre Exportable, mais une Facture aussi, et une Personne aussi).">
+    <div class="slide-number">J2.27</div>
+    <div class="slide-title">Interface vs classe abstraite : décision</div>
+    <table>
+      <thead><tr><th></th><th>Classe abstraite</th><th>Interface</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Contient du code ?</strong></td><td>Oui, méthodes implémentées + abstract</td><td>Non (sauf default methods C# 8+)</td></tr>
+        <tr><td><strong>Champs ?</strong></td><td>Oui</td><td>Non</td></tr>
+        <tr><td><strong>Constructeurs ?</strong></td><td>Oui</td><td>Non</td></tr>
+        <tr><td><strong>Combien par classe ?</strong></td><td>Une seule (héritage simple)</td><td>Autant que tu veux</td></tr>
+        <tr><td><strong>Sémantique</strong></td><td>"est un" + partage de code</td><td>"sait faire" / capacité</td></tr>
+        <tr><td><strong>Exemple</strong></td><td><code>MediaItem</code> pour Film, Série, Doc</td><td><code>IExportable</code>, <code>IComparable</code></td></tr>
+      </tbody>
+    </table>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Règle pratique : <strong>abstract class</strong> si tu as du code commun ET une vraie famille. <strong>Interface</strong> si tu veux juste exiger une capacité, peu importe la famille d'origine.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-mini-4-interface-vs-abstract.md" data-note="Mini exo 4. 5 min. Apres avoir vu la table de decision, on applique sur 6 cas concrets. Debrief en plenum. Mnemo : classe abstraite = ADN, interface = competence.">
+    <div class="slide-number">J2.28</div>
+    <div class="slide-title">Mini exo 4 : interface ou classe abstraite ?</div>
+    <p class="slide-subtitle">6 cas concrets. Pour chacun, choisir <code>interface</code> ou <code>abstract class</code> et justifier.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code> (panneau TP).
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Mnémo : classe abstraite = ADN. Interface = compétence.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-note="Le but de tout ca : decoupler. Au lieu de dependre d'une classe concrete, depends d'une interface. Tu peux changer l'implementation sans rien casser. C'est la base du DIP (Dependency Inversion Principle), qu'on verra en J3 SOLID.">
+    <div class="slide-number">J2.29</div>
+    <div class="slide-title">Découpler : dépendre des abstractions</div>
+    <p class="slide-subtitle">Si ton code dépend d'une <strong>interface</strong>, tu peux remplacer l'implémentation sans rien casser autour.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Couplé à une classe concrète</h4>
+<pre><code>class ExportService
+{
+    // Dépend d'une classe précise
+    public void Exporter(Film f)
+    {
+        var json = f.Exporter();
+        File.WriteAllText("film.json", json);
+    }
+}</code></pre>
+        <p>Marche uniquement pour Film. Pour Série, on duplique. Pour Documentaire, idem. C'est reparti pour du copier-coller.</p>
+      </div>
+      <div class="card emerald">
+        <h4>Couplé à une interface</h4>
+<pre><code>class ExportService
+{
+    // Dépend d'un contrat
+    public void Exporter(IExportable item)
+    {
+        var data = item.Exporter();
+        File.WriteAllText(
+            $"export.{item.Format}", data);
+    }
+}</code></pre>
+        <p>Marche pour Film, Série, Documentaire, Podcast, Facture, n'importe quoi qui implémente <code>IExportable</code>.</p>
+      </div>
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Teaser J3 : c'est le <strong>D</strong> de SOLID (Dependency Inversion Principle). Dépendre des abstractions, pas des concrétions.
+    </div>
+  </div>
+
+  <div class="slide" data-day="2" data-exercise="../exercises/J2-main-4-iexportable.md" data-note="Exo principal 4 (final J2). 15 min. Cree IExportable, implemente dans Film (JSON) et Serie (XML). Puis Exporter.Sauvegarder qui prend IExportable. Le moment magique : Sauvegarder ne mentionne ni Film ni Serie.">
+    <div class="slide-number">J2.30</div>
+    <div class="slide-title">Exercice principal 4 : <code>IExportable</code></div>
+    <p class="slide-subtitle">Implémenter un contrat <code>IExportable</code> sur Film (JSON) et Série (XML), puis un service qui dépend uniquement de l'abstraction.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li>Interface <code>IExportable</code> : Format, Nom, Exporter()</li>
+          <li>Implémenter dans Film (json) et Série (xml)</li>
+          <li>Classe statique <code>Exporter.Sauvegarder(IExportable, dossier)</code></li>
+          <li>Tester avec un Film et une Série</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Le moment magique</h3>
+        <div class="info-box success">
+          <code>Exporter.Sauvegarder()</code> ne mentionne ni <code>Film</code>, ni <code>Série</code>. Elle dépend uniquement du contrat. C'est le découplage en action.
+        </div>
+        <div class="info-box tip" style="margin-top: 12px;">
+          Ouvre l'énoncé complet avec la touche <code>T</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="2" data-note="Recap. 4 piliers vus en pratique. Transition J3 : SOLID va donner les regles pour bien utiliser tout ca. Exceptions OO pour gerer les erreurs proprement.">
+    <div class="slide-number">J2.31</div>
+    <div class="slide-title accent">Day 2 bouclée</div>
+    <div class="two-cols" style="margin-top: 24px; max-width: 980px;">
+      <div>
+        <h3>Acquis du jour</h3>
+        <ul>
+          <li><strong>Héritage</strong> : factoriser sans copier-coller, <code>: base()</code></li>
+          <li><strong>Polymorphisme</strong> : <code>virtual</code> / <code>override</code>, dispatch dynamique</li>
+          <li><strong>Classes abstraites</strong> : forcer un contrat partiel</li>
+          <li><strong>Interfaces</strong> : contrat pur, découplage maximal</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Prochaine étape</h3>
+        <div class="info-box tip">
+          <strong>J3 : Composition, SOLID &amp; Exceptions.</strong><br/>Les règles pour bien utiliser ce qu'on vient d'apprendre, et gérer les erreurs proprement avec des exceptions orientées objet.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="3" data-note="Accueil J3. Reprise apres J2. Demandez : qui a fini les exos d'hier ? Qui a galere ? On debrief 5 min puis on demarre.">
+    <div class="slide-number">J3.00</div>
+    <div class="slide-title accent">Solidifier l'architecture</div>
+    <p class="slide-subtitle">Quand l'héritage ne suffit plus, on compose. Quand le code grossit, on suit SOLID. Quand ça plante, on lance des exceptions claires.</p>
+    <div style="margin-top: 24px;">
+      <span class="tag emerald">Composition</span>
+      <span class="tag violet">SOLID</span>
+      <span class="tag amber">Exceptions OO</span>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Plan J3. Trois blocs. Chaque bloc enchaine theorie, mini-exo de calibrage, exo principal.">
+    <div class="slide-number">J3.01</div>
+    <div class="slide-title">Au programme : 3 blocs</div>
+    <p class="slide-subtitle">Chaque bloc enchaîne théorie, mini-exo de calibrage et exercice principal.</p>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>1. Composition</h4>
+        <ul>
+          <li>Limites de l'héritage</li>
+          <li>has-a vs is-a</li>
+          <li>Refactorer en composition</li>
+        </ul>
+        <span class="tag emerald">1 mini + 1 principal</span>
+      </div>
+      <div class="card violet">
+        <h4>2. SOLID</h4>
+        <ul>
+          <li>SRP, OCP</li>
+          <li>LSP, ISP, DIP</li>
+          <li>Détecter et corriger</li>
+        </ul>
+        <span class="tag violet">1 mini + 1 principal</span>
+      </div>
+      <div class="card amber">
+        <h4>3. Exceptions OO</h4>
+        <ul>
+          <li>Hiérarchie d'Exception</li>
+          <li>try / catch / finally</li>
+          <li>Exception métier custom</li>
+        </ul>
+        <span class="tag amber">1 mini + 1 principal</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Rappel des limites vues en J2 (heritage profond, fragile base class). Quand l'enfant doit ignorer du comportement parent, ou quand deux classes partagent une capacite sans etre de la meme famille, c'est le signal pour la composition.">
+    <div class="slide-number">J3.02</div>
+    <div class="slide-title">Quand l'héritage atteint ses limites</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Symptômes</h4>
+        <ul>
+          <li>Hiérarchie de 4 niveaux et plus</li>
+          <li>Une fille qui doit ignorer du comportement parent</li>
+          <li>Du copier-coller entre classes de familles différentes</li>
+          <li>Un <code>override</code> qui appelle <code>base</code> et ajoute trois fois la même logique</li>
+        </ul>
+      </div>
+      <div class="card emerald">
+        <h4>Le remède</h4>
+        <ul>
+          <li>Ranger les capacités dans des objets séparés</li>
+          <li>Les composer dans la classe qui en a besoin</li>
+          <li>Réutiliser sans hériter</li>
+        </ul>
+        <div class="info-box tip" style="margin-top: 12px;">
+          Une voiture a un moteur. Elle n'est pas un moteur.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Metaphore centrale du jour. Voiture HAS-A moteur, boite, chassis, roues. Composition = collaboration entre objets distincts. Tu peux changer le moteur sans changer la voiture, tester le moteur en isolation, le reutiliser ailleurs.">
+    <div class="slide-number">J3.03</div>
+    <div class="slide-title">Métaphore : la voiture et ses pièces</div>
+    <p class="slide-subtitle">Une voiture <em>est un</em> véhicule. Elle <em>a un</em> moteur, <em>a une</em> boîte, <em>a quatre</em> roues.</p>
+    <div class="diagram-tree">
+      <div class="dt-node dt-parent">Voiture</div>
+      <div class="dt-down">↓ compose ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">Moteur</div>
+        <div class="dt-node">Boîte</div>
+        <div class="dt-node">Châssis</div>
+        <div class="dt-node">Roues</div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Tu changes le moteur sans changer la voiture. Tu testes le moteur en isolation. Tu réutilises le moteur dans un autre véhicule.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="La syntaxe. Heritage : ':'. Composition : champ d'un autre type, souvent injecte par le constructeur. Cote utilisation, l'heritage rend les methodes parent directement disponibles. La composition les rend disponibles via le membre.">
+    <div class="slide-number">J3.04</div>
+    <div class="slide-title">Syntaxe : composition vs héritage</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Héritage (is-a)</h3>
+<pre><code>class Voiture : Vehicule
+{
+    public void Demarrer() { ... }
+}
+
+var v = new Voiture();
+v.Demarrer();</code></pre>
+        <p>Voiture <strong>est un</strong> Vehicule.</p>
+      </div>
+      <div>
+        <h3>Composition (has-a)</h3>
+<pre><code>class Voiture
+{
+    private Moteur _moteur;
+
+    public Voiture(Moteur m)
+    {
+        _moteur = m;
+    }
+
+    public void Demarrer()
+    {
+        _moteur.Demarrer();
+    }
+}</code></pre>
+        <p>Voiture <strong>a un</strong> Moteur, lui délègue le démarrage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="La regle pratique. Heritage si vraie famille avec code commun. Composition pour les capacites transverses, le testable, le swappable. Par defaut, composition. L'heritage se merite.">
+    <div class="slide-number">J3.05</div>
+    <div class="slide-title">Choisir : héritage ou composition</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card violet">
+        <h4>Héritage si</h4>
+        <ul>
+          <li>"X est un Y" sonne juste</li>
+          <li>Vraie famille avec code commun</li>
+          <li>Le parent expose un comportement personnalisable par les enfants</li>
+          <li>Profondeur 1 ou 2 niveaux</li>
+        </ul>
+      </div>
+      <div class="card emerald">
+        <h4>Composition si</h4>
+        <ul>
+          <li>"X a un Y" sonne juste</li>
+          <li>Une capacité réutilisable par plusieurs familles</li>
+          <li>Tu veux pouvoir changer ou tester l'élément en isolation</li>
+          <li>Tu hésites</li>
+        </ul>
+      </div>
+    </div>
+    <div class="quote-big" style="margin-top: 20px;">
+      Favor composition over inheritance.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-exercise="../exercises/J3-mini-1-composition.md" data-note="Mini exo 1. 5 min. Identifier composition ou heritage sur des paires de concepts. Va plus loin que J2 mini 1 : certaines reponses dependent du contexte metier.">
+    <div class="slide-number">J3.06</div>
+    <div class="slide-title">Mini exo 1 : composition ou héritage ?</div>
+    <p class="slide-subtitle">Pour chaque paire de concepts, choisir composition, héritage, ou les deux.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code>.
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Astuce : certaines paires ont une réponse contextuelle. Lis bien le scénario.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-exercise="../exercises/J3-main-1-composition-refactor.md" data-note="Exo principal 1. 15 min. Refactorer un cas ou l'heritage sert a partager une capacite technique. Remplacer par composition + injection.">
+    <div class="slide-number">J3.07</div>
+    <div class="slide-title">Exercice principal 1 : Refactor en composition</div>
+    <p class="slide-subtitle">Tu pars d'un code qui utilise l'héritage pour partager une capacité technique. Tu le refactores en composition.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li>Identifier la capacité partagée à extraire</li>
+          <li>La modéliser en classe indépendante</li>
+          <li>L'injecter en composition dans les classes qui en ont besoin</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour démarrer</h3>
+        <div class="info-box tip">
+          Ouvre l'énoncé complet avec la touche <code>T</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="3" data-note="SOLID. 5 principes formalises par Robert C. Martin dans les annees 2000. Une boussole pour produire du code maintenable. Pas un dogme : une checklist mentale.">
+    <div class="slide-number">J3.08</div>
+    <div class="slide-title accent">SOLID</div>
+    <p class="slide-subtitle">Cinq principes pour écrire du code qui ne devient pas un cauchemar dans six mois.</p>
+    <div class="quote-big" style="margin-top: 24px;">
+      "Un code qui doit changer chaque semaine est un code mal designé."<br/>Robert C. Martin
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Vue d'ensemble. SOLID est un acronyme. On voit les 5 dans l'ordre. Le but n'est pas de tous les appliquer a la lettre tout le temps. Le but est de les reconnaitre quand ils sont violes.">
+    <div class="slide-number">J3.09</div>
+    <div class="slide-title">SOLID : les 5 principes</div>
+    <div class="roles-grid" style="margin-top: 20px;">
+      <div class="role-tile cyan"><strong>S : Single Responsibility</strong><span>Une classe, une raison de changer. Pas dix.</span></div>
+      <div class="role-tile blue"><strong>O : Open/Closed</strong><span>Ouvert à l'extension, fermé à la modification.</span></div>
+      <div class="role-tile emerald"><strong>L : Liskov Substitution</strong><span>Une fille peut remplacer son parent sans surprise.</span></div>
+      <div class="role-tile amber"><strong>I : Interface Segregation</strong><span>Plusieurs petites interfaces plutôt qu'une grosse.</span></div>
+      <div class="role-tile violet"><strong>D : Dependency Inversion</strong><span>Dépends d'abstractions, pas d'implémentations.</span></div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="SRP. Une classe = une raison de changer. Si tu peux dire 'cette classe fait X ET Y', SRP est viole. Le mauvais exemple Facture qui fait calcul + persistence + envoi + PDF est canonique. Quatre raisons de changer, quatre stakeholders.">
+    <div class="slide-number">J3.10</div>
+    <div class="slide-title">SRP : une seule responsabilité</div>
+    <p class="slide-subtitle">Une classe doit avoir une seule raison de changer.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Mauvais</h4>
+<pre><code>class Facture
+{
+    public void Calculer() { ... }
+    public void SauverEnBase() { ... }
+    public void EnvoyerParMail() { ... }
+    public string GenererPdf() { ... }
+}</code></pre>
+        <p>Quatre raisons de changer : règle métier, schéma DB, SMTP, mise en page.</p>
+      </div>
+      <div class="card emerald">
+        <h4>Bon</h4>
+<pre><code>class Facture { public void Calculer() { ... } }
+class FactureRepository { public void Sauver(...) { ... } }
+class FactureMailer { public void Envoyer(...) { ... } }
+class FacturePdfGenerator { public string Generer(...) { ... } }</code></pre>
+        <p>Une responsabilité par classe. Chacune évolue indépendamment.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="3 tests pour detecter SRP viole. Test du ET. Test du stakeholder. Test du nom (Manager, Helper, Util = signaux). Ces 3 tests sont des reflexes a installer.">
+    <div class="slide-number">J3.11</div>
+    <div class="slide-title">Détecter une violation SRP</div>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card cyan">
+        <h4>Test du "ET"</h4>
+        <p>Si la description de ta classe contient un "ET", c'est probablement deux responsabilités. "Elle valide ET sauve."</p>
+      </div>
+      <div class="card emerald">
+        <h4>Test des stakeholders</h4>
+        <p>Combien de personnes différentes peuvent demander un changement sur cette classe ? Si plus de un, scinde.</p>
+      </div>
+      <div class="card amber">
+        <h4>Test du nom</h4>
+        <p>Si tu peines à nommer la classe sans utiliser "Manager", "Helper", "Util", c'est qu'elle fait trop de choses.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="OCP. Ouvert a l'extension, ferme a la modification. Le classique : une cascade de if/else qui grossit a chaque nouveau cas. Solution : interface + classes par variante. Strategy pattern.">
+    <div class="slide-number">J3.12</div>
+    <div class="slide-title">OCP : ouvert à l'extension, fermé à la modification</div>
+    <p class="slide-subtitle">Tu dois pouvoir ajouter du comportement sans toucher au code qui marche déjà.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Violation OCP</h4>
+<pre><code>class CalculTarif
+{
+    public decimal Calculer(string type)
+    {
+        if (type == "standard") return ...;
+        else if (type == "weekend") return ...;
+        else if (type == "promo") return ...;
+        // Ajouter un tarif = modifier cette méthode
+    }
+}</code></pre>
+      </div>
+      <div class="card emerald">
+        <h4>OCP respecté</h4>
+<pre><code>interface ITarif { decimal Calculer(...); }
+
+class TarifStandard : ITarif { ... }
+class TarifWeekend : ITarif { ... }
+class TarifPromo : ITarif { ... }
+// Ajouter un tarif = créer une classe.
+// Aucune ligne existante ne change.</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Metaphore OCP : les plugins. VS Code n'a pas ete modifie pour supporter le C#. L'extension se branche. Le contrat d'extension est ferme a la modification, ouvert aux ajouts.">
+    <div class="slide-number">J3.13</div>
+    <div class="slide-title">Métaphore : les plugins</div>
+    <p class="slide-subtitle">VS Code n'est pas modifié pour ajouter le support C#. L'extension se branche.</p>
+    <div class="diagram-tree">
+      <div class="dt-node dt-interface">VS Code<small>contrat d'extension figé</small></div>
+      <div class="dt-down">↓ extensions ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">C# Dev Kit</div>
+        <div class="dt-node">Prettier</div>
+        <div class="dt-node">GitLens</div>
+        <div class="dt-node">Vim<small>extension de demain</small></div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      L'éditeur reste fermé à la modification. Le système d'extension est ouvert. C'est OCP.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="LSP. Barbara Liskov, 1987. Une fille doit pouvoir remplacer son parent sans casser le comportement attendu. Le carre/rectangle est l'exemple canonique : modifier largeur d'un Rectangle est attendu sans effet sur hauteur. Sur un Carre, ca casse cette attente.">
+    <div class="slide-number">J3.14</div>
+    <div class="slide-title">LSP : substituer sans surprise</div>
+    <p class="slide-subtitle">Une instance de fille doit pouvoir remplacer une instance de parent sans casser ce qui appelle.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Violation : Carré hérite de Rectangle</h3>
+<pre><code>class Rectangle
+{
+    public virtual int Largeur { get; set; }
+    public virtual int Hauteur { get; set; }
+}
+
+class Carre : Rectangle
+{
+    public override int Largeur
+    {
+        set { base.Largeur = value;
+              base.Hauteur = value; }
+    }
+    // ... idem pour Hauteur
+}</code></pre>
+      </div>
+      <div>
+        <h3>Le bug</h3>
+<pre><code>void Test(Rectangle r)
+{
+    r.Largeur = 4;
+    r.Hauteur = 5;
+    Console.WriteLine(r.Largeur * r.Hauteur);
+    // Attendu : 20
+    // Reçoit un Carré : 25
+}</code></pre>
+        <div class="info-box danger" style="margin-top: 12px;">
+          Le code qui dépend de Rectangle casse silencieusement quand on lui passe un Carré.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="LSP solution. Carre n'est pas un Rectangle au sens du code. Une interface commune IForme suffit pour les utiliser de facon polymorphique sans casser les attentes.">
+    <div class="slide-number">J3.15</div>
+    <div class="slide-title">LSP : la bonne abstraction</div>
+    <p class="slide-subtitle">Hériter pour économiser deux champs ne vaut pas une violation LSP. Une interface partagée fait mieux le travail.</p>
+    <div class="diagram-tree">
+      <div class="dt-node dt-interface">IForme<small>contrat : CalculerAire()</small></div>
+      <div class="dt-down">↓ implémente ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">Rectangle<small>Largeur, Hauteur</small></div>
+        <div class="dt-node">Carre<small>Cote</small></div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Pas d'héritage entre Carré et Rectangle. L'interface suffit pour le polymorphisme.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="ISP. Plutot qu'une grosse interface IMachine avec 10 methodes, plusieurs petites. L'imprimante simple n'a pas a implementer Fax avec un NotImplementedException qui pue. Chaque classe implemente exactement ce qu'elle remplit.">
+    <div class="slide-number">J3.16</div>
+    <div class="slide-title">ISP : interfaces fines</div>
+    <p class="slide-subtitle">Mieux vaut plusieurs petites interfaces qu'une seule grosse. Personne ne devrait implémenter des méthodes qu'il n'utilise pas.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Interface fourre-tout</h4>
+<pre><code>interface IMachine
+{
+    void Imprimer(...);
+    void Scanner(...);
+    void Faxer(...);
+    void Photocopier(...);
+}
+
+class ImprimanteSimple : IMachine
+{
+    public void Imprimer(...) { ... }
+    public void Scanner(...)
+        { throw new NotImplementedException(); }
+    public void Faxer(...)
+        { throw new NotImplementedException(); }
+    public void Photocopier(...)
+        { throw new NotImplementedException(); }
+}</code></pre>
+      </div>
+      <div class="card emerald">
+        <h4>Interfaces segmentées</h4>
+<pre><code>interface IImprime { void Imprimer(...); }
+interface IScan { void Scanner(...); }
+interface IFax { void Faxer(...); }
+
+class ImprimanteSimple : IImprime { ... }
+class MultiFonctions
+    : IImprime, IScan, IFax { ... }</code></pre>
+        <p>Chaque classe implémente exactement les contrats qu'elle remplit.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="DIP. Les modules haut niveau ne dependent pas des modules bas niveau. Les deux dependent d'abstractions. Le service ne devrait pas dependre de SqlServerRepository, mais de IRepository. Injection par le constructeur, le caller choisit l'implementation.">
+    <div class="slide-number">J3.17</div>
+    <div class="slide-title">DIP : dépendre des abstractions</div>
+    <p class="slide-subtitle">Les modules haut niveau ne dépendent pas des modules bas niveau. Les deux dépendent d'abstractions.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Couplage direct</h4>
+<pre><code>class CommandeService
+{
+    private SqlServerRepository _repo
+        = new SqlServerRepository();
+
+    public void Valider(Commande c)
+    {
+        _repo.Sauver(c);
+    }
+}</code></pre>
+        <p>Impossible de tester sans SQL Server. Impossible de changer de DB sans toucher au service.</p>
+      </div>
+      <div class="card emerald">
+        <h4>Dépendance inversée</h4>
+<pre><code>interface IRepository&lt;T&gt;
+{
+    void Sauver(T entity);
+}
+
+class CommandeService
+{
+    private IRepository&lt;Commande&gt; _repo;
+
+    public CommandeService(IRepository&lt;Commande&gt; repo)
+    {
+        _repo = repo;
+    }
+}</code></pre>
+        <p>Le service dépend d'une abstraction. Tu lui injectes l'implémentation.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Schema DIP. Avant : la fleche pointe du haut vers le bas (service vers repository concret). Apres : les deux pointent vers l'abstraction au centre. La dependance s'est inversee. D'ou Dependency Inversion.">
+    <div class="slide-number">J3.18</div>
+    <div class="slide-title">DIP : l'inversion des flèches</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h4>Avant</h4>
+        <div class="flow-diagram">
+          <div class="flow-step">CommandeService (haut niveau)</div>
+          <div class="flow-arrow">↓ dépend de ↓</div>
+          <div class="flow-step muted">SqlServerRepository (bas niveau)</div>
+        </div>
+        <p>Le haut connaît le bas. Couplage rigide.</p>
+      </div>
+      <div>
+        <h4>Après</h4>
+        <div class="flow-diagram">
+          <div class="flow-step">CommandeService (haut niveau)</div>
+          <div class="flow-arrow">↓ dépend de ↓</div>
+          <div class="flow-step highlight">IRepository (abstraction)</div>
+          <div class="flow-arrow">↑ implémente ↑</div>
+          <div class="flow-step">SqlServerRepository (bas niveau)</div>
+        </div>
+        <p>Les deux dépendent de l'abstraction. Le bas implémente.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-exercise="../exercises/J3-mini-2-solid-violations.md" data-note="Mini exo 2. 5 min. Pour chaque snippet, identifier le principe SOLID viole. Calibrage. Si des etudiants se trompent sur un principe specifique, on rappelle en plenum.">
+    <div class="slide-number">J3.19</div>
+    <div class="slide-title">Mini exo 2 : identifier la violation SOLID</div>
+    <p class="slide-subtitle">5 snippets de code. Pour chacun, indiquer quel principe SOLID est violé et pourquoi.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code>.
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Réflexe à acquérir : un seul principe par violation, pas les cinq à la fois.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-exercise="../exercises/J3-main-2-solid-refactor.md" data-note="Exo principal 2. 15 min. Refactorer une classe qui viole SRP et DIP. Extraire les responsabilites, injecter les dependances via interface.">
+    <div class="slide-number">J3.20</div>
+    <div class="slide-title">Exercice principal 2 : Refactor SOLID</div>
+    <p class="slide-subtitle">Une classe surchargée viole SRP et DIP. Tu la décomposes et tu inverses les dépendances.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li>Identifier les responsabilités à extraire</li>
+          <li>Créer une classe par responsabilité</li>
+          <li>Définir une interface par dépendance externe</li>
+          <li>Injecter via le constructeur</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour démarrer</h3>
+        <div class="info-box tip">
+          Ouvre l'énoncé complet avec la touche <code>T</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="3" data-note="Exceptions. Le mecanisme C# pour signaler un probleme qui ne peut pas etre resolu dans le flux courant. Une exception est un signal typé, pas une erreur a cacher. Le code appelant decide quoi faire.">
+    <div class="slide-number">J3.21</div>
+    <div class="slide-title accent">Exceptions orientées objet</div>
+    <p class="slide-subtitle">Quand une opération ne peut pas continuer, elle lance un signal typé. Le code qui appelle décide quoi faire.</p>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Pourquoi exceptions vs codes retour. Plus expressif, force le caller a gerer ou laisser remonter (impossible d'oublier silencieusement), separe le flux nominal du flux d'erreur. C# va plus loin que les codes retour de C.">
+    <div class="slide-number">J3.22</div>
+    <div class="slide-title">Pourquoi des exceptions ?</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Codes de retour (style C)</h4>
+<pre><code>int result = ouvrirFichier(chemin);
+if (result == ERR_NOT_FOUND) { ... }
+else if (result == ERR_PERMISSION) { ... }
+else if (result &lt; 0) { ... }
+
+// Si tu oublies de vérifier, ton code
+// continue en silence avec un état pourri.</code></pre>
+      </div>
+      <div class="card emerald">
+        <h4>Exceptions</h4>
+<pre><code>try
+{
+    var stream = File.Open(chemin);
+}
+catch (FileNotFoundException ex) { ... }
+catch (UnauthorizedAccessException ex) { ... }
+
+// Si tu oublies le catch, l'exception remonte.
+// Impossible de l'ignorer en silence.</code></pre>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 12px;">
+      Une exception est un objet. Elle porte un type, un message, une stack trace, et éventuellement une <code>innerException</code>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Metaphore alarme incendie. Quand quelque chose pete dans la cuisine, le cuisinier ne va pas eteindre lui-meme. Il declenche l'alarme. Quelqu'un d'autre (service d'urgence) attrape le signal et agit. Throw = declencher, catch = attraper.">
+    <div class="slide-number">J3.23</div>
+    <div class="slide-title">Métaphore : l'alarme incendie</div>
+    <p class="slide-subtitle">Le cuisinier ne se débrouille pas seul avec un feu. Il déclenche l'alarme. Quelqu'un d'autre s'en occupe.</p>
+    <div class="flow-diagram">
+      <div class="flow-step">Code qui détecte le problème</div>
+      <div class="flow-arrow">↓ throw ↓</div>
+      <div class="flow-step highlight">Exception se propage dans la pile d'appels</div>
+      <div class="flow-arrow">↓ catch ↓</div>
+      <div class="flow-step">Code qui sait quoi faire</div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      L'objet exception transporte toute l'information utile entre les deux : type, message, contexte.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Hierarchie Exception .NET. Tout descend de Exception. SystemException pour les erreurs runtime, ArgumentException pour les params invalides, IOException pour les soucis fichier/reseau. Tes exceptions metier heritent directement de Exception.">
+    <div class="slide-number">J3.24</div>
+    <div class="slide-title">Hiérarchie d'<code>Exception</code> en .NET</div>
+    <div class="diagram-tree">
+      <div class="dt-node dt-parent">Exception<small>racine de tout</small></div>
+      <div class="dt-down">↓ dérive ↓</div>
+      <div class="dt-row">
+        <div class="dt-node">SystemException<small>NullReferenceException<br/>IndexOutOfRangeException<br/>InvalidOperationException</small></div>
+        <div class="dt-node">ArgumentException<small>ArgumentNullException<br/>ArgumentOutOfRangeException</small></div>
+        <div class="dt-node">IOException<small>FileNotFoundException<br/>DirectoryNotFoundException</small></div>
+        <div class="dt-node dt-interface">Tes exceptions métier<small>VehiculeIndisponibleException<br/>SoldeInsuffisantException</small></div>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Tes exceptions métier héritent de <code>Exception</code>. Suffixe en "Exception". Constructeur qui accepte un message, idéalement une <code>innerException</code>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Syntaxe try/catch/finally. Plusieurs catch du plus specifique au plus general. finally s'execute toujours, meme apres throw ou return. throw nu (sans argument) re-lance en gardant la stack trace. using remplace souvent try/finally pour les IDisposable.">
+    <div class="slide-number">J3.25</div>
+    <div class="slide-title">Syntaxe : <code>try</code> / <code>catch</code> / <code>finally</code></div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Code</h3>
+<pre><code>FileStream stream = null;
+try
+{
+    stream = File.Open(chemin);
+    Traiter(stream);
+}
+catch (FileNotFoundException ex)
+{
+    Log.Warn($"Fichier absent : {chemin}");
+}
+catch (IOException ex)
+{
+    Log.Error("Erreur IO", ex);
+    throw;
+}
+finally
+{
+    stream?.Close();
+}</code></pre>
+      </div>
+      <div>
+        <h3>Règles</h3>
+        <ul>
+          <li>Plusieurs <code>catch</code>, du plus spécifique au plus général</li>
+          <li><code>finally</code> s'exécute toujours, même après <code>throw</code> ou <code>return</code></li>
+          <li><code>throw;</code> sans argument re-lance en gardant la stack trace</li>
+          <li><code>using</code> remplace souvent <code>try</code> / <code>finally</code> pour les <code>IDisposable</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Exception metier custom. Heriter de Exception. Suffixe Exception. Constructeurs : message, et message + innerException pour chainer. Optionnel : proprietes pour porter du contexte exploitable cote caller.">
+    <div class="slide-number">J3.26</div>
+    <div class="slide-title">Créer une exception métier</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Définition</h3>
+<pre><code>public class SoldeInsuffisantException
+    : Exception
+{
+    public decimal SoldeActuel { get; }
+    public decimal MontantDemande { get; }
+
+    public SoldeInsuffisantException(
+        decimal solde,
+        decimal demande)
+        : base($"Solde {solde:C} insuffisant " +
+               $"pour retrait de {demande:C}")
+    {
+        SoldeActuel = solde;
+        MontantDemande = demande;
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Usage</h3>
+<pre><code>public void Retirer(decimal montant)
+{
+    if (montant &gt; _solde)
+        throw new SoldeInsuffisantException(
+            _solde, montant);
+    _solde -= montant;
+}
+
+// Côté appelant
+try { compte.Retirer(500); }
+catch (SoldeInsuffisantException ex)
+{
+    var manque = ex.MontantDemande
+                 - ex.SoldeActuel;
+    Console.WriteLine($"Manque {manque:C}");
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-note="Anti-patterns courants. catch silencieux : la pire chose, masque les bugs. throw ex : detruit la stack trace, prefere throw nu. Exception en flux normal (lent). Exception generique au lieu d'un type metier (le caller ne peut pas catch specifiquement).">
+    <div class="slide-number">J3.27</div>
+    <div class="slide-title">Anti-patterns à éviter</div>
+    <div class="four-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>Catch silencieux</h4>
+<pre><code>try { ... }
+catch { /* nothing */ }</code></pre>
+        <p>Tu masques tous les bugs. Si tu catch, fais quelque chose.</p>
+      </div>
+      <div class="card rose">
+        <h4>throw ex</h4>
+<pre><code>catch (Exception ex)
+{
+    Log(ex);
+    throw ex; // stack trace perdue
+}</code></pre>
+        <p>Utilise <code>throw;</code> sans argument pour préserver la stack.</p>
+      </div>
+      <div class="card rose">
+        <h4>Exception en flux normal</h4>
+<pre><code>try { return int.Parse(s); }
+catch { return 0; }</code></pre>
+        <p>Utilise <code>int.TryParse</code>. Les exceptions coûtent cher.</p>
+      </div>
+      <div class="card rose">
+        <h4>Exception générique</h4>
+<pre><code>throw new Exception(
+    "Solde insuffisant");</code></pre>
+        <p>Crée un type métier dédié. Le caller pourra <code>catch</code> spécifiquement.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-exercise="../exercises/J3-mini-3-flux-exception.md" data-note="Mini exo 3. 5 min. Predire le flux d'execution d'un try/catch/finally complexe. Verifier que tout le monde a bien compris l'ordre d'execution et la difference entre throw nu et throw ex.">
+    <div class="slide-number">J3.28</div>
+    <div class="slide-title">Mini exo 3 : prédire le flux d'exception</div>
+    <p class="slide-subtitle">Lis le code et prédis l'ordre d'exécution des <code>catch</code> et <code>finally</code>. 4 cas à prédire.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code>.
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Le <code>finally</code> s'exécute toujours. Même si tu <code>throw</code>. Même si tu <code>return</code>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="3" data-exercise="../exercises/J3-main-3-exception-metier.md" data-note="Exo principal 3. 15 min. Implementer une exception metier custom dans un mini systeme bancaire. Coder le throw, le catch type, exposer des proprietes utiles au caller.">
+    <div class="slide-number">J3.29</div>
+    <div class="slide-title">Exercice principal 3 : exception métier</div>
+    <p class="slide-subtitle">Tu modélises une <code>SoldeInsuffisantException</code> avec un contexte métier exploitable côté appelant.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li>Hériter de <code>Exception</code></li>
+          <li>Porter le solde et le montant demandé en propriétés</li>
+          <li><code>throw</code> dans la méthode <code>Retirer</code></li>
+          <li><code>catch</code> typé côté appelant avec un message lisible</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour démarrer</h3>
+        <div class="info-box tip">
+          Ouvre l'énoncé complet avec la touche <code>T</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="3" data-note="Recap J3. Trois piliers vus : composition, SOLID, exceptions. Demain : ASP.NET Core MVC. On applique tout ca dans une vraie application web avec models, controllers, injection de dependances.">
+    <div class="slide-number">J3.30</div>
+    <div class="slide-title accent">Day 3 bouclée</div>
+    <div class="two-cols" style="margin-top: 24px; max-width: 980px;">
+      <div>
+        <h3>Acquis du jour</h3>
+        <ul>
+          <li><strong>Composition</strong> : has-a plutôt que is-a, capacités isolées et réutilisables</li>
+          <li><strong>SOLID</strong> : 5 réflexes pour un code qui survit dans le temps</li>
+          <li><strong>Exceptions OO</strong> : signaux typés, métier, hiérarchie d'<code>Exception</code></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Prochaine étape</h3>
+        <div class="info-box tip">
+          <strong>J4 : ASP.NET Core MVC.</strong><br/>On applique tout ce qu'on a vu dans une vraie application web. Models, controllers, injection de dépendances, projet fil rouge.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="4" data-note="Accueil J4. Dernier jour. Aujourd'hui on assemble tout dans une vraie application web. ASP.NET Core MVC + injection de dependances + projet fil rouge sur la flotte de location.">
+    <div class="slide-number">J4.00</div>
+    <div class="slide-title accent">Du console au web</div>
+    <p class="slide-subtitle">Aujourd'hui on assemble : ASP.NET Core, le pattern MVC, l'injection de dépendances, et un projet fil rouge qui amène ta flotte de location sur le web.</p>
+    <div style="margin-top: 24px;">
+      <span class="tag emerald">ASP.NET Core</span>
+      <span class="tag violet">MVC</span>
+      <span class="tag cyan">Injection de dépendances</span>
+      <span class="tag amber">Projet fil rouge</span>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Plan J4. Quatre blocs. Comme les autres jours, theorie + pratique. Le dernier bloc presente le projet fil rouge qui clot la semaine.">
+    <div class="slide-number">J4.01</div>
+    <div class="slide-title">Au programme : 4 blocs</div>
+    <p class="slide-subtitle">Chaque bloc enchaîne théorie et pratique. Le dernier introduit le projet fil rouge de fin de bootcamp.</p>
+    <div class="four-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>1. Intro ASP.NET</h4>
+        <ul>
+          <li>Le framework</li>
+          <li>Anatomie d'un projet</li>
+          <li>Cycle d'une requête</li>
+        </ul>
+      </div>
+      <div class="card violet">
+        <h4>2. MVC en détail</h4>
+        <ul>
+          <li>Routing, Controllers</li>
+          <li>Views Razor</li>
+          <li>Forms et validation</li>
+        </ul>
+        <span class="tag violet">1 mini + 1 principal</span>
+      </div>
+      <div class="card cyan">
+        <h4>3. Injection</h4>
+        <ul>
+          <li>Service container</li>
+          <li>Lifetimes</li>
+          <li>Résolution</li>
+        </ul>
+        <span class="tag cyan">1 mini</span>
+      </div>
+      <div class="card amber">
+        <h4>4. Projet fil rouge</h4>
+        <ul>
+          <li>Flotte de location web</li>
+          <li>Architecture en couches</li>
+          <li>Phases et critères</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="ASP.NET Core. Framework web cross-platform, MIT, open source. Sert HTTP via Kestrel. Pipeline de middleware extensible. Tu connais deja la moitie : runtime .NET 8, CLI, classes C#. ASP.NET ajoute juste le contrat HTTP par-dessus.">
+    <div class="slide-number">J4.02</div>
+    <div class="slide-title">ASP.NET Core en bref</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>Ce qu'il est</h4>
+        <ul>
+          <li>Framework web .NET, cross-platform</li>
+          <li>Open source sur GitHub depuis 2014</li>
+          <li>Sert HTTP via le serveur Kestrel intégré</li>
+          <li>Pipeline de middleware extensible</li>
+        </ul>
+      </div>
+      <div class="card violet">
+        <h4>Ce qu'on en fait</h4>
+        <ul>
+          <li>API REST</li>
+          <li>Applications web MVC (notre choix aujourd'hui)</li>
+          <li>Razor Pages, Blazor</li>
+          <li>gRPC, SignalR</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Tu connais déjà la moitié : .NET 8, le SDK, le CLI <code>dotnet</code>, tes classes C#. ASP.NET Core ajoute le contrat HTTP par-dessus.
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Anatomie d'un projet. dotnet new mvc -n LocationWeb te genere cette structure. Controllers et Views = 90% de ton temps. Models = classes du domaine. Program.cs = bootstrap, configuration, middleware. wwwroot = CSS, JS, images statiques.">
+    <div class="slide-number">J4.03</div>
+    <div class="slide-title">Anatomie d'un projet ASP.NET Core MVC</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Structure</h3>
+<pre><code>LocationWeb/
+  Controllers/
+    HomeController.cs
+    VoituresController.cs
+  Models/
+    Voiture.cs
+  Views/
+    Home/
+      Index.cshtml
+    Voitures/
+      Index.cshtml
+      Detail.cshtml
+    Shared/
+      _Layout.cshtml
+  wwwroot/
+    css/, js/, lib/
+  Program.cs
+  appsettings.json
+  LocationWeb.csproj</code></pre>
+      </div>
+      <div>
+        <h3>Démarrage</h3>
+<pre><code>dotnet new mvc -n LocationWeb
+cd LocationWeb
+dotnet run</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          Au démarrage : ouvre <code>https://localhost:5001</code>. Page d'accueil par défaut. Tu modifies, tu sauves, le hot-reload met à jour.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="MVC. Model + View + Controller. Trois roles. Metaphore restaurant : Controller = serveur, View = salle, Model = cuisine. Separation des responsabilites cote architecture. C'est SRP applique au web.">
+    <div class="slide-number">J4.04</div>
+    <div class="slide-title">Le pattern MVC</div>
+    <p class="slide-subtitle">Trois rôles, une séparation claire. C'est SRP appliqué à l'architecture web.</p>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>Model</h4>
+        <p>Les données et la logique métier. C'est la suite directe de ce que tu fais en console : tes classes du domaine, validation, calculs.</p>
+        <span class="tag emerald">la cuisine</span>
+      </div>
+      <div class="card violet">
+        <h4>View</h4>
+        <p>Le rendu HTML pour le navigateur. Pas de logique métier ici, juste la présentation et un peu de logique d'affichage.</p>
+        <span class="tag violet">la salle</span>
+      </div>
+      <div class="card amber">
+        <h4>Controller</h4>
+        <p>L'orchestrateur. Reçoit la requête HTTP, demande au model, choisit la view, renvoie la réponse.</p>
+        <span class="tag amber">le serveur</span>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Le client (navigateur) parle au serveur (controller), qui parle à la cuisine (model), qui revient via la salle (view).
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Cycle d'une requete HTTP. Navigateur envoie une URL. Kestrel recoit. Middleware pipeline (auth, statique, etc.). Routing choisit le controller + action. Action s'execute, prepare un model. View rendu. Reponse HTTP renvoyee. Ce schema tourne toute la journee.">
+    <div class="slide-number">J4.05</div>
+    <div class="slide-title">Cycle d'une requête HTTP</div>
+    <div class="flow-diagram">
+      <div class="flow-step">Navigateur : GET /Voitures/Detail/5</div>
+      <div class="flow-arrow">↓ HTTP ↓</div>
+      <div class="flow-step muted">Kestrel + middleware pipeline (auth, statique, etc.)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">Routing : VoituresController.Detail(5)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step highlight">Action exécute, prépare un ViewModel</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">View Razor : Detail.cshtml rend le HTML</div>
+      <div class="flow-arrow">↓ HTTP response ↓</div>
+      <div class="flow-step">Navigateur affiche la page</div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Routing. Convention par defaut /{controller}/{action}/{id?}. Le runtime tape sur le nom du controller (VoituresController) et la methode (Detail). Attribute routing existe pour les cas custom. On reste sur la convention pour la simplicite.">
+    <div class="slide-number">J4.06</div>
+    <div class="slide-title">Routing : URL vers action</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Convention par défaut</h3>
+<pre><code>app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");</code></pre>
+        <p>Trois segments. Si tout est absent, on retombe sur <code>Home/Index</code>.</p>
+      </div>
+      <div>
+        <h3>Exemples</h3>
+<pre><code>GET /                    → HomeController.Index()
+GET /Voitures            → VoituresController.Index()
+GET /Voitures/Detail/5   → VoituresController.Detail(5)
+POST /Voitures/Create    → VoituresController.Create(form)
+GET /Voitures/Edit/5     → VoituresController.Edit(5)</code></pre>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      L'URL <code>/Voitures/Detail/5</code> appelle <code>Detail(int id)</code> de <code>VoituresController</code> avec <code>id = 5</code>. Tout est automatique.
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Controllers. Une classe par 'famille' de routes. Heritage de Controller. Chaque action retourne IActionResult (View, Redirect, Json, NotFound, BadRequest). Pas de logique metier dans le controller : il orchestre. SQL dans le controller = SRP viole.">
+    <div class="slide-number">J4.07</div>
+    <div class="slide-title">Controllers et actions</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Une classe par ressource</h3>
+<pre><code>public class VoituresController : Controller
+{
+    public IActionResult Index()
+    {
+        var voitures = _service.Lister();
+        return View(voitures);
+    }
+
+    public IActionResult Detail(int id)
+    {
+        var voiture = _service.LirePar(id);
+        if (voiture == null) return NotFound();
+        return View(voiture);
+    }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Types de retour</h3>
+        <ul>
+          <li><code>View()</code> : rend un Razor</li>
+          <li><code>RedirectToAction(...)</code> : redirige</li>
+          <li><code>Json(...)</code> : payload JSON</li>
+          <li><code>NotFound()</code> : 404</li>
+          <li><code>BadRequest()</code> : 400</li>
+        </ul>
+        <div class="info-box warning" style="margin-top: 12px;">
+          Pas de SQL ni de calculs métier dans le controller. Il orchestre, il ne fait pas.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Views Razor. Mix HTML + C# avec @. Une view par action. @model declare le type recu. Razor a son if, foreach, ses tag helpers. _Layout.cshtml = template commun (header, footer, navbar). @RenderBody() = ou va le contenu de la view.">
+    <div class="slide-number">J4.08</div>
+    <div class="slide-title">Views Razor</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Index.cshtml</h3>
+<pre><code>@model List&lt;Voiture&gt;
+
+&lt;h1&gt;Voitures&lt;/h1&gt;
+&lt;ul&gt;
+@foreach (var v in Model)
+{
+    &lt;li&gt;
+        &lt;a asp-action="Detail"
+           asp-route-id="@v.Id"&gt;
+            @v.Marque @v.Modele
+        &lt;/a&gt;
+    &lt;/li&gt;
+}
+&lt;/ul&gt;</code></pre>
+      </div>
+      <div>
+        <h3>Razor essentiel</h3>
+        <ul>
+          <li><code>@variable</code> : interpolation</li>
+          <li><code>@if (...) { ... }</code> : conditionnel</li>
+          <li><code>@foreach (...) { ... }</code> : itération</li>
+          <li><code>@model T</code> : type du modèle reçu</li>
+          <li><code>asp-action</code>, <code>asp-route-*</code> : tag helpers</li>
+        </ul>
+        <div class="info-box tip" style="margin-top: 12px;">
+          <code>_Layout.cshtml</code> contient le template commun. <code>@RenderBody()</code> indique où va le contenu de la view.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="ViewModel. Pourquoi pas le model du domaine direct. Reponse : couplage. Si tu changes le model, tu casses la view. Si tu exposes des champs internes (ConnectionString, _idInterne), tu fuites du domaine vers le HTML. ViewModel = projection adaptee a une vue.">
+    <div class="slide-number">J4.09</div>
+    <div class="slide-title">ViewModel : pourquoi ?</div>
+    <p class="slide-subtitle">Une view affiche ce dont elle a besoin, pas plus. Le model du domaine reste hors d'atteinte.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card rose">
+        <h4>View couplée au domaine</h4>
+<pre><code>// Domain
+class Voiture
+{
+    public string Marque;
+    public decimal TarifJournee;
+    public string ConnectionString;
+    private int _idInterne;
+}
+
+// View : @model Voiture
+&lt;p&gt;@Model.ConnectionString&lt;/p&gt;
+// ouille</code></pre>
+      </div>
+      <div class="card emerald">
+        <h4>View avec ViewModel</h4>
+<pre><code>// ViewModel dédié
+class VoitureCardVm
+{
+    public string Marque { get; set; }
+    public string Modele { get; set; }
+    public decimal TarifAffiche { get; set; }
+}
+
+// Controller projette
+var vm = new VoitureCardVm
+{
+    Marque = voiture.Marque,
+    Modele = voiture.Modele,
+    TarifAffiche = voiture.TarifJournee
+};
+return View(vm);</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Forms + ModelBinding. La magie d'ASP.NET. POST avec des champs HTML, l'action recoit un objet C# rempli automatiquement. Le runtime mappe nom de champ HTML vers propriete du parametre. Marche aussi pour query strings et route values.">
+    <div class="slide-number">J4.10</div>
+    <div class="slide-title">Forms et ModelBinding</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Le form HTML</h3>
+<pre><code>&lt;form asp-action="Create" method="post"&gt;
+    &lt;input asp-for="Marque" /&gt;
+    &lt;input asp-for="Modele" /&gt;
+    &lt;input asp-for="TarifJournee" /&gt;
+    &lt;button type="submit"&gt;Créer&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+      </div>
+      <div>
+        <h3>L'action côté serveur</h3>
+<pre><code>[HttpPost]
+public IActionResult Create(VoitureFormVm form)
+{
+    if (!ModelState.IsValid)
+        return View(form);
+
+    var voiture = new Voiture(
+        form.Marque,
+        form.Modele,
+        form.TarifJournee);
+    _service.Ajouter(voiture);
+    return RedirectToAction("Index");
+}</code></pre>
+        <div class="info-box success" style="margin-top: 12px;">
+          Le runtime mappe automatiquement les champs HTML vers les propriétés du paramètre.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Validation. DataAnnotations sur les proprietes du ViewModel. Le runtime valide automatiquement avant l'execution de l'action. ModelState.IsValid te dit si tout est ok. Les messages d'erreur s'affichent automatiquement dans la view via asp-validation-for.">
+    <div class="slide-number">J4.11</div>
+    <div class="slide-title">Validation : DataAnnotations</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Sur le ViewModel</h3>
+<pre><code>public class VoitureFormVm
+{
+    [Required(ErrorMessage = "Marque requise")]
+    [StringLength(50)]
+    public string Marque { get; set; }
+
+    [Required]
+    [StringLength(50)]
+    public string Modele { get; set; }
+
+    [Range(1, 9999, ErrorMessage = "Tarif &gt; 0")]
+    public decimal TarifJournee { get; set; }
+}</code></pre>
+      </div>
+      <div>
+        <h3>Dans la view</h3>
+<pre><code>&lt;form asp-action="Create"&gt;
+    &lt;input asp-for="Marque" /&gt;
+    &lt;span asp-validation-for="Marque"&gt;&lt;/span&gt;
+
+    &lt;input asp-for="TarifJournee" /&gt;
+    &lt;span asp-validation-for="TarifJournee"&gt;&lt;/span&gt;
+&lt;/form&gt;</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          <code>ModelState.IsValid</code> dans l'action. Si faux, tu re-renvoies la view avec les erreurs déjà attachées.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-exercise="../exercises/J4-mini-1-mvc-anatomy.md" data-note="Mini exo 1. 5 min. Pour chaque snippet, identifier Model / View / Controller. Calibrage rapide avant le premier vrai code.">
+    <div class="slide-number">J4.12</div>
+    <div class="slide-title">Mini exo 1 : anatomie MVC</div>
+    <p class="slide-subtitle">5 snippets. Pour chacun, identifier si c'est un Model, une View ou un Controller, et ce qui se passe au runtime.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code>.
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Réflexe : qui orchestre, qui décide, qui présente ?
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-exercise="../exercises/J4-main-1-premier-controller.md" data-note="Exo principal 1. 20 min. Premier projet ASP.NET. VoituresController avec Index et Detail. Une view par action. Pas encore de DI, stockage en List statique. Objectif : valider le cycle MVC bout en bout avant le projet fil rouge.">
+    <div class="slide-number">J4.13</div>
+    <div class="slide-title">Exercice principal 1 : premier controller</div>
+    <p class="slide-subtitle">Tu crées <code>VoituresController</code> avec deux actions <code>Index</code> et <code>Detail</code>, et leurs views Razor.</p>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Étapes clés</h3>
+        <ul>
+          <li><code>dotnet new mvc -n LocationWeb</code></li>
+          <li>Créer le model <code>Voiture</code></li>
+          <li>Créer <code>VoituresController</code> avec <code>Index</code> et <code>Detail</code></li>
+          <li>Créer les deux views Razor correspondantes</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour démarrer</h3>
+        <div class="info-box tip">
+          Ouvre l'énoncé complet avec la touche <code>T</code>.
+        </div>
+        <div class="info-box success" style="margin-top: 12px;">
+          Pas encore de DI à cette étape. Une liste en dur dans le controller suffit pour valider le cycle MVC.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="4" data-note="DI dans ASP.NET. Le framework est bati autour. Tu declares tes services dans Program.cs, tu les recois dans les constructeurs. C'est exactement le pattern qu'on a vu en J3 (DIP), industrialise et integre nativement.">
+    <div class="slide-number">J4.14</div>
+    <div class="slide-title accent">Injection de dépendances</div>
+    <p class="slide-subtitle">ASP.NET Core a un service container intégré. Tu enregistres tes services, le framework les injecte là où il faut.</p>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Creer le service avant de l'enregistrer. Un service = un contrat (interface) + une classe qui l'implemente. L'interface decrit CE QUE le service fait, la classe COMMENT. La classe depend elle-meme d'une autre abstraction (IVoitureRepository) recue dans son constructeur : le DIP se propage en cascade. C'est cette classe qu'on enregistre ensuite dans Program.cs.">
+    <div class="slide-number">J4.15</div>
+    <div class="slide-title">Créer un service</div>
+    <p class="slide-subtitle">Un service, c'est une <strong>interface</strong> (le contrat) et une <strong>classe</strong> qui l'implémente. On l'écrit avant de l'enregistrer.</p>
+    <div class="two-cols" style="margin-top: 16px;">
+      <div>
+        <h3>1. L'interface (le contrat)</h3>
+<pre><code>public interface IVoitureService
+{
+    List&lt;Voiture&gt; Lister();
+    Voiture? Trouver(int id);
+    decimal CalculerTarif(
+        Voiture v, int jours);
+}</code></pre>
+        <p>L'interface décrit <strong>ce que</strong> le service fait, jamais comment. C'est elle que les controllers demanderont.</p>
+      </div>
+      <div>
+        <h3>2. L'implémentation</h3>
+<pre><code>public class VoitureService : IVoitureService
+{
+    private readonly IVoitureRepository _repo;
+
+    public VoitureService(
+        IVoitureRepository repo)
+    {
+        _repo = repo;
+    }
+
+    public List&lt;Voiture&gt; Lister()
+        =&gt; _repo.All();
+
+    public Voiture? Trouver(int id)
+        =&gt; _repo.All()
+            .FirstOrDefault(v =&gt; v.Id == id);
+
+    public decimal CalculerTarif(
+        Voiture v, int jours)
+        =&gt; v.TarifJournalier * jours;
+}</code></pre>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 14px;">
+      La classe dépend de l'abstraction <code>IVoitureRepository</code>, pas d'une implémentation concrète → elle aussi sera injectée. <strong>Le DIP se propage en cascade.</strong> C'est ce <code>VoitureService</code> qu'on enregistre ensuite dans <code>Program.cs</code>.
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Service container. builder.Services.Add est le moment ou tu dis 'voici les implementations'. Le runtime resout automatiquement les chaines de dependances. Add interface + implementation a chaque ligne. C'est ici qu'on enregistre le VoitureService cree juste avant.">
+    <div class="slide-number">J4.16</div>
+    <div class="slide-title">Le service container</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Enregistrement dans Program.cs</h3>
+<pre><code>var builder = WebApplication
+    .CreateBuilder(args);
+
+builder.Services
+    .AddControllersWithViews();
+
+// Tes services
+builder.Services.AddSingleton&lt;
+    IVoitureRepository,
+    VoitureRepositoryJson&gt;();
+
+builder.Services.AddScoped&lt;
+    IVoitureService,
+    VoitureService&gt;();
+
+builder.Services.AddTransient&lt;
+    ITarifCalculator,
+    TarifStandard&gt;();
+
+var app = builder.Build();</code></pre>
+      </div>
+      <div>
+        <h3>Consommation</h3>
+<pre><code>public class VoituresController : Controller
+{
+    private readonly IVoitureService _service;
+
+    public VoituresController(
+        IVoitureService service)
+    {
+        _service = service;
+    }
+
+    // ... actions
+}</code></pre>
+        <p>Tu déclares l'interface dans le constructeur. ASP.NET injecte l'implémentation enregistrée.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Lifetimes. Singleton = un pour toute l'app. Scoped = un par requete HTTP. Transient = un par injection. Le choix depend de l'etat. Stateless ? Singleton ou Transient. Stateful par requete ? Scoped. Stateful global ? Singleton avec thread safety.">
+    <div class="slide-number">J4.17</div>
+    <div class="slide-title">Lifetimes : Singleton, Scoped, Transient</div>
+    <div class="three-cols" style="margin-top: 20px;">
+      <div class="card violet">
+        <h4>Singleton</h4>
+        <p>Une seule instance pour toute l'application. Créée au premier usage, vit jusqu'au shutdown.</p>
+        <p><strong>Quand :</strong> caches, repositories en mémoire, services stateless globaux.</p>
+        <p><strong>Attention :</strong> thread safety obligatoire si état mutable.</p>
+      </div>
+      <div class="card emerald">
+        <h4>Scoped</h4>
+        <p>Une instance par requête HTTP. Recréée à chaque requête, partagée entre les services d'une même requête.</p>
+        <p><strong>Quand :</strong> DbContext, unit of work, contexte utilisateur.</p>
+      </div>
+      <div class="card cyan">
+        <h4>Transient</h4>
+        <p>Une nouvelle instance à chaque injection. Vie courte, pas d'état conservé.</p>
+        <p><strong>Quand :</strong> services stateless légers, calculs simples.</p>
+      </div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      En cas de doute, commence par <code>Scoped</code>. C'est le défaut le plus sûr pour la plupart des cas.
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Schema resolution. Le runtime resout la chaine. Tu demandes un controller. Il a besoin d'un service. Le service a besoin d'un repository. Le runtime construit la chaine, instancie chaque maillon, injecte. Tout est cable une fois dans Program.cs.">
+    <div class="slide-number">J4.18</div>
+    <div class="slide-title">Résolution en chaîne</div>
+    <p class="slide-subtitle">Le runtime construit toute la chaîne automatiquement à partir des enregistrements de Program.cs.</p>
+    <div class="flow-diagram">
+      <div class="flow-step">Requête : GET /Voitures</div>
+      <div class="flow-arrow">↓ runtime ↓</div>
+      <div class="flow-step">Besoin : VoituresController</div>
+      <div class="flow-arrow">↓ son ctor demande IVoitureService ↓</div>
+      <div class="flow-step">Service container fournit : VoitureService</div>
+      <div class="flow-arrow">↓ son ctor demande IVoitureRepository ↓</div>
+      <div class="flow-step">Service container fournit : VoitureRepositoryJson</div>
+      <div class="flow-arrow">↓ injection en cascade ↓</div>
+      <div class="flow-step highlight">VoituresController instancié et prêt à servir</div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-exercise="../exercises/J4-mini-2-di-lifetimes.md" data-note="Mini exo 2. 5 min. Pour 5 services, choisir Singleton, Scoped ou Transient. Justifier. Erreurs frequentes : DbContext en Singleton (concurrence), repository stateless en Transient (overhead inutile).">
+    <div class="slide-number">J4.19</div>
+    <div class="slide-title">Mini exo 2 : choisir le bon lifetime</div>
+    <p class="slide-subtitle">5 services. Pour chacun, choisir Singleton, Scoped ou Transient, et justifier en une phrase.</p>
+    <div class="info-box tip" style="margin-top: 20px;">
+      Ouvre l'énoncé complet avec la touche <code>T</code>.
+    </div>
+    <div class="info-box success" style="margin-top: 12px;">
+      Test mental : l'état doit-il survivre à la requête ? Doit-il être partagé entre requêtes ?
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="4" data-exercise="../exercises/J4-projet-fil-rouge-location-web.md" data-note="Projet fil rouge. Tu reprends la flotte de location (exercice synthese J1+J2) et la migres en web. Tu reutilises les classes du domaine, tu ajoutes les couches Repository, Service, Controllers, Views. Le projet utilise tout ce qu'on a vu en 4 jours.">
+    <div class="slide-number">J4.20</div>
+    <div class="slide-title accent">Projet fil rouge : la flotte sur le web</div>
+    <p class="slide-subtitle">Tu reprends la flotte de location modélisée en console, tu la sors sur le web avec ASP.NET Core MVC.</p>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Scope. Listing, detail, CRUD voitures via formulaires HTML, reservation. Persistance JSON pour rester simple. Architecture en couches : Domain (reutilise tel quel), Repository, Service, Controllers, Views.">
+    <div class="slide-number">J4.21</div>
+    <div class="slide-title">Le scope</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Fonctionnalités</h3>
+        <ul>
+          <li>Liste de la flotte</li>
+          <li>Détail d'un véhicule (fiche)</li>
+          <li>Ajout, modification, suppression d'une voiture via formulaires</li>
+          <li>Réservation avec calcul de tarif</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contraintes</h3>
+        <ul>
+          <li>Réutiliser tes classes du domaine (Vehicule, Voiture, Moto, etc.)</li>
+          <li>Persistance JSON sur disque</li>
+          <li>Validation côté serveur</li>
+          <li>Injection de dépendances partout où c'est utile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Architecture en couches. Domain reste comme tu l'as code en console (classes pures, pas de dependance web). Repository expose IVoitureRepository injecte. Service IVoitureService orchestre. Controllers consomment le service. Views recoivent des ViewModels.">
+    <div class="slide-number">J4.22</div>
+    <div class="slide-title">Architecture proposée</div>
+    <div class="diagram-tree">
+      <div class="dt-node dt-parent">Views Razor<small>Razor + ViewModels</small></div>
+      <div class="dt-down">↓ rendues par ↓</div>
+      <div class="dt-node">Controllers<small>orchestration HTTP</small></div>
+      <div class="dt-down">↓ appellent ↓</div>
+      <div class="dt-node">IVoitureService<small>règles métier, calcul tarif</small></div>
+      <div class="dt-down">↓ appelle ↓</div>
+      <div class="dt-node">IVoitureRepository<small>persistance JSON</small></div>
+      <div class="dt-down">↓ travaille sur ↓</div>
+      <div class="dt-node dt-interface">Domain<small>Vehicule, Voiture, Moto, Reservation</small></div>
+    </div>
+    <div class="info-box tip" style="margin-top: 16px;">
+      Chaque couche dépend uniquement de l'abstraction du dessous (DIP). Tu pourras switcher la persistance JSON pour SQL plus tard sans toucher au reste.
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Phases. Cinq etapes progressives. Chaque etape produit quelque chose qui tourne. Phase 1 setup. Phase 2 lecture (Index + Detail). Phase 3 ecriture (CRUD + validation). Phase 4 DI + persistance JSON. Phase 5 reservation. Bonus apres.">
+    <div class="slide-number">J4.23</div>
+    <div class="slide-title">Phases du projet</div>
+    <div class="roles-grid" style="margin-top: 20px;">
+      <div class="role-tile emerald"><strong>1. Setup</strong><span>Projet ASP.NET Core MVC créé. Domain copié depuis la console. Premier run.</span></div>
+      <div class="role-tile cyan"><strong>2. Lecture</strong><span>VoituresController avec Index et Detail. Données en dur. Views Razor.</span></div>
+      <div class="role-tile blue"><strong>3. Écriture</strong><span>Create, Edit, Delete avec formulaires. Validation DataAnnotations. Redirections.</span></div>
+      <div class="role-tile violet"><strong>4. DI + persistance</strong><span>IVoitureRepository, VoitureRepositoryJson, injection dans Program.cs.</span></div>
+      <div class="role-tile amber"><strong>5. Réservation</strong><span>Formulaire de réservation, ITarifCalculator injecté, calcul affiché.</span></div>
+      <div class="role-tile rose"><strong>Bonus</strong><span>Pagination, recherche, gestion des autres types de véhicules.</span></div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Criteres d'evaluation. Comme la roadmap mais en termes de check. L'app tourne. Phases atteintes. Le code respecte ce qu'on a vu (SOLID, DI, encapsulation). Pas de logique metier dans le controller. Validation cote serveur.">
+    <div class="slide-number">J4.24</div>
+    <div class="slide-title">Critères d'évaluation</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card emerald">
+        <h4>Fonctionnel</h4>
+        <ul>
+          <li>L'app tourne sur localhost</li>
+          <li>Phases 1 à 4 atteintes minimum</li>
+          <li>CRUD complet sur Voiture fonctionne</li>
+          <li>Persistance JSON survit au redémarrage</li>
+        </ul>
+      </div>
+      <div class="card violet">
+        <h4>Architecture</h4>
+        <ul>
+          <li>Domain réutilisé sans modification web</li>
+          <li>Services et repository injectés via interface</li>
+          <li>Pas de logique métier dans les controllers</li>
+          <li>Validation côté serveur avec DataAnnotations</li>
+          <li>ViewModels distincts du domaine quand pertinent</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="4" data-note="Transition persistance. Jusqu'ici on stockait en JSON pour rester simple. On passe a une vraie base SQL. SQLite : zero serveur, un fichier. EF Core : l'ORM officiel de .NET. Le but est de remplacer l'implementation du repository sans toucher au reste (DIP).">
+    <div class="slide-number">J4.25</div>
+    <div class="slide-title accent">Une vraie base de données : SQLite</div>
+    <p class="slide-subtitle">Le JSON dépanne, mais une appli sérieuse a besoin d'une base SQL. SQLite + Entity Framework Core = persistance robuste en quelques lignes.</p>
+  </div>
+
+  <div class="slide" data-day="4" data-note="SQLite + EF Core. SQLite : base SQL embarquee dans un seul fichier .db, pas de serveur a installer, ideale pour dev/desktop/petites apps. EF Core : Object-Relational Mapper. Tu manipules des objets C#, il genere le SQL. Mapping classe vers table, propriete vers colonne. Requetes en LINQ.">
+    <div class="slide-number">J4.26</div>
+    <div class="slide-title">SQLite + EF Core, le duo</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div class="card cyan">
+        <h4>SQLite</h4>
+        <p>Une base SQL <strong>dans un seul fichier</strong> (<code>.db</code>). Pas de serveur à installer ni à lancer.</p>
+        <p>Embarquée, zéro configuration. Parfaite pour le dev, le desktop et les petites applis web.</p>
+        <p>Même langage SQL que les grands : tu migres vers PostgreSQL plus tard sans réécrire ta logique.</p>
+      </div>
+      <div class="card violet">
+        <h4>Entity Framework Core</h4>
+        <p>L'<strong>ORM</strong> officiel de .NET (<em>Object-Relational Mapping</em>).</p>
+        <p>Tu écris des classes C#, EF génère le SQL et crée les tables. Une classe ↔ une table, une propriété ↔ une colonne.</p>
+        <p>Les requêtes s'écrivent en <strong>LINQ</strong> : <code>_db.Voitures.Where(v =&gt; v.Disponible)</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Installation. Deux packages NuGet : le provider Sqlite et le package Design (necessaire pour generer les migrations). Plus l'outil CLI dotnet-ef installe globalement, qui fournit les commandes de migration. dotnet add package depuis le dossier du projet.">
+    <div class="slide-number">J4.27</div>
+    <div class="slide-title">Installer les packages</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Packages NuGet du projet</h3>
+<pre><code>dotnet add package \
+  Microsoft.EntityFrameworkCore.Sqlite
+
+dotnet add package \
+  Microsoft.EntityFrameworkCore.Design</code></pre>
+        <p><code>Sqlite</code> = le provider de base de données. <code>Design</code> = requis pour générer les migrations.</p>
+      </div>
+      <div>
+        <h3>Outil de migration (CLI)</h3>
+<pre><code>dotnet tool install \
+  --global dotnet-ef
+
+dotnet ef --version</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          <code>dotnet-ef</code> s'installe une seule fois sur ta machine. Il fournit les commandes <code>dotnet ef migrations</code> et <code>dotnet ef database</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Le DbContext. C'est la session avec la base. Il herite de DbContext. Chaque DbSet expose une table. Le constructeur recoit les options (dont la connection string) via DI : c'est ASP.NET qui les fournit. EF deduit le schema a partir des proprietes des classes du domaine.">
+    <div class="slide-number">J4.28</div>
+    <div class="slide-title">Le DbContext : la porte vers la base</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+<pre><code>using Microsoft.EntityFrameworkCore;
+
+public class AppDbContext : DbContext
+{
+    public AppDbContext(
+        DbContextOptions&lt;AppDbContext&gt; options)
+        : base(options) { }
+
+    public DbSet&lt;Voiture&gt; Voitures
+        =&gt; Set&lt;Voiture&gt;();
+
+    public DbSet&lt;Reservation&gt; Reservations
+        =&gt; Set&lt;Reservation&gt;();
+}</code></pre>
+      </div>
+      <div>
+        <h3>À retenir</h3>
+        <ul>
+          <li>Hérite de <code>DbContext</code> : c'est la <strong>session</strong> avec la base.</li>
+          <li>Chaque <code>DbSet&lt;T&gt;</code> correspond à <strong>une table</strong>.</li>
+          <li>Le constructeur reçoit les <code>options</code> (connection string) <strong>injectées</strong> par ASP.NET.</li>
+          <li>EF déduit colonnes et types à partir des propriétés de <code>Voiture</code> et <code>Reservation</code>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Relations. Exemple CarBrand -> CarModel -> Car, deux relations un-a-plusieurs. EF Core deduit la relation par convention : une propriete CarBrandId (cle etrangere) + une propriete de navigation Brand. Cote 'plusieurs' : une List. Pour charger les entites liees on utilise Include / ThenInclude. La migration cree les tables ET les cles etrangeres automatiquement.">
+    <div class="slide-number">J4.29</div>
+    <div class="slide-title">Relations : CarBrand → CarModel → Car</div>
+    <p class="slide-subtitle">Deux relations <strong>un-à-plusieurs</strong> : une marque a plusieurs modèles, un modèle a plusieurs voitures. EF Core les déduit par convention.</p>
+    <div class="two-cols" style="margin-top: 16px;">
+      <div>
+        <h3>Trois entités liées</h3>
+<pre><code>public class CarBrand
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public List&lt;CarModel&gt; Models { get; set; } = new();
+}
+
+public class CarModel
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public int CarBrandId { get; set; }          // FK
+    public CarBrand Brand { get; set; } = null!;
+    public List&lt;Car&gt; Cars { get; set; } = new();
+}
+
+public class Car
+{
+    public int Id { get; set; }
+    public string Plate { get; set; } = "";
+    public int CarModelId { get; set; }          // FK
+    public CarModel Model { get; set; } = null!;
+}</code></pre>
+      </div>
+      <div>
+        <h3>Ce qu'EF Core en déduit</h3>
+        <ul>
+          <li><code>CarBrandId</code> + la navigation <code>Brand</code> = <strong>clé étrangère</strong> détectée par convention.</li>
+          <li><code>Models</code> / <code>Cars</code> (des <code>List&lt;&gt;</code>) = le côté <strong>« plusieurs »</strong>.</li>
+          <li>Trois <code>DbSet&lt;&gt;</code> à ajouter dans <code>AppDbContext</code> : <code>CarBrands</code>, <code>CarModels</code>, <code>Cars</code>.</li>
+        </ul>
+        <h3>Charger les entités liées</h3>
+<pre><code>_db.Cars
+   .Include(c =&gt; c.Model)
+       .ThenInclude(m =&gt; m.Brand)
+   .ToList();</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          <code>dotnet ef migrations add Relations</code> crée les tables <strong>et</strong> les clés étrangères automatiquement. Aucune écriture de SQL.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="La connexion. La connection string vit dans appsettings.json, pas en dur dans le code. Program.cs enregistre le DbContext avec AddDbContext et UseSqlite, en lisant la chaine depuis la configuration. AddDbContext enregistre le contexte en Scoped : un par requete HTTP, exactement le lifetime vu plus tot.">
+    <div class="slide-number">J4.30</div>
+    <div class="slide-title">Connexion : configuration + Program.cs</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>appsettings.json</h3>
+<pre><code>{
+  "ConnectionStrings": {
+    "Default": "Data Source=location.db"
+  }
+}</code></pre>
+        <p><code>Data Source=location.db</code> → un fichier <code>location.db</code> à la racine du projet.</p>
+      </div>
+      <div>
+        <h3>Program.cs</h3>
+<pre><code>builder.Services.AddDbContext&lt;AppDbContext&gt;(
+    options =&gt; options.UseSqlite(
+        builder.Configuration
+            .GetConnectionString("Default")));</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          <code>AddDbContext</code> enregistre le contexte en <strong>Scoped</strong> (un par requête HTTP) - d'où le lifetime <code>Scoped</code> recommandé pour un <code>DbContext</code>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Migrations + usage. migrations add genere le code C# qui decrit le schema. database update applique : il cree location.db avec les tables. Cote repository : tu injectes AppDbContext et tu utilises LINQ + SaveChanges. Meme interface IVoitureRepository qu'avant, seule l'implementation change. DIP en action.">
+    <div class="slide-number">J4.31</div>
+    <div class="slide-title">Créer la base & l'utiliser</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Migrations</h3>
+<pre><code>dotnet ef migrations add InitialCreate
+dotnet ef database update</code></pre>
+        <p><code>migrations add</code> génère le code décrivant le schéma. <code>database update</code> l'applique → crée <code>location.db</code> et ses tables.</p>
+      </div>
+      <div>
+        <h3>Repository EF Core</h3>
+<pre><code>public class VoitureRepository
+    : IVoitureRepository
+{
+    private readonly AppDbContext _db;
+    public VoitureRepository(AppDbContext db)
+        =&gt; _db = db;
+
+    public List&lt;Voiture&gt; All()
+        =&gt; _db.Voitures.ToList();
+
+    public void Add(Voiture v)
+    {
+        _db.Voitures.Add(v);
+        _db.SaveChanges();
+    }
+}</code></pre>
+      </div>
+    </div>
+    <div class="info-box success" style="margin-top: 14px;">
+      Même interface <code>IVoitureRepository</code> que la version JSON : tu changes l'enregistrement dans <code>Program.cs</code>, le reste de l'app ne bouge pas. <strong>C'est le DIP qui paie.</strong>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="4" data-note="Transition styling. Les vues Razor par defaut sont en HTML brut. Tailwind apporte un systeme de design utility-first, sans ecrire de CSS a la main. On voit deux methodes d'installation : CDN pour demarrer vite, build CLI pour la prod.">
+    <div class="slide-number">J4.32</div>
+    <div class="slide-title accent">Styliser les vues : Tailwind CSS</div>
+    <p class="slide-subtitle">Les vues Razor sortent du HTML brut. Tailwind apporte un design system cohérent sans écrire une ligne de CSS à la main.</p>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Pourquoi Tailwind. Utility-first : des classes utilitaires composees directement dans le HTML, plutot que des fichiers CSS qui gonflent. Coherence garantie par le design system. Deux facons de l'installer : le CDN (une ligne, zero build, pour demarrer) et le build CLI (CSS purge et optimise, pour la prod).">
+    <div class="slide-number">J4.33</div>
+    <div class="slide-title">Pourquoi Tailwind & comment l'installer</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>Utility-first</h3>
+        <p>Des classes utilitaires composées <strong>directement dans le HTML</strong>, pas de CSS à écrire à la main :</p>
+<pre><code>&lt;button class="rounded bg-blue-600 px-4
+        py-2 text-white hover:bg-blue-700"&gt;
+    Réserver
+&lt;/button&gt;</code></pre>
+        <p>Cohérence garantie, pas de fichiers CSS qui gonflent au fil du projet.</p>
+      </div>
+      <div>
+        <h3>Deux méthodes</h3>
+        <div class="info-box tip">
+          <strong>CDN (Play CDN)</strong> - une ligne, zéro build. Idéal pour démarrer et pour le bootcamp. Pas pour la prod.
+        </div>
+        <div class="info-box success" style="margin-top: 12px;">
+          <strong>CLI / build</strong> - génère un CSS purgé et optimisé. La vraie méthode de production (quelques Ko au final).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Option rapide : le CDN. Une balise script dans le head de _Layout.cshtml et tu peux utiliser toutes les classes Tailwind dans toutes les vues. Le CDN recompile le CSS dans le navigateur a chaque chargement : pratique en dev, deconseille en prod (lent, pas de purge). Parfait pour le bootcamp.">
+    <div class="slide-number">J4.34</div>
+    <div class="slide-title">Option rapide : le CDN</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>1. Dans Views/Shared/_Layout.cshtml</h3>
+<pre><code>&lt;head&gt;
+    &lt;script
+      src="https://cdn.tailwindcss.com"&gt;
+    &lt;/script&gt;
+&lt;/head&gt;</code></pre>
+        <h3>2. Dans n'importe quelle vue</h3>
+<pre><code>&lt;h1 class="text-3xl font-bold
+           text-blue-600"&gt;
+    Catalogue
+&lt;/h1&gt;</code></pre>
+      </div>
+      <div>
+        <div class="info-box success">
+          Une seule ligne et <strong>toutes</strong> les classes Tailwind sont disponibles dans toutes les vues. Aucune étape de build.
+        </div>
+        <div class="info-box warning" style="margin-top: 12px;">
+          Le CDN recompile le CSS <strong>dans le navigateur</strong> à chaque chargement → pratique en dev, déconseillé en production (lent, pas de purge).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" data-day="4" data-note="Option build : le CLI. On installe tailwindcss, on initialise la config, on declare ou scanner les classes (les .cshtml), on ecrit un input.css avec les directives @tailwind, puis on lance le build en watch qui genere app.css dans wwwroot. On lie app.css dans _Layout. Le champ content permet la purge : seul le CSS utilise est genere.">
+    <div class="slide-number">J4.35</div>
+    <div class="slide-title">Option build : Tailwind CLI</div>
+    <div class="two-cols" style="margin-top: 20px;">
+      <div>
+        <h3>1. Installer & configurer</h3>
+<pre><code>npm install -D tailwindcss
+npx tailwindcss init</code></pre>
+        <p><code>tailwind.config.js</code> - où scanner les classes :</p>
+<pre><code>content: ["./Views/**/*.cshtml"]</code></pre>
+        <p><code>wwwroot/css/input.css</code> :</p>
+<pre><code>@tailwind base;
+@tailwind components;
+@tailwind utilities;</code></pre>
+      </div>
+      <div>
+        <h3>2. Builder & lier</h3>
+<pre><code>npx tailwindcss \
+  -i wwwroot/css/input.css \
+  -o wwwroot/css/app.css \
+  --watch</code></pre>
+        <p>Dans <code>_Layout.cshtml</code> :</p>
+<pre><code>&lt;link rel="stylesheet"
+      href="~/css/app.css" /&gt;</code></pre>
+        <div class="info-box tip" style="margin-top: 12px;">
+          <code>content</code> dit à Tailwind où chercher les classes utilisées → il ne génère que le CSS réellement employé (<strong>purge</strong>). Fichier final = quelques Ko.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide hero" data-day="4" data-note="Recap + fin du bootcamp. 4 jours. Du Hello World a une appli web architectee, persistee en SQLite et stylee avec Tailwind. Pour aller plus loin : identite/authentification, deployment Azure, tests d'integration, Blazor.">
+    <div class="slide-number">J4.36</div>
+    <div class="slide-title accent">Bootcamp bouclé</div>
+    <div class="two-cols" style="margin-top: 24px; max-width: 980px;">
+      <div>
+        <h3>Acquis des 4 jours</h3>
+        <ul>
+          <li><strong>J1</strong> : .NET 8, C#, encapsulation</li>
+          <li><strong>J2</strong> : héritage, polymorphisme, interfaces</li>
+          <li><strong>J3</strong> : composition, SOLID, exceptions OO</li>
+          <li><strong>J4</strong> : ASP.NET Core MVC, DI, SQLite + EF Core, Tailwind, projet web complet</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pour aller plus loin</h3>
+        <div class="info-box tip">
+          ASP.NET Core Identity pour l'authentification. Relations et requêtes avancées avec EF Core. Tests d'intégration avec <code>WebApplicationFactory</code>. Blazor pour les SPA en C#. Déploiement Azure App Service.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="speaker-notes" id="speakerNotes">
+  <h4>Notes orateur</h4>
+  <p id="notesText"></p>
+</div>
+
+<div class="tp-panel" id="tpPanel">
+  <div class="tp-panel-header">
+    <h3>Travaux Pratiques</h3>
+    <a id="tpOpenLink" href="#" target="_blank">Ouvrir dans un onglet</a>
+  </div>
+  <div class="tp-panel-body" id="tpPanelBody">
+    <p class="tp-panel-empty">Sélectionnez une slide avec un exercice.</p>
+  </div>
+</div>
+
+<div class="keyboard-hints">
+  <span><span class="key">&larr;</span><span class="key">&rarr;</span> navigation</span>
+  <span><span class="key">N</span> notes</span>
+  <span><span class="key">T</span> TP</span>
+  <span><span class="key">F</span> plein écran</span>
+  <span><span class="key">A</span> aide</span>
+</div>
+
+<script>
+let currentDay = 1, currentSlideIndex = 0, notesVisible = false, tpVisible = false, assistMode = false, currentExercisePath = '';
+const exerciseCache = new Map();
+let slides = [], filteredSlides = [];
+const slidesWrapper = document.getElementById('slidesWrapper');
+const dayBtns = document.querySelectorAll('.day-btn');
+const prevBtn = document.getElementById('prevBtn'), nextBtn = document.getElementById('nextBtn');
+const notesBtn = document.getElementById('notesBtn'), fullscreenBtn = document.getElementById('fullscreenBtn');
+const menuBtn = document.getElementById('menuBtn'), slideMenu = document.getElementById('slideMenu');
+const speakerNotes = document.getElementById('speakerNotes'), notesText = document.getElementById('notesText');
+const progressBar = document.getElementById('progressBar');
+const currentSlideEl = document.getElementById('currentSlide'), totalSlidesEl = document.getElementById('totalSlides');
+const tpBtn = document.getElementById('tpBtn'), assistBtn = document.getElementById('assistBtn');
+const tpPanel = document.getElementById('tpPanel'), tpPanelBody = document.getElementById('tpPanelBody');
+const tpOpenLink = document.getElementById('tpOpenLink');
+
+function init() { slides = Array.from(document.querySelectorAll('.slide')); filterSlidesByDay(currentDay); updateSlide(); buildSlideMenu(); }
+function filterSlidesByDay(day) { currentDay = day; filteredSlides = slides.filter(s => parseInt(s.dataset.day) === day); currentSlideIndex = 0; dayBtns.forEach(btn => btn.classList.toggle('active', parseInt(btn.dataset.day) === day)); slides.forEach(s => s.classList.remove('active', 'prev')); buildSlideMenu(); updateSlide(); }
+function buildSlideMenu() {
+  slideMenu.innerHTML = '';
+  filteredSlides.forEach((slide, index) => {
+    const number = slide.querySelector('.slide-number')?.textContent || '';
+    const title = slide.querySelector('.slide-title')?.textContent?.substring(0, 40) || '';
+    const item = document.createElement('div');
+    item.className = 'slide-menu-item' + (index === currentSlideIndex ? ' active' : '');
+    item.innerHTML = '<span class="slide-menu-number">' + number + '</span>' + title;
+    item.addEventListener('click', () => { goToSlide(index); slideMenu.classList.remove('visible'); });
+    slideMenu.appendChild(item);
+  });
+}
+function updateSlide() {
+  filteredSlides.forEach((slide, index) => {
+    slide.classList.remove('active', 'prev');
+    if (index === currentSlideIndex) slide.classList.add('active');
+    else if (index < currentSlideIndex) slide.classList.add('prev');
+  });
+  const currentSlide = filteredSlides[currentSlideIndex];
+  notesText.textContent = currentSlide?.dataset.note || 'Aucune note pour cette slide.';
+  progressBar.style.width = (((currentSlideIndex + 1) / filteredSlides.length) * 100) + '%';
+  currentSlideEl.textContent = currentSlideIndex + 1;
+  totalSlidesEl.textContent = filteredSlides.length;
+  prevBtn.disabled = currentSlideIndex === 0;
+  nextBtn.disabled = currentSlideIndex === filteredSlides.length - 1;
+  document.querySelectorAll('.slide-menu-item').forEach((item, i) => item.classList.toggle('active', i === currentSlideIndex));
+  updateTpPanelAvailability();
+}
+function nextSlide() { if (currentSlideIndex < filteredSlides.length - 1) { currentSlideIndex++; updateSlide(); } }
+function prevSlide() { if (currentSlideIndex > 0) { currentSlideIndex--; updateSlide(); } }
+function goToSlide(index) { if (index >= 0 && index < filteredSlides.length) { currentSlideIndex = index; updateSlide(); } }
+function toggleNotes() { notesVisible = !notesVisible; speakerNotes.classList.toggle('visible', notesVisible); notesBtn.classList.toggle('active', notesVisible); }
+function setTpVisible(visible) { tpVisible = visible; tpPanel.classList.toggle('visible', tpVisible); tpBtn.classList.toggle('active', tpVisible); if (tpVisible && notesVisible) { notesVisible = false; speakerNotes.classList.remove('visible'); notesBtn.classList.remove('active'); } }
+function toggleTp() { const c = filteredSlides[currentSlideIndex]; if (!c?.dataset.exercise) return; setTpVisible(!tpVisible); if (tpVisible) loadExerciseForSlide(c); }
+function toggleAssist() { const c = filteredSlides[currentSlideIndex]; if (!c?.dataset.exercise) return; assistMode = !assistMode; assistBtn.classList.toggle('active', assistMode); if (tpVisible) loadExerciseForSlide(c); }
+function stripAssistSection(markdown) { const lines = markdown.split('\n'); const out = []; let skip = false; for (const line of lines) { if (/^##\s*(Aide|Assistance)\b/i.test(line)) { skip = true; continue; } if (skip && /^#{1,6}\s+/.test(line)) skip = false; if (skip) continue; out.push(line); } return out.join('\n'); }
+function escapeHtml(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+function renderMarkdown(md) {
+  const lines = md.split('\n'); let html = '', inCode = false, listType = null;
+  const closeList = () => { if (listType) { html += '</' + listType + '>'; listType = null; } };
+  for (const line of lines) {
+    if (line.trim().startsWith('```')) { if (inCode) { html += '</code></pre>'; inCode = false; } else { closeList(); html += '<pre><code>'; inCode = true; } continue; }
+    if (inCode) { html += escapeHtml(line) + '\n'; continue; }
+    if (line.trim() === '') { closeList(); continue; }
+    const hm = line.match(/^(#{1,3})\s+(.*)$/);
+    if (hm) { closeList(); const tag = hm[1].length <= 2 ? 'h3' : 'h4'; html += '<' + tag + '>' + escapeHtml(hm[2]) + '</' + tag + '>'; continue; }
+    const om = line.match(/^\d+\.\s+(.*)$/);
+    if (om) { if (listType !== 'ol') { closeList(); listType = 'ol'; html += '<ol>'; } html += '<li>' + escapeHtml(om[1]) + '</li>'; continue; }
+    const bm = line.match(/^[-*]\s+(.*)$/);
+    if (bm) { if (listType !== 'ul') { closeList(); listType = 'ul'; html += '<ul>'; } html += '<li>' + escapeHtml(bm[1]) + '</li>'; continue; }
+    closeList(); html += '<p>' + escapeHtml(line) + '</p>';
+  }
+  closeList(); if (inCode) html += '</code></pre>';
+  return html;
+}
+function renderExercise(md) { tpPanelBody.innerHTML = renderMarkdown(assistMode ? md : stripAssistSection(md)); }
+function loadExerciseForSlide(slide) {
+  const path = slide?.dataset.exercise || '';
+  if (!path) { tpPanelBody.innerHTML = '<p class="tp-panel-empty">Aucun énoncé.</p>'; tpOpenLink.href = '#'; return; }
+  currentExercisePath = path;
+  const url = new URL(path, window.location.href).toString();
+  tpOpenLink.href = url;
+  const cached = exerciseCache.get(path);
+  if (cached) { renderExercise(cached); return; }
+  tpPanelBody.innerHTML = '<p class="tp-panel-empty">Chargement...</p>';
+  fetch(url).then(r => { if (!r.ok) throw new Error('not found'); return r.text(); }).then(t => { exerciseCache.set(path, t); renderExercise(t); }).catch(() => { tpPanelBody.innerHTML = '<p class="tp-panel-empty">Énoncé introuvable.</p>'; });
+}
+function updateTpPanelAvailability() {
+  const c = filteredSlides[currentSlideIndex];
+  const has = !!c?.dataset.exercise;
+  tpBtn.disabled = !has; assistBtn.disabled = !has;
+  assistBtn.classList.toggle('active', assistMode && has);
+  if (!has) { setTpVisible(false); return; }
+  if (tpVisible && c.dataset.exercise !== currentExercisePath) loadExerciseForSlide(c);
+}
+function toggleFullscreen() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); fullscreenBtn.classList.add('active'); } else { document.exitFullscreen(); fullscreenBtn.classList.remove('active'); } }
+dayBtns.forEach(btn => btn.addEventListener('click', () => filterSlidesByDay(parseInt(btn.dataset.day))));
+prevBtn.addEventListener('click', prevSlide);
+nextBtn.addEventListener('click', nextSlide);
+notesBtn.addEventListener('click', toggleNotes);
+fullscreenBtn.addEventListener('click', toggleFullscreen);
+tpBtn.addEventListener('click', toggleTp);
+assistBtn.addEventListener('click', toggleAssist);
+menuBtn.addEventListener('click', (e) => { e.stopPropagation(); slideMenu.classList.toggle('visible'); });
+document.addEventListener('click', (e) => { if (!slideMenu.contains(e.target) && e.target !== menuBtn) slideMenu.classList.remove('visible'); });
+document.addEventListener('keydown', (e) => {
+  switch(e.key) {
+    case 'ArrowRight': case 'ArrowDown': case ' ': e.preventDefault(); nextSlide(); break;
+    case 'ArrowLeft': case 'ArrowUp': e.preventDefault(); prevSlide(); break;
+    case 'n': case 'N': toggleNotes(); break;
+    case 'f': case 'F': toggleFullscreen(); break;
+    case 't': case 'T': toggleTp(); break;
+    case 'a': case 'A': toggleAssist(); break;
+    case 'Escape': slideMenu.classList.remove('visible'); break;
+    case '1': filterSlidesByDay(1); break;
+    case '2': filterSlidesByDay(2); break;
+    case '3': filterSlidesByDay(3); break;
+    case '4': filterSlidesByDay(4); break;
+  }
+});
+let touchStartX = 0;
+slidesWrapper.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+slidesWrapper.addEventListener('touchend', (e) => { const diff = touchStartX - e.changedTouches[0].screenX; if (Math.abs(diff) > 50) { if (diff > 0) nextSlide(); else prevSlide(); } }, { passive: true });
+document.addEventListener('fullscreenchange', () => fullscreenBtn.classList.toggle('active', !!document.fullscreenElement));
+init();
+</script>
+</body>
+</html>
