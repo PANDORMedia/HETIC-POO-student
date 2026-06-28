@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Démo : application web ASP.NET Core MVC</title>
+<link rel="stylesheet" href="../../../style.css">
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar"><div class="sidebar-header"><img class="sidebar-logo" src="https://nerdmessenger.s3.fr-par.scw.cloud/00000000-0000-0000-0000-000000000001/f256a8ef-3d7c-4a20-a8d9-5538e9c9f3a2/branding/2026/04/0ec3ac29-47cc-4e24-9e30-0b55eb7e8c43-a1b367b6-990d-4e59-a3ec-3a3fc007b161.webp" alt="Institute 73" /><a href="../../../index.html" class="sidebar-title">Programmation Orientée Objet - C#</a></div><div class="sidebar-content"><details class="nav-course" open><summary class="nav-course-title">Programmation Orientée Objet - C#</summary><div class="nav-module-title">Environnement .NET, Classes &amp; Encapsulation</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/01-setup-environnement-net.html">Setup environnement .NET <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/02-guide-d-installation-net.html">Guide d&#39;installation .NET <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/03-exercices-setup-premier-projet-console.html">Exercices : Setup &amp; premier projet console <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/04-classes-objets.html">Classes &amp; Objets <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/05-classes-objets.html">Classes &amp; Objets <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/06-exercices-classes-objets.html">Exercices : Classes &amp; Objets <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/07-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/08-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/09-exercices-constructeurs.html">Exercices : Constructeurs <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/10-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/11-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/12-exercices-encapsulation-proprietes.html">Exercices : Encapsulation &amp; Propriétés <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/13-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/14-quiz-fondamentaux-oop.html">Quiz : Fondamentaux OOP <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/15-synthese-fondamentaux-oop.html">Synthèse : Fondamentaux OOP <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Héritage, Polymorphisme &amp; Interfaces</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/16-heritage.html">Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/17-heritage.html">Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/18-exercices-heritage.html">Exercices : Héritage <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/19-polymorphisme-virtual-override.html">Polymorphisme (virtual / override) <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/20-polymorphisme.html">Polymorphisme <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/21-exercices-polymorphisme.html">Exercices : Polymorphisme <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/22-classes-abstraites.html">Classes abstraites <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/23-classes-abstraites.html">Classes abstraites <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/24-exercices-classes-abstraites.html">Exercices : Classes abstraites <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/25-interfaces-contrats-decouplage.html">Interfaces : contrats &amp; découplage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/26-interfaces.html">Interfaces <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/27-exercices-interfaces.html">Exercices : Interfaces <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/28-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/29-quiz-heritage-interfaces.html">Quiz : Héritage &amp; Interfaces <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/30-synthese-heritage-interfaces.html">Synthèse : Héritage &amp; Interfaces <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Composition, SOLID &amp; Exceptions</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/31-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/32-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/33-exercices-composition.html">Exercices : Composition <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/34-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/35-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/36-exercices-srp-ocp.html">Exercices : SRP &amp; OCP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/37-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/38-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/39-exercices-lsp-isp-dip.html">Exercices : LSP, ISP &amp; DIP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/40-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/41-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/42-exercices-exceptions-oo.html">Exercices : Exceptions OO <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/43-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/44-quiz-solid-exceptions.html">Quiz : SOLID &amp; Exceptions <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/45-synthese-solid-exceptions.html">Synthèse : SOLID &amp; Exceptions <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">ASP.NET Core MVC : OOP appliqué</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/46-intro-asp-net-core-mvc.html">Intro ASP.NET Core MVC <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/47-asp-net-core-mvc.html">ASP.NET Core MVC <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/48-exercices-premier-projet-mvc.html">Exercices : Premier projet MVC <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/49-models-controllers-oop.html">Models &amp; Controllers OOP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/50-models-controllers.html">Models &amp; Controllers <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/51-exercices-models-controllers.html">Exercices : Models &amp; Controllers <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/52-injection-de-dependances.html">Injection de dépendances <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/53-injection-de-dependances.html">Injection de dépendances <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/54-exercices-injection-de-dependances.html">Exercices : Injection de dépendances <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/55-projet-fil-rouge-gestionnaire-de-films.html">Projet fil rouge : gestionnaire de films <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/56-projet-fil-rouge-guide-complet.html">Projet fil rouge : guide complet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/57-gestionnaire-de-films-asp-net-mvc.html">Gestionnaire de films (ASP.NET MVC) <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/58-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/59-quiz-evaluation-finale.html">Quiz : Évaluation finale <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/60-synthese-perspectives.html">Synthèse &amp; Perspectives <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson active"><a href="../../../courses/programmation-orientee-objet-c/lessons/61-demo-mvc-application-web.html">Démo : application web MVC <span class="badge badge-project">project</span></a></li></ul></details></div></nav>
+<main class="content">
+<h1>Démo : application web ASP.NET Core MVC</h1>
+<div class="lesson-meta"><span class="lesson-type lesson-type-project">project</span><span class="lesson-duration">Durée : 40 min de lecture</span></div>
+<p>Cette page présente la démo <code>aspnet-mvc</code> du dépôt : une vraie application web
+écrite avec ASP.NET Core MVC. Elle gère le parc d'une agence de location de voitures. Trois entités
+travaillent ensemble : une <strong>marque</strong> (<code>CarBrand</code>, par exemple Renault), un
+<strong>modèle</strong> rattaché à une marque (<code>CarModel</code>, par exemple Clio), et une
+<strong>voiture</strong> concrète rattachée à un modèle (<code>Car</code>, un exemplaire avec sa plaque).
+On peut lister les voitures et en créer de nouvelles. Les données sont rangées dans une base
+<strong>SQLite</strong> grâce à Entity Framework Core.</p>
+<p>C'est le point d'aboutissement du cours : toute la programmation orientée objet vue avant
+se retrouve ici, appliquée à un cas concret. Tu vas reconnaitre les classes et l'encapsulation (les
+modèles), les interfaces et le polymorphisme (le pattern repository), et surtout l'injection de
+dépendances, qui n'est plus faite à la main comme dans la démo <code>composition-logger</code> mais
+prise en charge par le framework.</p>
+<h2>Lancer la démo</h2>
+<p>La base de données n'est pas versionnée dans le dépôt : c'est EF Core qui la crée à partir
+des <em>migrations</em> (des scripts de structure rangés dans <code>Migrations/</code>). La première fois,
+tu appliques donc les migrations, puis tu lances le serveur :</p>
+<pre><code class="language-bash"># une seule fois, installe l'outil en ligne de commande d'EF Core
+dotnet tool install --global dotnet-ef
+
+cd demos/aspnet-mvc
+
+# cree le fichier rental.db et ses tables a partir des migrations
+dotnet ef database update
+
+# lance le serveur web
+dotnet run</code></pre>
+<p><code>dotnet run</code> affiche une URL locale (par exemple
+<code>http://localhost:5xxx</code>). Ouvre-la, puis va sur <code>/Car</code> pour voir la liste des
+voitures et le bouton de création. Le code source complet est dans le dépôt :
+<a href="https://github.com/PANDORMedia/HETIC-POO-student/tree/main/demos/aspnet-mvc">demos/aspnet-mvc</a>.</p>
+<h2>1. L'architecture MVC</h2>
+<p>MVC veut dire <strong>Modèle - Vue - Contrôleur</strong>. C'est une façon de découper le code
+en trois responsabilités nettes, chacune avec un seul rôle (c'est le principe SRP de SOLID) :</p>
+<ul>
+<li><strong>Modèle</strong> : les données et les règles du domaine. Ici les classes <code>Car</code>,
+<code>CarModel</code>, <code>CarBrand</code>. Elles ne savent rien du web.</li>
+<li><strong>Vue</strong> : l'affichage. Des fichiers Razor (<code>.cshtml</code>) qui produisent le HTML
+envoyé au navigateur. Elles ne contiennent pas de logique métier.</li>
+<li><strong>Contrôleur</strong> : le chef d'orchestre. Il reçoit la requête, demande les données au
+modèle (via un dépôt), choisit la vue et lui passe les données.</li>
+</ul>
+<p>Le trajet d'une requête se lit ainsi : le navigateur demande une URL, le
+<strong>routage</strong> la dirige vers une action de contrôleur, le contrôleur récupère les données et
+renvoie une vue, et la vue rend le HTML. Par exemple, l'URL <code>/Car/Index</code> appelle la méthode
+<code>Index()</code> de <code>CarController</code>, qui renvoie la vue <code>Views/Car/Index.cshtml</code>
+remplie avec la liste des voitures.</p>
+<h2>2. Program.cs : configuration et injection de dépendances</h2>
+<p>Tout commence dans <code>Program.cs</code>. On y enregistre les <em>services</em> de
+l'application dans un conteneur, puis on construit le <em>pipeline</em> des requêtes. La partie la plus
+importante pour la POO est le bloc <code>AddScoped</code> : on associe chaque interface à une
+implémentation concrète. C'est l'inversion de dépendance prise en charge par le framework. Pour changer
+de stockage, on change une seule ligne ici, sans toucher aux contrôleurs.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Program.cs</code></p><pre><code class="language-csharp">// Les directives using importent des espaces de noms (namespaces) : on rend
+// ainsi visibles les classes définies ailleurs (nos repositories, nos interfaces, EF Core).
+using aspnet.Data;
+using aspnet.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
+// Point d&#x27;entrée de l&#x27;application. Le &quot;builder&quot; sert à configurer l&#x27;application
+// avant de la démarrer : on y enregistre les services et les options.
+var builder = WebApplication.CreateBuilder(args);
+
+// On active le patron MVC (Modèle - Vue - Contrôleur) : les contrôleurs et les vues.
+builder.Services.AddControllersWithViews();
+
+// Enregistrement du contexte de base de données EF Core (notre AppDbContext)
+// en lui indiquant d&#x27;utiliser SQLite et la chaîne de connexion &quot;Default&quot; de la configuration.
+builder.Services.AddDbContext&lt;AppDbContext&gt;(options =&gt;
+    options.UseSqlite(builder.Configuration.GetConnectionString(&quot;Default&quot;)));
+
+// COEUR DE L&#x27;INJECTION DE DÉPENDANCES.
+// On dit au conteneur : &quot;chaque fois qu&#x27;une classe réclame l&#x27;interface ICarRepository,
+// fournis-lui une instance de CarSqlLiteRepository&quot;. Le code qui consomme l&#x27;abstraction
+// (l&#x27;interface) ignore totalement l&#x27;implémentation concrète : c&#x27;est l&#x27;inversion de dépendance.
+// Pour passer du stockage SQLite à un autre stockage (CSV, factice), il suffirait de
+// changer la classe à droite ici, sans toucher aux contrôleurs. C&#x27;est le polymorphisme en action.
+// AddScoped = durée de vie &quot;Scoped&quot; : une seule instance par requête HTTP entrante.
+builder.Services.AddScoped&lt;ICarRepository, CarSqlLiteRepository&gt;();
+builder.Services.AddScoped&lt;ICarBrandRepository, CarBrandSqlLiteRepository&gt;();
+builder.Services.AddScoped&lt;ICarModelRepository, CarModelSqliteRepository&gt;();
+
+// Build() construit l&#x27;application finale à partir de toute la configuration ci-dessus.
+var app = builder.Build();
+
+// Configuration du &quot;pipeline&quot; : la suite ordonnée d&#x27;étapes (middlewares) que
+// traverse chaque requête HTTP. L&#x27;ordre des appels ci-dessous a de l&#x27;importance.
+// En dehors du mode développement, on active une page d&#x27;erreur générique et HSTS.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler(&quot;/Home/Error&quot;);
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+// Redirige automatiquement les requêtes HTTP vers HTTPS.
+app.UseHttpsRedirection();
+// Autorise le service des fichiers statiques (CSS, JS, images du dossier wwwroot).
+app.UseStaticFiles();
+
+// Active le routage : associer une URL entrante à un contrôleur et une action.
+app.UseRouting();
+
+// Étape d&#x27;autorisation (vérification des droits d&#x27;accès).
+app.UseAuthorization();
+
+// Définit la convention d&#x27;URL par défaut : /Contrôleur/Action/Id.
+// Sans précision, on tombe sur HomeController.Index (le {id?} est optionnel).
+app.MapControllerRoute(
+    name: &quot;default&quot;,
+    pattern: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+
+// Démarre le serveur web et bloque ici tant que l&#x27;application tourne.
+app.Run();</code></pre>
+<h2>3. Le pattern repository : une interface, plusieurs implémentations</h2>
+<p>Un <strong>dépôt</strong> (repository) est une classe dont le seul rôle est de ranger et de
+retrouver des objets, peu importe où (base de données, fichier, mémoire). On commence par écrire le
+<strong>contrat</strong> sous forme d'interface. Les contrôleurs ne dépendront que de ce contrat, jamais
+d'une classe concrète.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Interfaces/ICarRepository.cs</code></p><pre><code class="language-csharp">using aspnet.Models;
+
+namespace aspnet.Interfaces
+{
+
+    // Une interface est un CONTRAT : elle déclare des membres sans les implémenter.
+    // Toute classe qui déclare &quot;implémenter&quot; ICarRepository devra fournir tout ce qui suit.
+    // C&#x27;est ce qui permet d&#x27;avoir plusieurs dépôts interchangeables (SQLite, CSV, factice)
+    // tous vus de la même manière par les contrôleurs. C&#x27;est la base du polymorphisme.
+    public interface ICarRepository
+    {
+        // Propriété en lecture seule exposant la collection de voitures.
+        public IEnumerable&lt;Car&gt; Cars { get; }
+
+        // Opérations de base attendues d&#x27;un dépôt (style CRUD : créer, lire, supprimer).
+        public bool Add(Car c);
+
+        public bool Delete(Car c);
+
+        public List&lt;Car&gt; GetAllCars();
+
+    }
+}</code></pre>
+<p>L'intérêt apparait quand on écrit <strong>plusieurs</strong> classes qui respectent ce même
+contrat. Elles deviennent interchangeables : le reste de l'application ne voit que <code>ICarRepository</code>
+et ne sait pas laquelle il manipule. C'est exactement le polymorphisme, mais à l'échelle de toute une
+application.</p>
+<h3>3a. Implémentation SQLite (via EF Core)</h3>
+<p>La version de production range les voitures dans SQLite. Elle ne fait pas le travail
+elle-même : elle <strong>délègue</strong> à un <code>AppDbContext</code> qui lui est injecté (composition).</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Data/CarSqlliteRepository.cs</code></p><pre><code class="language-csharp">using aspnet.Interfaces;
+using aspnet.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace aspnet.Data
+{
+    // Implémentation CONCRÈTE de ICarRepository qui stocke les voitures dans SQLite via EF Core.
+    // &quot;: ICarRepository&quot; signifie &quot;cette classe respecte le contrat ICarRepository&quot;.
+    // C&#x27;est l&#x27;une des implémentations interchangeables (à comparer avec CarCSVRepository et CarDummyRepository).
+    public class CarSqlLiteRepository : ICarRepository
+    {
+        // Le contexte EF Core est lui-même injecté par le conteneur (voir AddDbContext dans Program.cs).
+        // Cette classe DÉLÈGUE le travail de base de données à _context : c&#x27;est de la composition.
+        private readonly AppDbContext _context;
+
+        public CarSqlLiteRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        // get =&gt; ... est une syntaxe abrégée pour un accesseur en lecture.
+        public IEnumerable&lt;Car&gt; Cars {
+            get =&gt; _context.Cars;
+        }
+
+        // Ajoute une voiture puis SaveChanges() écrit réellement les changements en base.
+        public bool Add(Car c)
+        {
+            _context.Cars.Add(c);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool Delete(Car c)
+        {
+            _context.Cars.Remove(c);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public List&lt;Car&gt; GetAllCars()
+        {
+            // Include / ThenInclude demandent à EF Core de charger aussi les objets liés
+            // (le modèle de chaque voiture, puis la marque de chaque modèle) en une seule requête.
+            // Sans cela, les propriétés de navigation seraient nulles (chargement différé non actif ici).
+            return _context.Cars
+                .Include(c =&gt; c.CarModel)
+                .ThenInclude(m =&gt; m.CarBrand)
+                .ToList();
+        }
+    }
+}</code></pre>
+<h3>3b. Implémentation CSV</h3>
+<p>La même interface, mais les voitures sont lues et écrites dans un fichier CSV. Le contrôleur
+qui l'utiliserait ne changerait pas d'une ligne. On voit ici intervenir une autre interface,
+<code>IExportable</code>, implémentée par <code>ExportableCar</code> pour savoir se transformer en ligne CSV.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Data/CarCSVRepository.cs</code></p><pre><code class="language-csharp">using aspnet.Exportables;
+using aspnet.Interfaces;
+using aspnet.Models;
+
+namespace aspnet.Data
+{
+
+    // Troisième implémentation de ICarRepository : ici les voitures sont lues et écrites
+    // dans un fichier CSV. Même contrat que les autres dépôts, mais une source de données
+    // totalement différente. Cela illustre concrètement le principe d&#x27;inversion de dépendance.
+    public class CarCSVRepository : ICarRepository
+    {
+        private static List&lt;Car&gt; _cars = new List&lt;Car&gt;();
+
+        public IEnumerable&lt;Car&gt; Cars {
+            get =&gt; _cars;
+        }
+
+        // Au moment de la construction, on charge le contenu du fichier CSV en mémoire.
+        public CarCSVRepository()
+        {
+            _cars = CSVWriter.ReadFile().ToList&lt;Car&gt;();
+        }
+
+        public bool Add(Car c)
+        {
+            // Calcul d&#x27;un nouvel identifiant via l&#x27;opérateur ternaire : si la liste contient
+            // déjà des voitures, on prend le plus grand Id + 1, sinon on commence à 0.
+            c.Id = _cars.Count &gt; 0 ? _cars.Max(car =&gt; car.Id) + 1 : 0;
+            Console.WriteLine(&quot;Adding car to repository...&quot;);
+            _cars.Add(c);
+
+            // On convertit chaque Car en ExportableCar (la sous-classe qui sait s&#x27;exporter en CSV).
+            // C&#x27;est ici qu&#x27;intervient l&#x27;interface IExportable implémentée par ExportableCar.
+            var listTemp = new List&lt;ExportableCar&gt;();
+            foreach (var car in _cars)            {
+                listTemp.Add(new ExportableCar(car));
+            }
+
+
+            Console.WriteLine(&quot;ListTemp:&quot;);
+            foreach (var car in listTemp)            {
+                Console.WriteLine(car.ExportAsCSV());
+            }
+
+            // On délègue l&#x27;écriture du fichier à la classe utilitaire CSVWriter.
+            CSVWriter.WriteToFile(listTemp);
+            return true;
+        }
+
+        public bool Delete(Car c)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List&lt;Car&gt; GetAllCars()
+        {
+            return _cars as List&lt;Car&gt;;
+        }
+    }
+
+}</code></pre>
+<h3>3c. Implémentation factice (en mémoire)</h3>
+<p>La version la plus simple : une liste en mémoire avec deux voitures pré-remplies. Pratique
+pour démarrer ou tester sans base de données. Comme elle respecte le contrat, il suffit de l'écrire à la
+place de la version SQLite dans <code>Program.cs</code> pour l'utiliser.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Data/CarDummyRepository.cs</code></p><pre><code class="language-csharp">using aspnet.Interfaces;
+using aspnet.Models;
+
+namespace aspnet.Data
+{
+
+    // Implémentation FACTICE (&quot;dummy&quot;) du dépôt des voitures : aucune base de données,
+    // juste une liste en mémoire avec des données pré-remplies. Très pratique pour tester
+    // ou démarrer rapidement. Comme elle respecte ICarRepository, on peut la substituer à
+    // CarSqlLiteRepository dans Program.cs sans rien changer aux contrôleurs : c&#x27;est tout
+    // l&#x27;intérêt de programmer contre une interface (substituabilité / polymorphisme).
+    public class CarDummyRepository : ICarRepository
+    {
+        // &quot;static&quot; : la liste est partagée par toutes les instances de la classe et survit
+        // entre les requêtes (utile ici pour conserver les ajouts en mémoire pendant l&#x27;exécution).
+        private static List&lt;Car&gt; _cars = new List&lt;Car&gt;()
+        {
+            new Car()
+            {
+                Id = 0,
+                // Brand = &quot;Jaguar&quot;,
+                // Model = &quot;XF&quot;
+            },
+            new Car()
+            {
+                Id = 1,
+                // Brand = &quot;VW&quot;,
+                // Model = &quot;Golf R32&quot;
+            }
+        };
+        public IEnumerable&lt;Car&gt; Cars {
+            get =&gt; _cars;
+        }
+
+        // Pas de SaveChanges ici : on modifie simplement la liste en mémoire.
+        public bool Add(Car c)
+        {
+            _cars.Add(c);
+            return true;
+        }
+
+        public bool Delete(Car c)
+        {
+            _cars.Remove(c);
+            return true;
+        }
+
+        public List&lt;Car&gt; GetAllCars()
+        {
+            return _cars as List&lt;Car&gt;;
+        }
+    }
+}</code></pre>
+<h2>4. EF Core et SQLite : le AppDbContext</h2>
+<p>Entity Framework Core est un <strong>ORM</strong> : il fait le pont entre les objets C# et les
+tables de la base. Le <code>AppDbContext</code> hérite de <code>DbContext</code> et déclare un
+<code>DbSet&lt;T&gt;</code> par table. On interroge ces propriétés en LINQ, et EF Core traduit en SQL.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Data/Context/AppDbContext.cs</code></p><pre><code class="language-csharp">using aspnet.Models;
+using Microsoft.EntityFrameworkCore;
+
+// Le contexte de base de données d&#x27;EF Core. En héritant de DbContext, cette classe
+// devient le pont entre nos objets C# (les entités) et les tables SQLite.
+public class AppDbContext : DbContext
+{
+    // Les options (fournisseur, chaîne de connexion) sont passées par la base via &quot;: base(options)&quot;.
+    // Elles proviennent de la configuration faite dans Program.cs (AddDbContext + UseSqlite).
+    public AppDbContext(DbContextOptions&lt;AppDbContext&gt; options) : base(options)
+    {
+    }
+
+    // Chaque DbSet&lt;T&gt; représente une table : EF Core la mappe sur la classe d&#x27;entité correspondante.
+    // On interroge ces propriétés comme des collections (LINQ) et EF traduit en requêtes SQL.
+    public DbSet&lt;CarBrand&gt; CarBrands { get; set; }
+    public DbSet&lt;CarModel&gt; CarModels { get; set; }
+
+    public DbSet&lt;Car&gt; Cars { get; set; }
+
+    // Méthode REDÉFINIE (override) de DbContext : on personnalise le mapping objet-relationnel.
+    // Ici on impose le nom des tables (&quot;CarBrand&quot; et &quot;CarModel&quot; au singulier).
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;CarBrand&gt;().ToTable(&quot;CarBrand&quot;);
+        modelBuilder.Entity&lt;CarModel&gt;().ToTable(&quot;CarModel&quot;);
+    }
+}</code></pre>
+<p>La structure des tables est décrite par des <strong>migrations</strong> (dossier
+<code>Migrations/</code>), générées au fil des évolutions du modèle : <code>InitialCreate</code>,
+<code>AddedDailyPrice</code>, <code>RefactorCarModel</code>. La commande <code>dotnet ef database update</code>
+les rejoue pour fabriquer le fichier <code>rental.db</code>.</p>
+<h2>5. Le modèle Car et ses relations</h2>
+<p>Une voiture connait son modèle, et un modèle connait sa marque. Dans <code>Car</code>, on
+retrouve l'encapsulation (les propriétés), une clé étrangère (<code>CarModelId</code>) et une
+<strong>propriété de navigation</strong> (<code>CarModel</code>) qui pointe vers l'objet lié. Les
+propriétés <code>Brand</code> et <code>Model</code> sont calculées : elles ne sont pas stockées, elles
+remontent la chaine des relations à chaque lecture.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Models/Car.cs</code></p><pre><code class="language-csharp">
+namespace aspnet.Models
+{
+    // Entité métier représentant une voiture physique (un exemplaire avec sa plaque).
+    // Une classe regroupe des données (les propriétés) qui décrivent un objet du domaine.
+    public class Car
+    {
+        // Clé primaire. La convention EF Core reconnaît automatiquement &quot;Id&quot; comme identifiant.
+        public int Id {get; set;}
+
+       // Propriétés auto-implémentées : { get; set; } génère un champ caché et ses accesseurs.
+       // C&#x27;est de l&#x27;encapsulation : on accède à la donnée via la propriété, pas par un champ public.
+       public string PlateNumber { get; set; }
+
+       // Propriété CALCULÉE en lecture seule (pas de &quot;set&quot;) : sa valeur est dérivée d&#x27;autres objets.
+       // Brand n&#x27;est pas stockée, elle est recalculée à partir du modèle et de sa marque.
+       public string Brand
+        {
+            get
+            {
+                // On traverse les relations : Car -&gt; CarModel -&gt; CarBrand -&gt; Name.
+                return CarModel.CarBrand.Name;
+            }
+        }
+
+        // Autre propriété calculée : le nom du modèle, obtenu via la propriété de navigation.
+        public string Model
+        {
+            get
+            {
+                return CarModel.Name;
+            }
+        }
+
+       // Clé étrangère : stocke seulement l&#x27;identifiant du modèle lié (relation en base).
+       public int CarModelId { get; set; }  // Foreign key to CarModel
+       // Propriété de navigation : référence l&#x27;objet CarModel complet associé.
+       // &quot;= null!&quot; signale au compilateur que la valeur sera fournie par EF Core (on assume non nul).
+       public CarModel CarModel { get; set; } = null!; // Navigation property
+    }
+}</code></pre>
+<h2>6. Le contrôleur CarController</h2>
+<p>Le contrôleur reçoit ses dépendances par le constructeur : un <code>ILogger</code> et deux
+dépôts (les voitures et les modèles). Il ne crée jamais ces objets lui-même, le framework les lui fournit.
+L'action <code>Index</code> renvoie la liste des voitures. La création se fait en deux temps : l'action
+<code>Create</code> en GET affiche le formulaire, et sa surcharge en POST traite l'envoi, valide la saisie,
+transforme le <em>ViewModel</em> en entité <code>Car</code>, puis redirige.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Controllers/CarController.cs</code></p><pre><code class="language-csharp">
+using aspnet.Interfaces;
+using aspnet.Models;
+using aspnet.Models.ViewModels;
+using aspnet.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace aspnet.Controllers
+{
+    // Contrôleur des voitures (Car). Comme les autres, il hérite de Controller.
+    public class CarController : Controller
+    {
+        private readonly ILogger&lt;CarController&gt; _logger;
+
+        // Ce contrôleur dépend de DEUX abstractions : le dépôt des voitures et celui des modèles.
+        // On a besoin des modèles pour proposer une liste déroulante lors de la création.
+        private readonly ICarRepository _repo;
+        private readonly ICarModelRepository _modelRepo;
+        // Propriété calculée privée, en lecture seule : à chaque accès, elle interroge le dépôt.
+        // Cela illustre l&#x27;encapsulation : on expose une donnée dérivée sans stocker de champ.
+        private List&lt;Car&gt; cars
+        {
+            get
+            {
+                return _repo.GetAllCars();
+            }
+        }
+
+        // Injection par constructeur des trois dépendances enregistrées dans Program.cs.
+        public CarController(ILogger&lt;CarController&gt; logger, ICarRepository repo, ICarModelRepository modelRepo)
+        {
+            _logger = logger;
+            _repo = repo;
+            _modelRepo = modelRepo;
+        }
+
+        // GET /Car/Index : affiche toutes les voitures.
+        public IActionResult Index()
+        {
+
+            return View(cars);
+        }
+
+        // GET /Car/Create : prépare la liste déroulante des modèles puis affiche le formulaire.
+        public IActionResult Create()
+        {
+            SetModelSelectList();
+            return View();
+        }
+
+        // POST /Car/Create : surcharge qui traite l&#x27;envoi du formulaire.
+        [HttpPost]
+        public IActionResult Create(CarCreateVM c)
+        {
+            // Si la validation échoue, on reconstruit la liste déroulante et on réaffiche le formulaire.
+            if(!ModelState.IsValid)
+            {
+                SetModelSelectList();
+                return View(c);
+            }
+
+            // Transformation du ViewModel (saisie) en entité Car (objet métier persistant).
+            Car temp = new Car()
+            {
+                PlateNumber = c.PlateNumber,
+                CarModelId = c.CarModelId,
+            };
+            _logger.Log(LogLevel.Debug, temp.PlateNumber + &quot; created&quot;);
+            _repo.Add(temp);
+
+            return RedirectToAction(&quot;Index&quot;);
+        }
+
+        // Méthode privée utilitaire (helper) : évite de dupliquer le code dans les deux Create.
+        // Elle construit une SelectList pour le menu déroulant des modèles dans la vue.
+        private void SetModelSelectList()
+        {
+            // LINQ : on projette chaque modèle en un objet anonyme avec un libellé &quot;Marque Modele&quot;.
+            // On accède à m.CarBrand.Name grâce à la propriété de navigation entre les entités.
+            var models = _modelRepo.GetAllModels()
+                .Select(m =&gt; new
+                {
+                    m.Id,
+                    Name = $&quot;{m.CarBrand.Name} {m.Name}&quot;
+                });
+
+            // ViewBag est un sac dynamique pour transmettre des données secondaires à la vue.
+            ViewBag.Models = new SelectList(models, &quot;Id&quot;, &quot;Name&quot;);
+        }
+    }
+}</code></pre>
+<h2>7. La vue Razor Car/Index.cshtml</h2>
+<p>La vue reçoit son modèle avec <code>@model IEnumerable&lt;Car&gt;</code>, puis mélange du HTML
+et du C# (les <code>@</code>) pour parcourir la liste et bâtir un tableau. Aucune logique métier ici : la
+vue se contente d'afficher ce que le contrôleur lui a donné.</p>
+<p class="code-file"><strong>Fichier :</strong> <code>demos/aspnet-mvc/Views/Car/Index.cshtml</code></p><pre><code class="language-html">@model IEnumerable&lt;Car&gt;
+
+&lt;section class=&quot;space-y-6&quot;&gt;
+    &lt;div class=&quot;flex flex-col gap-4 border-b border-slate-200 pb-6 sm:flex-row sm:items-end sm:justify-between&quot;&gt;
+        &lt;div&gt;
+            &lt;p class=&quot;text-sm font-semibold text-emerald-700&quot;&gt;Inventory&lt;/p&gt;
+            &lt;h1 class=&quot;mt-2 text-3xl font-bold text-slate-950&quot;&gt;Cars&lt;/h1&gt;
+            &lt;p class=&quot;mt-2 text-sm text-slate-600&quot;&gt;Track registered vehicles and their assigned catalog model.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;a asp-action=&quot;Create&quot; class=&quot;inline-flex w-fit items-center justify-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2&quot;&gt;Create car&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm&quot;&gt;
+        &lt;table class=&quot;min-w-full divide-y divide-slate-200 text-sm&quot;&gt;
+            &lt;thead class=&quot;bg-slate-950 text-left text-white&quot;&gt;
+                &lt;tr&gt;
+                    &lt;th class=&quot;px-4 py-3 font-semibold&quot;&gt;Plate number&lt;/th&gt;
+                    &lt;th class=&quot;px-4 py-3 font-semibold&quot;&gt;Brand&lt;/th&gt;
+                    &lt;th class=&quot;px-4 py-3 font-semibold&quot;&gt;Model&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody class=&quot;divide-y divide-slate-100&quot;&gt;
+                @foreach (var car in Model)
+                {
+                    &lt;tr class=&quot;transition hover:bg-stone-50&quot;&gt;
+                        &lt;td class=&quot;whitespace-nowrap px-4 py-3 font-semibold text-slate-950&quot;&gt;@car.PlateNumber&lt;/td&gt;
+                        &lt;td class=&quot;px-4 py-3 text-slate-700&quot;&gt;@car.Brand&lt;/td&gt;
+                        &lt;td class=&quot;px-4 py-3 text-slate-700&quot;&gt;@car.Model&lt;/td&gt;
+                    &lt;/tr&gt;
+                }
+            &lt;/tbody&gt;
+        &lt;/table&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+<h2>Ce que ce projet rassemble</h2>
+<ul>
+<li><strong>Classes et encapsulation</strong> : les modèles <code>Car</code>, <code>CarModel</code>, <code>CarBrand</code>.</li>
+<li><strong>Interfaces et polymorphisme</strong> : <code>ICarRepository</code> et ses trois implémentations interchangeables.</li>
+<li><strong>Composition</strong> : le dépôt SQLite délègue à <code>AppDbContext</code> ; le contrôleur s'appuie sur les dépôts.</li>
+<li><strong>Injection de dépendances</strong> : assurée par le conteneur d'ASP.NET Core dans <code>Program.cs</code>.</li>
+<li><strong>SOLID</strong> : chaque classe a une responsabilité unique, et le code dépend d'abstractions, pas de classes concrètes.</li>
+</ul>
+<h2>Pour aller plus loin</h2>
+<ul>
+<li>Lecture : <a href="47-asp-net-core-mvc.html">ASP.NET Core MVC</a> et <a href="50-models-controllers.html">Models &amp; Controllers</a>.</li>
+<li>Injection de dépendances : <a href="53-injection-de-dependances.html">la leçon dédiée</a>.</li>
+<li>Exercice : <a href="https://github.com/PANDORMedia/HETIC-POO-student/blob/main/exercises/J4-projet-fil-rouge-location-web.md">projet fil rouge location web</a>.</li>
+</ul>
+</main>
+</div>
+</body>
+</html>
