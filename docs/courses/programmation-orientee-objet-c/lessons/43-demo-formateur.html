@@ -3,16 +3,194 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Démo formateur</title>
+<title>Démo guidée : composition, SOLID et exceptions</title>
 <link rel="stylesheet" href="../../../style.css">
 </head>
 <body>
 <div class="layout">
-<nav class="sidebar"><div class="sidebar-header"><img class="sidebar-logo" src="https://nerdmessenger.s3.fr-par.scw.cloud/00000000-0000-0000-0000-000000000001/f256a8ef-3d7c-4a20-a8d9-5538e9c9f3a2/branding/2026/04/0ec3ac29-47cc-4e24-9e30-0b55eb7e8c43-a1b367b6-990d-4e59-a3ec-3a3fc007b161.webp" alt="Institute 73" /><a href="../../../index.html" class="sidebar-title">Programmation Orientée Objet - C#</a></div><div class="sidebar-content"><details class="nav-course" open><summary class="nav-course-title">Programmation Orientée Objet - C#</summary><div class="nav-module-title">Environnement .NET, Classes &amp; Encapsulation</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/62-histoire-csharp-dotnet.html">C# et .NET : une courte histoire <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/01-setup-environnement-net.html">Setup environnement .NET <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/02-guide-d-installation-net.html">Guide d&#39;installation .NET <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/03-exercices-setup-premier-projet-console.html">Exercices : Setup &amp; premier projet console <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/04-classes-objets.html">Classes &amp; Objets <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/05-classes-objets.html">Classes &amp; Objets <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/06-exercices-classes-objets.html">Exercices : Classes &amp; Objets <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/07-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/08-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/09-exercices-constructeurs.html">Exercices : Constructeurs <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/10-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/11-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/12-exercices-encapsulation-proprietes.html">Exercices : Encapsulation &amp; Propriétés <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/13-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/14-quiz-fondamentaux-oop.html">Quiz : Fondamentaux OOP <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/15-synthese-fondamentaux-oop.html">Synthèse : Fondamentaux OOP <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Héritage, Polymorphisme &amp; Interfaces</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/16-heritage.html">Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/17-heritage.html">Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/18-exercices-heritage.html">Exercices : Héritage <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/19-polymorphisme-virtual-override.html">Polymorphisme (virtual / override) <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/20-polymorphisme.html">Polymorphisme <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/21-exercices-polymorphisme.html">Exercices : Polymorphisme <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/22-classes-abstraites.html">Classes abstraites <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/23-classes-abstraites.html">Classes abstraites <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/24-exercices-classes-abstraites.html">Exercices : Classes abstraites <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/25-interfaces-contrats-decouplage.html">Interfaces : contrats &amp; découplage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/26-interfaces.html">Interfaces <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/27-exercices-interfaces.html">Exercices : Interfaces <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/28-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/29-quiz-heritage-interfaces.html">Quiz : Héritage &amp; Interfaces <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/30-synthese-heritage-interfaces.html">Synthèse : Héritage &amp; Interfaces <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Composition, SOLID &amp; Exceptions</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/31-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/32-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/33-exercices-composition.html">Exercices : Composition <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/34-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/35-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/36-exercices-srp-ocp.html">Exercices : SRP &amp; OCP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/37-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/38-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/39-exercices-lsp-isp-dip.html">Exercices : LSP, ISP &amp; DIP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/40-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/41-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/42-exercices-exceptions-oo.html">Exercices : Exceptions OO <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson active"><a href="../../../courses/programmation-orientee-objet-c/lessons/43-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/44-quiz-solid-exceptions.html">Quiz : SOLID &amp; Exceptions <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/45-synthese-solid-exceptions.html">Synthèse : SOLID &amp; Exceptions <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">ASP.NET Core MVC : OOP appliqué</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/46-intro-asp-net-core-mvc.html">Intro ASP.NET Core MVC <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/47-asp-net-core-mvc.html">ASP.NET Core MVC <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/48-exercices-premier-projet-mvc.html">Exercices : Premier projet MVC <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/49-models-controllers-oop.html">Models &amp; Controllers OOP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/50-models-controllers.html">Models &amp; Controllers <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/51-exercices-models-controllers.html">Exercices : Models &amp; Controllers <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/52-injection-de-dependances.html">Injection de dépendances <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/53-injection-de-dependances.html">Injection de dépendances <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/54-exercices-injection-de-dependances.html">Exercices : Injection de dépendances <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/55-projet-fil-rouge-gestionnaire-de-films.html">Projet fil rouge : gestionnaire de films <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/56-projet-fil-rouge-guide-complet.html">Projet fil rouge : guide complet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/57-gestionnaire-de-films-asp-net-mvc.html">Gestionnaire de films (ASP.NET MVC) <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/58-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/59-quiz-evaluation-finale.html">Quiz : Évaluation finale <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/60-synthese-perspectives.html">Synthèse &amp; Perspectives <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/61-demo-mvc-application-web.html">Démo : application web MVC <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/63-persistance-sqlite-ef-core.html">Persistance : SQLite et EF Core <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/64-styliser-vues-tailwind-css.html">Styliser les vues : Tailwind CSS <span class="badge badge-reading">reading</span></a></li></ul></details></div></nav>
+<nav class="sidebar"><div class="sidebar-header"><img class="sidebar-logo" src="https://nerdmessenger.s3.fr-par.scw.cloud/00000000-0000-0000-0000-000000000001/f256a8ef-3d7c-4a20-a8d9-5538e9c9f3a2/branding/2026/04/0ec3ac29-47cc-4e24-9e30-0b55eb7e8c43-a1b367b6-990d-4e59-a3ec-3a3fc007b161.webp" alt="Institute 73" /><a href="../../../index.html" class="sidebar-title">Programmation Orientée Objet - C#</a></div><div class="sidebar-content"><details class="nav-course" open><summary class="nav-course-title">Programmation Orientée Objet - C#</summary><div class="nav-module-title">Environnement .NET, Classes &amp; Encapsulation</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/62-histoire-csharp-dotnet.html">C# et .NET : une courte histoire <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/01-setup-environnement-net.html">Setup environnement .NET <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/02-guide-d-installation-net.html">Guide d&#39;installation .NET <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/03-exercices-setup-premier-projet-console.html">Exercices : Setup &amp; premier projet console <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/04-classes-objets.html">Classes &amp; Objets <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/05-classes-objets.html">Classes &amp; Objets <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/06-exercices-classes-objets.html">Exercices : Classes &amp; Objets <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/07-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/08-constructeurs-initialisation.html">Constructeurs &amp; initialisation <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/09-exercices-constructeurs.html">Exercices : Constructeurs <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/10-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/11-encapsulation-proprietes.html">Encapsulation &amp; Propriétés <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/12-exercices-encapsulation-proprietes.html">Exercices : Encapsulation &amp; Propriétés <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/13-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/14-quiz-fondamentaux-oop.html">Quiz : Fondamentaux OOP <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/15-synthese-fondamentaux-oop.html">Synthèse : Fondamentaux OOP <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Héritage, Polymorphisme &amp; Interfaces</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/16-heritage.html">Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/17-heritage.html">Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/18-exercices-heritage.html">Exercices : Héritage <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/19-polymorphisme-virtual-override.html">Polymorphisme (virtual / override) <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/20-polymorphisme.html">Polymorphisme <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/21-exercices-polymorphisme.html">Exercices : Polymorphisme <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/22-classes-abstraites.html">Classes abstraites <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/23-classes-abstraites.html">Classes abstraites <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/24-exercices-classes-abstraites.html">Exercices : Classes abstraites <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/25-interfaces-contrats-decouplage.html">Interfaces : contrats &amp; découplage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/26-interfaces.html">Interfaces <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/27-exercices-interfaces.html">Exercices : Interfaces <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/28-demo-formateur.html">Démo formateur <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/29-quiz-heritage-interfaces.html">Quiz : Héritage &amp; Interfaces <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/30-synthese-heritage-interfaces.html">Synthèse : Héritage &amp; Interfaces <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">Composition, SOLID &amp; Exceptions</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/31-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/32-composition-vs-heritage.html">Composition vs Héritage <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/33-exercices-composition.html">Exercices : Composition <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/34-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/35-solid-srp-ocp.html">SOLID : SRP &amp; OCP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/36-exercices-srp-ocp.html">Exercices : SRP &amp; OCP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/37-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/38-solid-lsp-isp-dip.html">SOLID : LSP, ISP &amp; DIP <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/39-exercices-lsp-isp-dip.html">Exercices : LSP, ISP &amp; DIP <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/40-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/41-exceptions-orientees-objet.html">Exceptions orientées objet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/42-exercices-exceptions-oo.html">Exercices : Exceptions OO <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson active"><a href="../../../courses/programmation-orientee-objet-c/lessons/43-demo-formateur.html">Démo guidée <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/44-quiz-solid-exceptions.html">Quiz : SOLID &amp; Exceptions <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/45-synthese-solid-exceptions.html">Synthèse : SOLID &amp; Exceptions <span class="badge badge-slides">slides</span></a></li></ul><div class="nav-module-title">ASP.NET Core MVC : OOP appliqué</div><ul class="nav-lessons"><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/46-intro-asp-net-core-mvc.html">Intro ASP.NET Core MVC <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/47-asp-net-core-mvc.html">ASP.NET Core MVC <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/48-exercices-premier-projet-mvc.html">Exercices : Premier projet MVC <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/49-models-controllers-oop.html">Models &amp; Controllers OOP <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/50-models-controllers.html">Models &amp; Controllers <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/51-exercices-models-controllers.html">Exercices : Models &amp; Controllers <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/52-injection-de-dependances.html">Injection de dépendances <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/53-injection-de-dependances.html">Injection de dépendances <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/54-exercices-injection-de-dependances.html">Exercices : Injection de dépendances <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/55-projet-fil-rouge-gestionnaire-de-films.html">Projet fil rouge : gestionnaire de films <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/56-projet-fil-rouge-guide-complet.html">Projet fil rouge : guide complet <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/57-gestionnaire-de-films-asp-net-mvc.html">Gestionnaire de films (ASP.NET MVC) <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/58-demo-formateur.html">Démo guidée <span class="badge badge-coding">coding</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/59-quiz-evaluation-finale.html">Quiz : Évaluation finale <span class="badge badge-quiz">quiz</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/60-synthese-perspectives.html">Synthèse &amp; Perspectives <span class="badge badge-slides">slides</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/61-demo-mvc-application-web.html">Démo : application web MVC <span class="badge badge-project">project</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/63-persistance-sqlite-ef-core.html">Persistance : SQLite et EF Core <span class="badge badge-reading">reading</span></a></li><li class="nav-lesson"><a href="../../../courses/programmation-orientee-objet-c/lessons/64-styliser-vues-tailwind-css.html">Styliser les vues : Tailwind CSS <span class="badge badge-reading">reading</span></a></li></ul></details></div></nav>
 <main class="content">
-<h1>Démo formateur</h1>
-<div class="lesson-meta"><span class="lesson-type lesson-type-coding">coding</span><span class="lesson-duration">Duration: 25 min</span></div>
-<div class="block block-unsupported">This lesson does not contain exportable content yet. (coding)</div>
+<h1>Démo guidée : composition, SOLID et exceptions</h1>
+<div class="lesson-meta"><span class="lesson-type lesson-type-coding">coding</span><span class="lesson-duration">Durée : 25 min</span></div>
+<p>Cette demo guidee rassemble trois themes du module : la composition opposee à l'héritage, les principes SOLID et la gestion des exceptions. Tu peux la suivre seul, étape par étape, en lisant le code et en le reproduisant. Deux projets du dépôt servent de support : <a href="https://github.com/PANDORMedia/HETIC-POO-student/tree/main/demos/composition-logger">demos/composition-logger</a> pour la composition et l'injection de dépendances, et <a href="https://github.com/PANDORMedia/HETIC-POO-student/tree/main/demos/location-voiture">demos/location-voiture</a> pour les principes SOLID appliques a un calcul de tarif.</p>
+
+<h2>Objectif</h2>
+<p>À la fin de cette étape, tu dois savoir choisir entre héritage et composition, reconnaître une violation de SRP, OCP ou DIP, et écrire une exception métier propre. Le but n'est pas de retenir des définitions mais de relier chaque principe a un problème concret de couplage ou de testabilité.</p>
+
+<h2>Étape 1 : composition contre héritage</h2>
+<p>L'héritage exprime une relation <em>is-a</em> : une classe specialise une autre et en réutilise le comportement.</p>
+<pre><code class="language-csharp">class Voiture : Vehicule
+{
+    public void Demarrer() { ... }
+}
+
+var v = new Voiture();
+v.Demarrer(); // Voiture est un Vehicule</code></pre>
+<p>La composition exprime une relation <em>has-a</em> : une classe contient un objet et lui délègue une partie du travail.</p>
+<pre><code class="language-csharp">class Voiture
+{
+    private Moteur _moteur;
+
+    public Voiture(Moteur m)
+    {
+        _moteur = m;
+    }
+
+    public void Demarrer()
+    {
+        _moteur.Demarrer();
+    }
+}</code></pre>
+<p>Ici la Voiture a un Moteur et lui délègue le démarrage. La composition couplé moins fortement les classes que l'héritage : tu peux remplacer le Moteur sans modifier la Voiture. C'est ce que montre le projet <a href="https://github.com/PANDORMedia/HETIC-POO-student/tree/main/demos/composition-logger">demos/composition-logger</a>, ou un service reçoit son logger par le constructeur plutôt que d'en hériter.</p>
+
+<h2>Étape 2 : SRP, une seule responsabilité</h2>
+<p>Une classe doit avoir une seule raison de changer. La version ci-dessous en a quatre : la règle métier, le schéma de base de données, la configuration SMTP et la mise en page.</p>
+<pre><code class="language-csharp">// Mauvais : quatre responsabilites
+class Facture
+{
+    public void Calculer() { ... }
+    public void SauverEnBase() { ... }
+    public void EnvoyerParMail() { ... }
+    public string GenererPdf() { ... }
+}</code></pre>
+<p>On séparé chaque responsabilité dans sa propre classe. Chacune evolue alors indépendamment.</p>
+<pre><code class="language-csharp">class Facture
+{
+    public void Calculer() { ... }
+}
+
+class FactureRepository
+{
+    public void Sauver(...) { ... }
+}
+
+class FactureMailer
+{
+    public void Envoyer(...) { ... }
+}
+
+class FacturePdfGenerator
+{
+    public string Generer(...) { ... }
+}</code></pre>
+
+<h2>Étape 3 : OCP, ouvert à l'extension</h2>
+<p>Tu dois pouvoir ajouter un comportement sans toucher au code qui fonctionne déjà. La cascade de <code>if</code> ci-dessous viole ce principe : ajouter un tarif oblige a modifier la méthode existante.</p>
+<pre><code class="language-csharp">// Violation : ajouter un tarif modifie cette methode
+class CalculTarif
+{
+    public decimal Calculer(string type)
+    {
+        if (type == "standard") return ...;
+        else if (type == "weekend") return ...;
+        else if (type == "promo") return ...;
+    }
+}</code></pre>
+<p>En passant par une interface, chaque tarif devient une classe a part. Ajouter un tarif revient a créer une classe, et aucune ligne existante ne change.</p>
+<pre><code class="language-csharp">interface ITarif
+{
+    decimal Calculer(...);
+}
+
+class TarifStandard : ITarif { ... }
+class TarifWeekend : ITarif { ... }
+class TarifPromo : ITarif { ... }</code></pre>
+<p>Le projet <a href="https://github.com/PANDORMedia/HETIC-POO-student/tree/main/demos/location-voiture">demos/location-voiture</a> applique exactement ce schéma : le calcul du prix de location s'appuie sur une interface de tarif, et chaque type de tarif vit dans sa propre implémentation.</p>
+
+<h2>Étape 4 : DIP, dépendre des abstractions</h2>
+<p>Les modules de haut niveau ne doivent pas dépendre des modules de bas niveau. Les deux dépendent d'abstractions. Le couplage direct ci-dessous rend le service impossible à tester sans SQL Server et impossible à faire évoluer sans le modifier.</p>
+<pre><code class="language-csharp">// Couplage direct
+class CommandeService
+{
+    private SqlServerRepository _repo = new SqlServerRepository();
+
+    public void Valider(Commande c)
+    {
+        _repo.Sauver(c);
+    }
+}</code></pre>
+<p>On inverse la dépendance : le service reçoit une abstraction par le constructeur, et tu lui injectes l'implémentation de ton choix.</p>
+<pre><code class="language-csharp">interface IRepository&lt;T&gt;
+{
+    void Sauver(T entity);
+}
+
+class CommandeService
+{
+    private IRepository&lt;Commande&gt; _repo;
+
+    public CommandeService(IRepository&lt;Commande&gt; repo)
+    {
+        _repo = repo;
+    }
+}</code></pre>
+<p>Le service dépend désormais d'une interface. En test, tu lui passes une fausse implémentation en mémoire ; en production, une implémentation SQL.</p>
+
+<h2>Étape 5 : try / catch / finally</h2>
+<p>La gestion d'erreur structure le flux quand une opération peut échouer.</p>
+<pre><code class="language-csharp">FileStream stream = null;
+try
+{
+    stream = File.Open(chemin);
+    Traiter(stream);
+}
+catch (FileNotFoundException ex)
+{
+    Log.Warn($"Fichier absent : {chemin}");
+}
+catch (IOException ex)
+{
+    Log.Error("Erreur IO", ex);
+    throw;
+}
+finally
+{
+    stream?.Close();
+}</code></pre>
+<p>Quatre règles à retenir :</p>
+<ul>
+<li>Plusieurs <code>catch</code> sont ordonnes du plus spécifique au plus général.</li>
+<li><code>finally</code> s'exécute toujours, même après un <code>throw</code> ou un <code>return</code>.</li>
+<li><code>throw;</code> sans argument relance l'exception en gardant la pile d'appels.</li>
+<li><code>using</code> remplace souvent <code>try</code> / <code>finally</code> pour les objets <code>IDisposable</code>.</li>
+</ul>
+
+<h2>Étape 6 : créer une exception métier</h2>
+<p>Une exception métier porte des données utiles à l'appelant. Ici, le solde disponible et le montant demande sont exposés en propriétés.</p>
+<pre><code class="language-csharp">public class SoldeInsuffisantException : Exception
+{
+    public decimal SoldeActuel { get; }
+    public decimal MontantDemande { get; }
+
+    public SoldeInsuffisantException(decimal solde, decimal demande)
+        : base($"Solde {solde:C} insuffisant pour retrait de {demande:C}")
+    {
+        SoldeActuel = solde;
+        MontantDemande = demande;
+    }
+}</code></pre>
+<p>On la lève au moment où la règle métier est violee, puis on l'attrape là où l'on sait comment réagir.</p>
+<pre><code class="language-csharp">public void Retirer(decimal montant)
+{
+    if (montant &gt; _solde)
+        throw new SoldeInsuffisantException(_solde, montant);
+
+    _solde -= montant;
+}
+
+// Cote appelant
+try
+{
+    compte.Retirer(500);
+}
+catch (SoldeInsuffisantException ex)
+{
+    var manque = ex.MontantDemande - ex.SoldeActuel;
+    Console.WriteLine($"Manque {manque:C}");
+}</code></pre>
+
+<h2>Pour aller plus loin</h2>
+<p>Clone le dépôt et ouvre les deux projets cites : <a href="https://github.com/PANDORMedia/HETIC-POO-student/tree/main/demos/composition-logger">demos/composition-logger</a> et <a href="https://github.com/PANDORMedia/HETIC-POO-student/tree/main/demos/location-voiture">demos/location-voiture</a>. Lance-les, lis les classes, puis essaie d'ajouter un nouveau tarif à la location ou un second logger au service : si tu peux le faire sans modifier le code existant, tu as compris OCP et DIP.</p>
 </main>
 </div>
 </body>
